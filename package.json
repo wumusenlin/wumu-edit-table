@@ -1,0 +1,24 @@
+{
+  "name": "react-edittable",
+  "version": "0.0.1",
+  "description": "can edit table;simple use;",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wumusenlin/react-editTable.git"
+  },
+  "keywords": [
+    "react",
+    "editable",
+    "table"
+  ],
+  "author": "wumusenlin000@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wumusenlin/react-editTable/issues"
+  },
+  "homepage": "https://github.com/wumusenlin/react-editTable#readme"
+}
