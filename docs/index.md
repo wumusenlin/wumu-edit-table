@@ -4,9 +4,9 @@ hero:
   description: 简易使用的react可编辑表格
   actions:
     - text: 开始使用
-      link: /
-    # - text: 组件
-    #   link: /
+      link: /guide
+    - text: 组件介绍
+      link: /components/edit-table
 features:
   - title: Hello
     emoji: 💎

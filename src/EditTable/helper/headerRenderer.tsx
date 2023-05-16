@@ -3,7 +3,7 @@ import { colProps } from '../types';
 
 function headerRenderer(columns: Array<colProps>) {
   const ths = columns.map((col, index) => {
-    const { title, width, dataIndex } = col;
+    const { title, width = 200, dataIndex } = col;
     const thStyle = { width };
     const key = `${dataIndex}-${index}`;
 

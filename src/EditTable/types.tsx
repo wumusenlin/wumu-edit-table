@@ -1,6 +1,6 @@
 export interface colProps {
   dataIndex: string;
-  title: string | Node;
+  title: any;
   width: number | string;
 }
 
