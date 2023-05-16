@@ -1,12 +1,12 @@
 ---
 hero:
-  title: library
-  description: A react library developed with dumi
+  title: edit-table
+  description: 简易使用的react可编辑表格
   actions:
-    - text: Hello
+    - text: 开始使用
       link: /
-    - text: World
-      link: /
+    # - text: 组件
+    #   link: /
 features:
   - title: Hello
     emoji: 💎
