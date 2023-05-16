@@ -1,7 +1,9 @@
-export interface columns {
+export interface colProps {
   dataIndex: string;
+  title: string | Node;
+  width: number | string;
 }
 
 export interface tableProps {
-  columns: columns;
+  columns: Array<colProps>;
 }
