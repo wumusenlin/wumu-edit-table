@@ -24,6 +24,7 @@ export default () => {
     {
       title: 'E',
       dataIndex: 'E',
+      width: 380,
     },
     {
       title: 'F',

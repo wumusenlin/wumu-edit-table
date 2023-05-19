@@ -1,12 +1,3 @@
-.header-table {
-  border-spacing: 0;
-}
-
-.main-table {
-  border-collapse: separate;
-  table-layout: fixed;
-}
-
 .table-tbody {
   --table-border-color: #bdbebd;
   --table-hover-bgcolor: #ececec;

@@ -1,3 +1,24 @@
-.table-wrap {
+.wumu-table {
+  color: inherit;
+}
+
+.wumu-table-header {
+  overflow: hidden;
+  position: relative;
+}
+
+.wumu-table-header table {
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.wumu-table-body {
   background-color: transparent;
+}
+
+.wumu-table-body table {
+  border-collapse: separate;
+  table-layout: fixed;
+  width: 100%;
 }

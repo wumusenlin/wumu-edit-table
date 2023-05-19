@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState, type FC } from 'react';
 import '../index.css';
+import './css/main.css';
 import headerRenderer from './helper/headerRenderer';
 import tbodyRenderer from './helper/tbodyRenderer';
 import useVirtualList from './helper/useVirtualList';
@@ -55,13 +56,16 @@ const EditTable: FC<tableProps> = (props) => {
   }, [containerInfo]);
 
   return (
-    <div>
-      <table className="header-table">
-        {genColGroup({ columns: _columns, autoCol })}
-        {headerRenderer({ columns: _columns, headerHeight })}
-      </table>
-      <div className="table-wrap" {...containerProps}>
-        <table className="main-table" {...wrapperProps}>
+    <div className="wumu-table">
+      <div className="wumu-table-header">
+        <table>
+          {genColGroup({ columns: _columns, autoCol })}
+          {headerRenderer({ columns: _columns, headerHeight })}
+        </table>
+      </div>
+      {/* @ts-ignore */}
+      <div className="wumu-table-body" {...containerProps}>
+        <table {...wrapperProps}>
           {genColGroup({ columns: _columns, autoCol })}
           {tbodyRenderer({ dataSource: list, columns: _columns, rowHeight })}
           <div style={{ height: bottomHeight }}></div>

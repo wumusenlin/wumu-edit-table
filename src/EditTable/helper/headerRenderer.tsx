@@ -20,9 +20,11 @@ function headerRenderer(props: headerRendererProps) {
   const trStyle = { height: headerHeight };
 
   return (
-    <tr style={trStyle} className="table-header">
-      {ths}
-    </tr>
+    <thead>
+      <tr style={trStyle} className="table-header">
+        {ths}
+      </tr>
+    </thead>
   );
 }
 
