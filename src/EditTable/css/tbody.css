@@ -1,0 +1,7 @@
+.table-tr {
+  padding: 0 8px;
+}
+
+.table-td {
+  border-bottom: 1px soild #ccc;
+}
