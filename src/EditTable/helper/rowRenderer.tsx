@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/tbody.css';
 import { rowRendererProps } from '../types';
 
 function rowRenderer(props: rowRendererProps) {
@@ -9,9 +8,10 @@ function rowRenderer(props: rowRendererProps) {
       {columns.map((col, index) => {
         const { dataIndex } = col;
         const key = `${index}-${dataIndex}`;
+        const id = `${record.rowKey}-${dataIndex}`;
         const tdStyle = { height: rowHeight };
         return (
-          <td key={key} style={tdStyle} className="table-td">
+          <td id={id} key={key} style={tdStyle} className="table-td">
             {record[dataIndex]}
           </td>
         );

@@ -1,9 +1,9 @@
 export interface colProps {
   dataIndex: string;
   title: any;
-  width?: number | string;
+  width?: number;
   fixed?: 'right' | 'left';
-  align: 'left' | 'center' | 'right';
+  align?: 'left' | 'center' | 'right';
 }
 
 interface onEdit {
@@ -12,9 +12,11 @@ interface onEdit {
 export interface tableProps {
   columns: Array<colProps>;
   dataSource: Array<object>;
-  onEdit: onEdit;
+  onEdit?: onEdit;
   rowHeight?: number;
   maxHeight?: number;
+  headerHeight?: number;
+  rowKey?: string;
 }
 
 export interface tbodyRendererProps {
@@ -24,7 +26,7 @@ export interface tbodyRendererProps {
 }
 export interface headerRendererProps {
   columns: Array<colProps>;
-  rowHeight: number;
+  headerHeight: number;
 }
 
 export interface rowRendererProps {
@@ -49,4 +51,9 @@ export interface virtualListResponse {
   topHeight: number;
   bottomHeight: number;
   containerInfo: number;
+}
+
+export interface autoCol {
+  autoWidthColIndex: null | number;
+  autoColWidth: number;
 }

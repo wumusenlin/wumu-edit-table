@@ -11,6 +11,7 @@ export default defineConfig({
       github: 'https://github.com/wumusenlin/wumu-edit-table',
       zhihu: 'https://www.zhihu.com/people/zhang-sen-lin-66',
     },
+    nprogress: true,
   },
   theme: { '@c-primary': '#1DA57A' },
   favicons: ['/edit-table.ico'],

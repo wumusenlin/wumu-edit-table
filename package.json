@@ -49,7 +49,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
-    "dumi": "^2.1.22",
+    "dumi": "^2.1.23",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
     "husky": "^8.0.1",

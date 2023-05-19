@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/tbody.css';
 import { tbodyRendererProps } from '../types';
 import { mustArray } from './fn';
 import rowRenderer from './rowRenderer';
@@ -19,10 +20,10 @@ function tbodyRenderer(props: tbodyRendererProps) {
     );
   }
   return (
-    <tbody>
-      {mustArray(dataSource).map((record) => {
-        return rowRenderer({ record, columns, rowHeight });
-      })}
+    <tbody className="table-tbody">
+      {mustArray(dataSource).map((record) =>
+        rowRenderer({ record, columns, rowHeight }),
+      )}
     </tbody>
   );
 }

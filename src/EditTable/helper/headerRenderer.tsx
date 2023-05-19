@@ -3,11 +3,11 @@ import '../css/herader.css';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
-  const { columns, rowHeight } = props;
+  const { columns, headerHeight } = props;
 
   const ths = columns.map((col, index) => {
-    const { title, width = 200, dataIndex, align = 'left' } = col;
-    const thStyle = { width, textAlign: align };
+    const { title, dataIndex, align = 'left' } = col;
+    const thStyle = { textAlign: align, borderRight: '1px solid #ccc' };
     const key = `${dataIndex}-${index}`;
 
     return (
@@ -17,7 +17,7 @@ function headerRenderer(props: headerRendererProps) {
       </th>
     );
   });
-  const trStyle = { height: rowHeight };
+  const trStyle = { height: headerHeight };
 
   return (
     <tr style={trStyle} className="table-header">

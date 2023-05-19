@@ -26,7 +26,7 @@ const useVirtualList = (
   const onScroll = (evt) => {
     onScrolled();
     const { scrollTop = 0, scrollLeft = 0 } = evt.target;
-    setContainerInfo({ scrollTop, scrollLeft });
+    setContainerInfo((old) => ({ ...old, scrollTop, scrollLeft }));
     // setStartIdx(Math.floor(scrollTop / itemHeight))
     // 把overscan数量分摊到上方和下方
     const currentIndex =
@@ -39,6 +39,7 @@ const useVirtualList = (
   const wrapperProps = {
     style: {
       ...wrapperPropsStyle,
+      // borderCollapse: 'collapse',
       width: '100%',
       height: wrapHeight,
       transform: `translateZ(0)`,
@@ -64,7 +65,10 @@ const useVirtualList = (
   }, [defaultList?.length]);
   useEffect(() => {
     if (containerRef?.current) {
-      setContainerInfo({ offsetWidth: containerRef.current.offsetWidth });
+      setContainerInfo({
+        offsetWidth: containerRef.current.offsetWidth,
+        clientWidth: containerRef.current.clientWidth,
+      });
     }
   }, [containerRef?.current]);
 

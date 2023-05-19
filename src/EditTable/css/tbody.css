@@ -1,7 +1,32 @@
+.header-table {
+  border-spacing: 0;
+}
+
+.main-table {
+  border-collapse: separate;
+  table-layout: fixed;
+}
+
+.table-tbody {
+  --table-border-color: #bdbebd;
+  --table-hover-bgcolor: #ececec;
+
+  /* border: 1px solid var(--table-border-color); */
+}
+
 .table-tr {
-  padding: 0 8px;
+  cursor: pointer;
+}
+
+.table-tr:hover {
+  background-color: var(--table-hover-bgcolor);
 }
 
 .table-td {
-  border-bottom: 1px soild #ccc;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--table-border-color);
+  border-right: 1px solid var(--table-border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
