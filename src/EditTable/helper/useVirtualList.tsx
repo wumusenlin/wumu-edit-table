@@ -24,8 +24,8 @@ const useVirtualList = (
 
   // 滚动设置当前虚拟表单位置
   const onScroll = (evt) => {
-    onScrolled();
     const { scrollTop = 0, scrollLeft = 0 } = evt.target;
+    onScrolled({ scrollTop, scrollLeft });
     setContainerInfo((old) => ({ ...old, scrollTop, scrollLeft }));
     // setStartIdx(Math.floor(scrollTop / itemHeight))
     // 把overscan数量分摊到上方和下方

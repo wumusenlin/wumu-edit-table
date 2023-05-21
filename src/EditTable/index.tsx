@@ -1,4 +1,10 @@
-import React, { useEffect, useLayoutEffect, useState, type FC } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type FC,
+} from 'react';
 import '../index.css';
 import './css/main.css';
 import headerRenderer from './helper/headerRenderer';
@@ -7,35 +13,51 @@ import useVirtualList from './helper/useVirtualList';
 import { genColGroup, getAutoWidthCol, setRowKey } from './helper/utils';
 import { autoCol, colProps, tableProps } from './types';
 
+export function scrollBar() {
+  return 16;
+}
+
 const EditTable: FC<tableProps> = (props) => {
   const {
     columns,
     dataSource,
+    editId,
     onEdit = () => {},
     rowHeight = 40,
     maxHeight,
     headerHeight = 55,
   } = props;
+
+  const _headerWrapRef = useRef();
   const [_dataSource, setDataSource] = useState<Array<object>>([]);
   const [_columns, _setColumns] = useState<Array<colProps>>([]);
   const [autoCol, setAutoCol] = useState<autoCol>({
     autoWidthColIndex: null,
     autoColWidth: 120,
   });
-  console.log('autoCol', autoCol);
+
   const { list, wrapperProps, containerProps, bottomHeight, containerInfo } =
     useVirtualList(_dataSource, {
       itemHeight: rowHeight,
       maxHeight,
       overscan: 2,
-      onScrolled: () => onEdit(''),
+      onScrolled: ({ scrollTop, scrollLeft }) => {
+        if (_headerWrapRef.current) {
+          _headerWrapRef.current.scrollLeft = scrollLeft;
+        }
+        console.log('scrollTop', scrollTop);
+        onEdit('');
+      },
       wrapperPropsStyle: {
         borderSpacing: 0,
         boxShadow: 'inset 0px 0px 10px 0px #dadada',
       },
     });
 
-  console.log('containerInfo', containerInfo);
+  const handleChange = (val) => {
+    console.log('val', val);
+  };
+  // console.log('containerInfo', containerInfo);
   useEffect(() => {
     if (dataSource?.length > 0) {
       setDataSource(setRowKey(dataSource));
@@ -57,9 +79,9 @@ const EditTable: FC<tableProps> = (props) => {
 
   return (
     <div className="wumu-table">
-      <div className="wumu-table-header">
+      <div className="wumu-table-header" ref={_headerWrapRef}>
         <table>
-          {genColGroup({ columns: _columns, autoCol })}
+          {genColGroup({ columns: _columns, autoCol, scrollBar: scrollBar() })}
           {headerRenderer({ columns: _columns, headerHeight })}
         </table>
       </div>
@@ -67,7 +89,14 @@ const EditTable: FC<tableProps> = (props) => {
       <div className="wumu-table-body" {...containerProps}>
         <table {...wrapperProps}>
           {genColGroup({ columns: _columns, autoCol })}
-          {tbodyRenderer({ dataSource: list, columns: _columns, rowHeight })}
+          {tbodyRenderer({
+            dataSource: list,
+            columns: _columns,
+            rowHeight,
+            onEdit,
+            editId,
+            handleChange,
+          })}
           <div style={{ height: bottomHeight }}></div>
         </table>
       </div>

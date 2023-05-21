@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EditTable } from 'wumu-edit-table';
 
 export default () => {
+  const [editId, onEdit] = useState('');
   const columns = [
     {
       title: 'A',
@@ -117,8 +118,14 @@ export default () => {
       E: 'guaiosdjlkgjasdgasdg',
     },
   ];
-
+  console.log('editId', editId);
   return (
-    <EditTable columns={columns} dataSource={dataSource} maxHeight={320} />
+    <EditTable
+      editId={editId}
+      onEdit={onEdit}
+      columns={columns}
+      dataSource={dataSource}
+      maxHeight={320}
+    />
   );
 };

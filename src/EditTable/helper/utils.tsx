@@ -4,13 +4,16 @@ import { autoCol, colProps } from '../types';
 export function genColGroup(props: {
   columns: Array<colProps>;
   autoCol: autoCol;
+  scrollBar?: number;
 }) {
-  const { columns, autoCol } = props;
+  const { columns, autoCol, scrollBar } = props;
   const { autoWidthColIndex, autoColWidth } = autoCol;
-
+  const targetColumns = scrollBar
+    ? columns.concat([{ width: scrollBar }])
+    : columns;
   return (
     <colgroup>
-      {columns.map((col, i) => {
+      {targetColumns.map((col, i) => {
         const { width } = col;
         const key = `col-${i}`;
         if (autoWidthColIndex === i) {

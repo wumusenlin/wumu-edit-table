@@ -5,7 +5,14 @@ import { mustArray } from './fn';
 import rowRenderer from './rowRenderer';
 
 function tbodyRenderer(props: tbodyRendererProps) {
-  const { dataSource, columns, rowHeight = 40 } = props;
+  const {
+    dataSource,
+    columns,
+    rowHeight = 40,
+    onEdit,
+    editId,
+    handleChange = () => {},
+  } = props;
 
   const addRow = () => {};
 
@@ -19,10 +26,18 @@ function tbodyRenderer(props: tbodyRendererProps) {
       </div>
     );
   }
+
   return (
     <tbody className="table-tbody">
       {mustArray(dataSource).map((record) =>
-        rowRenderer({ record, columns, rowHeight }),
+        rowRenderer({
+          record,
+          columns,
+          rowHeight,
+          onEdit,
+          editId,
+          handleChange,
+        }),
       )}
     </tbody>
   );
