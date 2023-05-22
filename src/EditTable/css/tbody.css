@@ -3,6 +3,8 @@
   --table-hover-bgcolor: #ececec;
 
   /* border: 1px solid var(--table-border-color); */
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .table-tr {
@@ -20,4 +22,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  box-sizing: border-box;
 }

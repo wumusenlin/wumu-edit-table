@@ -1,10 +1,18 @@
 import React, { type FC } from 'react';
 import { inputProps } from '../types';
+import './basicInput.css';
 
 const BasicInput: FC<inputProps> = (props) => {
-  const { initValue, handleChange = () => {} } = props;
+  const { initValue, inputChange = () => {} } = props;
   return (
-    <input value={initValue} onChange={(e) => handleChange(e.target.value)} />
+    <input
+      className="wumu-input"
+      defaultValue={initValue}
+      onChange={(e) => {
+        inputChange(e.target.value);
+      }}
+      autoFocus
+    />
   );
 };
 

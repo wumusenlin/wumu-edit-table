@@ -1,5 +1,10 @@
 .wumu-table {
   color: inherit;
+
+  --highlight-color: #1da57a;
+
+  font-family: sans-serif;
+  font-size: 14px;
 }
 
 .wumu-table-header {

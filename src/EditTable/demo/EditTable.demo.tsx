@@ -118,14 +118,16 @@ export default () => {
       E: 'guaiosdjlkgjasdgasdg',
     },
   ];
-  console.log('editId', editId);
+  const [list, setList] = useState(dataSource);
+
   return (
     <EditTable
       editId={editId}
       onEdit={onEdit}
       columns={columns}
-      dataSource={dataSource}
+      dataSource={list}
       maxHeight={320}
+      onChange={(newList) => setList(newList)}
     />
   );
 };

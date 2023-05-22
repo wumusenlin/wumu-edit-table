@@ -3,25 +3,43 @@ import BasicInput from '../input/basicInput';
 import { rowRendererProps } from '../types';
 
 function rowRenderer(props: rowRendererProps) {
-  const { columns, record, rowHeight, editId, onEdit, handleChange } = props;
+  const {
+    columns,
+    record,
+    rowHeight,
+    editId,
+    onEdit = () => {},
+    handleChange = () => {},
+  } = props;
+  const { rowKey } = record;
+
   return (
     <tr className="table-tr">
       {columns.map((col, index) => {
         const { dataIndex } = col;
         const key = `${index}-${dataIndex}`;
-        const id = `${record.rowKey}-${dataIndex}`;
+        const id = `${rowKey}-${dataIndex}`;
         const isEdit = id === editId;
         const tdStyle = {
           height: rowHeight,
-          border: isEdit ? '1px solid red' : '',
+          boxShadow: isEdit
+            ? 'inset 0px 0px 0px 1px var(--highlight-color)'
+            : '',
+        };
+        const inputChange = (val: any) => {
+          handleChange(val, {
+            rowIndex: rowKey,
+            dataIndex,
+            record,
+            cellId: id,
+          });
         };
         const value = record[dataIndex];
         const content = isEdit ? (
           <BasicInput
             initValue={value}
-            handleChange={handleChange}
-            rowIndex={record.rowKey}
-            dataIndex={dataIndex}
+            inputChange={inputChange}
+            onEdit={onEdit}
           />
         ) : (
           value
@@ -33,6 +51,7 @@ function rowRenderer(props: rowRendererProps) {
             style={tdStyle}
             className="table-td"
             onClick={() => (typeof onEdit === 'function' ? onEdit(id) : void 0)}
+            onBlur={() => onEdit('')}
           >
             {content}
           </td>

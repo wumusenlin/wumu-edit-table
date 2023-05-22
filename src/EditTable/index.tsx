@@ -11,7 +11,7 @@ import headerRenderer from './helper/headerRenderer';
 import tbodyRenderer from './helper/tbodyRenderer';
 import useVirtualList from './helper/useVirtualList';
 import { genColGroup, getAutoWidthCol, setRowKey } from './helper/utils';
-import { autoCol, colProps, tableProps } from './types';
+import { autoCol, colProps, handleChange, tableProps } from './types';
 
 export function scrollBar() {
   return 16;
@@ -26,10 +26,11 @@ const EditTable: FC<tableProps> = (props) => {
     rowHeight = 40,
     maxHeight,
     headerHeight = 55,
+    onChange = () => {},
   } = props;
 
   const _headerWrapRef = useRef();
-  const [_dataSource, setDataSource] = useState<Array<object>>([]);
+  const [_dataSource, _setDataSource] = useState<Array<object>>([]);
   const [_columns, _setColumns] = useState<Array<colProps>>([]);
   const [autoCol, setAutoCol] = useState<autoCol>({
     autoWidthColIndex: null,
@@ -41,11 +42,10 @@ const EditTable: FC<tableProps> = (props) => {
       itemHeight: rowHeight,
       maxHeight,
       overscan: 2,
-      onScrolled: ({ scrollTop, scrollLeft }) => {
+      onScrolled: ({ scrollLeft }) => {
         if (_headerWrapRef.current) {
           _headerWrapRef.current.scrollLeft = scrollLeft;
         }
-        console.log('scrollTop', scrollTop);
         onEdit('');
       },
       wrapperPropsStyle: {
@@ -54,13 +54,18 @@ const EditTable: FC<tableProps> = (props) => {
       },
     });
 
-  const handleChange = (val) => {
-    console.log('val', val);
+  const handleChange: handleChange = (val: any, options) => {
+    const { rowIndex, dataIndex } = options;
+
+    let targetDataSource = _dataSource;
+    targetDataSource[rowIndex][dataIndex] = val;
+    onChange(targetDataSource);
+    // _setDataSource(targetDataSource)
   };
   // console.log('containerInfo', containerInfo);
   useEffect(() => {
     if (dataSource?.length > 0) {
-      setDataSource(setRowKey(dataSource));
+      _setDataSource(setRowKey(dataSource));
     }
   }, [dataSource.length]);
   useEffect(() => {

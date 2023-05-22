@@ -13,15 +13,15 @@ interface changeOptions {
   rowIndex: number;
   record: any;
   cellId: string;
+  dataIndex: string | Array<string>;
 }
 interface onChange {
   (data: Array<any>, options: changeOptions): void;
 }
-interface handleChange {
-  (val: any): void;
+export interface handleChange {
+  (val: any, changeOptions: changeOptions): void;
 }
 interface onScrolledParmar {
-  scrollTop: number;
   scrollLeft: number;
 }
 interface onScrolled {
@@ -84,17 +84,11 @@ export interface autoCol {
   autoColWidth: number;
 }
 
-interface handleChange {
+interface inputChange {
   (value: any): void;
 }
 export interface inputProps {
-  columns: Array<colProps>;
-  record: any;
-  rowHeight: number;
-  onEdit?: onEdit;
-  editId?: string;
-  handleChange?: handleChange;
+  inputChange?: inputChange;
   initValue: any;
-  rowIndex: number;
-  dataIndex: string | Array<string>;
+  onEdit?: onEdit;
 }
