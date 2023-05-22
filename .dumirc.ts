@@ -1,7 +1,10 @@
 import { defineConfig } from 'dumi';
 
+const repo = `wumu-edit-table`;
 export default defineConfig({
   outputPath: 'docs-dist',
+  base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   themeConfig: {
     name: 'edit-table',
     logo: '/wumusenlin-logo.png',

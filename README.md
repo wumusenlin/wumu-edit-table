@@ -3,8 +3,11 @@
 [![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 [![NPM downloads](http://img.shields.io/npm/dm/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 
-A react library developed with dumi
+## A react library developed with dumi
+
 based on dumi v2
+
+[online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
 
 ## Usage
 
