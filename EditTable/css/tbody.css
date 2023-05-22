@@ -1,0 +1,26 @@
+.table-tbody {
+  --table-border-color: #bdbebd;
+  --table-hover-bgcolor: #ececec;
+
+  /* border: 1px solid var(--table-border-color); */
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.table-tr {
+  cursor: pointer;
+}
+
+.table-tr:hover {
+  background-color: var(--table-hover-bgcolor);
+}
+
+.table-td {
+  padding: 0 8px;
+  border-bottom: 1px solid var(--table-border-color);
+  border-right: 1px solid var(--table-border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
