@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwumu_edit_table=self.webpackChunkwumu_edit_table||[]).push([[448],{12535:function(i,t,e){e.r(t),e.d(t,{default:function(){return m}});var n=e(57199),u=e(67294),d=function(){var o=(0,n.UO)(),r=o.id,s=(0,n.WF)(),c=s.demos,f=c[r]||{},a=f.component;return a&&(0,u.createElement)(a)},m=d}}]);
