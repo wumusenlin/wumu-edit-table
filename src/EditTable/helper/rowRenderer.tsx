@@ -25,6 +25,7 @@ function rowRenderer(props: rowRendererProps) {
           boxShadow: isEdit
             ? 'inset 0px 0px 0px 1px var(--highlight-color)'
             : '',
+          padding: isEdit ? ' 0 8px' : '0 12px',
         };
         const inputChange = (val: any) => {
           handleChange(val, {
@@ -51,7 +52,6 @@ function rowRenderer(props: rowRendererProps) {
             style={tdStyle}
             className="table-td"
             onClick={() => (typeof onEdit === 'function' ? onEdit(id) : void 0)}
-            onBlur={() => onEdit('')}
           >
             {content}
           </td>

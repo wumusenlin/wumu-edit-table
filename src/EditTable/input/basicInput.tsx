@@ -3,7 +3,7 @@ import { inputProps } from '../types';
 import './basicInput.css';
 
 const BasicInput: FC<inputProps> = (props) => {
-  const { initValue, inputChange = () => {} } = props;
+  const { initValue, inputChange = () => {}, onEdit = () => {} } = props;
   return (
     <input
       className="wumu-input"
@@ -12,6 +12,7 @@ const BasicInput: FC<inputProps> = (props) => {
         inputChange(e.target.value);
       }}
       autoFocus
+      onBlur={() => onEdit('')}
     />
   );
 };

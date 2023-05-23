@@ -24,7 +24,7 @@ const EditTable: FC<tableProps> = (props) => {
     editId,
     onEdit = () => {},
     rowHeight = 40,
-    maxHeight,
+    maxHeight = 400,
     headerHeight = 55,
     onChange = () => {},
   } = props;

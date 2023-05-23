@@ -1,9 +1,11 @@
 .wumu-input {
-  height: calc(100% - 10px);
+  height: calc(100% - 12px);
   width: 100%;
   border: none;
   outline: none;
   font-family: inherit;
   font-size: inherit;
   box-sizing: border-box;
+  padding: 0 4px;
+  border-radius: 2px;
 }
