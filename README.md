@@ -1,30 +1,33 @@
-# wumu-edit-table
+<p align="center">
+  <a href="https://wumusenlin.github.io/wumu-edit-table">
+    <img width="200" src="https://s1.ax1x.com/2023/03/07/ppZOvxP.png">
+  </a>
+</p>
+<h1 align="center">wumu-edit-table</h1>
 
 [![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 [![NPM downloads](http://img.shields.io/npm/dm/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 
-## A simple react edit-table
-
-based on dumi v2
+## A simple react edit-table component
 
 ## 在线示例
 
 [online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
 
-## features
+## 🎊features
 
-1. [x] 好用的交互，点击单元格即可编辑，点击其他地方即可退出
-2. [x] 虚拟滚动，再多数据都不怕卡顿啦
+- 🏳‍🌈 简单易用，点哪编辑哪
+- 🚀 虚拟滚动，再多数据都不怕卡顿啦
 
-## todo list
+## 📌 todo list
 
-1. [ ] 行内新增和删除
-2. [ ] 自定义 cellRender
-3. [ ] 其他类型 input：select、checkbox
-4. [ ] 固定列
-5. [ ] 表头可伸缩
+1. 📑 行内新增和删除
+2. 📑 自定义 cellRender
+3. 📑 其他类型 input：select、checkbox
+4. 📑 固定列
+5. 📑 表头可伸缩
 
-## Usage
+## 🔨Usage
 
 ### 引入包
 
@@ -77,10 +80,14 @@ export default () => {
 
 ```
 
-## Options
+## ⚙ Options
 
 即将推出
 
-## LICENSE
+## 👊 power by
+
+based on dumi v2
+
+## 📊 LICENSE
 
 MIT
