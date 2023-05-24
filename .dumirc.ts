@@ -1,13 +1,14 @@
 import { defineConfig } from 'dumi';
 
 const repo = `wumu-edit-table`;
+const publicPath = process.env.NODE_ENV === 'production' ? `/${repo}/` : '/';
 export default defineConfig({
   outputPath: 'docs-dist',
-  base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
-  publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
+  base: publicPath,
+  publicPath: publicPath,
   themeConfig: {
     name: 'edit-table',
-    logo: `${process.env.PUBLIC_PATH}/wumusenlin-logo.png`,
+    logo: `${publicPath}wumusenlin-logo.png`,
     // footer: 'wumusenlin'
     prefersColor: { default: 'auto', switch: true },
     socialLinks: {
@@ -17,5 +18,5 @@ export default defineConfig({
     nprogress: true,
   },
   theme: { '@c-primary': '#1DA57A' },
-  favicons: [`${process.env.PUBLIC_PATH}edit-table.ico`],
+  favicons: [`${publicPath}edit-table.ico`],
 });
