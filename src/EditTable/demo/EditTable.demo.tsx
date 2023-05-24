@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { EditTable } from 'wumu-edit-table';
-import '../css/main.css';
+import './demo.css';
 
 export default () => {
-  const buttonStyle = {
-    height: 32,
-    color: 'var(--primary-color)',
-    marginRight: 32,
-  };
   const [editId, onEdit] = useState('');
   const columns = [
+    {
+      title: '序号',
+      dataIndex: 'rowIndex',
+      width: 60,
+      align: 'center',
+      // readonly: true,
+    },
     {
       title: 'A',
       dataIndex: 'A',
@@ -18,6 +20,7 @@ export default () => {
     {
       title: 'B',
       dataIndex: 'B',
+      align: 'right',
     },
     {
       title: 'C',
@@ -137,15 +140,15 @@ export default () => {
   };
 
   return (
-    <div className="wumu-table">
+    <div className="wumu-demo">
       <div style={{ display: 'flex', marginBottom: '16px' }}>
-        <button onClick={addLine} type="button" style={buttonStyle}>
+        <button onClick={addLine} type="button" className="wumu-demo-button">
           新增一行到最后
         </button>
-        <button onClick={deleteLine} type="button" style={buttonStyle}>
+        <button onClick={deleteLine} type="button" className="wumu-demo-button">
           删除最后一行
         </button>
-        <button onClick={deleteAll} type="button" style={buttonStyle}>
+        <button onClick={deleteAll} type="button" className="wumu-demo-button">
           删除所有数据
         </button>
       </div>
@@ -154,9 +157,7 @@ export default () => {
         onEdit={onEdit}
         columns={columns}
         dataSource={list}
-        maxHeight={320}
         onChange={(newList) => setList(newList)}
-        rowHeight={55}
       />
     </div>
   );

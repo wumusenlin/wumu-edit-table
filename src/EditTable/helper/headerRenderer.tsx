@@ -7,12 +7,11 @@ function headerRenderer(props: headerRendererProps) {
 
   const ths = columns.map((col, index) => {
     const { title, dataIndex, align = 'left' } = col;
-    const thStyle = { textAlign: align, borderRight: '1px solid #ccc' };
+    const thStyle = { textAlign: align };
     const key = `${dataIndex}-${index}`;
 
     return (
-      <th key={key} className="table-th" style={thStyle}>
-        {index}
+      <th key={key} title={title} className="table-th" style={thStyle}>
         {title}
       </th>
     );

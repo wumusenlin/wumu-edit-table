@@ -2,6 +2,15 @@
   background-color: #fafafa;
 }
 
+[data-prefers-color='dark'] .table-header {
+  background-color: #383838;
+}
+
 .table-th {
   padding: 0 12px;
+  border-right: 1px solid var(--table-border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }

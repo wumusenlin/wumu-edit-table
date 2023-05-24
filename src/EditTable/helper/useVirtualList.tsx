@@ -54,7 +54,6 @@ const useVirtualList = (
       overflowY: 'overlay',
       overflowX: 'auto', //解决滚动条挤压宽度问题
       maxHeight,
-      backgroundColor: '#fff',
       overflow: 'auto',
     },
   };

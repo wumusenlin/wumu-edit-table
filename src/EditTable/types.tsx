@@ -6,6 +6,7 @@ export interface colProps {
   width?: number;
   fixed?: 'right' | 'left';
   align?: 'left' | 'center' | 'right';
+  readonly?: undefined | boolean;
 }
 
 interface onEdit {
@@ -101,6 +102,7 @@ export interface inputProps {
   inputChange?: inputChange;
   initValue: any;
   onEdit?: onEdit;
+  column: colProps;
 }
 
 export interface notFoundContentWrap {

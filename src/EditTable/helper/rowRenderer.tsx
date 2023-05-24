@@ -11,17 +11,25 @@ function rowRenderer(props: rowRendererProps) {
     onEdit = () => {},
     handleChange = () => {},
   } = props;
-  const { rowKey } = record;
+  const { _rowKey: rowKey } = record;
 
   return (
     <tr className="table-tr">
       {columns.map((col, index) => {
-        const { dataIndex } = col;
+        const { dataIndex, align = 'left', readonly = false } = col;
         const key = `${index}-${dataIndex}`;
         const id = `${rowKey}-${dataIndex}`;
         const isEdit = id === editId;
+        const className = () => {
+          let str = `table-td`;
+          if (readonly) {
+            str += ` table-td-readonly`;
+          }
+          return str;
+        };
         const tdStyle = {
           height: rowHeight,
+          textAlign: align,
           boxShadow: isEdit ? 'inset 0px 0px 0px 1px var(--primary-color)' : '',
           padding: isEdit ? ' 0 8px' : '0 12px',
         };
@@ -39,6 +47,7 @@ function rowRenderer(props: rowRendererProps) {
             initValue={value}
             inputChange={inputChange}
             onEdit={onEdit}
+            column={col}
           />
         ) : (
           value
@@ -48,8 +57,11 @@ function rowRenderer(props: rowRendererProps) {
             id={id}
             key={key}
             style={tdStyle}
-            className="table-td"
-            onClick={() => (typeof onEdit === 'function' ? onEdit(id) : void 0)}
+            className={className()}
+            title={value}
+            onClick={() =>
+              typeof onEdit === 'function' && !readonly ? onEdit(id) : void 0
+            }
           >
             {content}
           </td>

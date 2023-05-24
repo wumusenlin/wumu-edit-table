@@ -58,7 +58,6 @@ const EditTable: FC<tableProps> = (props) => {
       },
       wrapperPropsStyle: {
         borderSpacing: 0,
-        boxShadow: 'inset 0px 0px 10px 0px #dadada',
       },
     });
 

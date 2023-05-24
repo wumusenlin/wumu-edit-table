@@ -53,7 +53,7 @@ export function getAutoWidthCol(props: {
 }
 
 export function setRowKey(list: Array<object>) {
-  return list.map((x: any, i: number) => ({ ...x, rowKey: i }));
+  return list.map((x: any, i: number) => ({ ...x, _rowKey: i, rowIndex: i }));
 }
 
 export function deafultNotFoundCount() {
