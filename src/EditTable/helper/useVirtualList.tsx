@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { virtualListOptions } from '../types';
+import { containerInfoProps, virtualListOptions } from '../types';
 
 const useVirtualList = (
   defaultList: Array<any>,
@@ -8,8 +8,7 @@ const useVirtualList = (
   const {
     overscan = 0,
     itemHeight = 40,
-    maxHeight,
-    height = 510,
+    maxHeight = 400,
     onScrolled = () => {},
     wrapperPropsStyle = {},
   } = options;
@@ -18,16 +17,18 @@ const useVirtualList = (
   const [wrapHeight, setWrapHeight] = useState(
     defaultList?.length * itemHeight,
   );
-  const [showRowCount] = useState(Math.ceil(height / itemHeight));
-  const [containerInfo, setContainerInfo] = useState({});
+  const [showRowCount] = useState(Math.ceil(maxHeight / itemHeight));
+  const [containerInfo, setContainerInfo] = useState<containerInfoProps>({
+    offsetWidth: 0,
+    clientWidth: 0,
+  });
   const topHeight = startIdx * itemHeight;
 
   // 滚动设置当前虚拟表单位置
-  const onScroll = (evt: EventInit) => {
-    const { scrollTop = 0, scrollLeft = 0 } = evt.target;
+  const onScroll = (evt: WheelEvent) => {
+    const { scrollTop = 0, scrollLeft = 0 } = evt.target as HTMLDivElement;
     onScrolled({ scrollLeft });
     setContainerInfo((old) => ({ ...old, scrollTop, scrollLeft }));
-    // setStartIdx(Math.floor(scrollTop / itemHeight))
     // 把overscan数量分摊到上方和下方
     const currentIndex =
       overscan > 0
@@ -39,13 +40,11 @@ const useVirtualList = (
   const wrapperProps = {
     style: {
       ...wrapperPropsStyle,
-      // borderCollapse: 'collapse',
       width: '100%',
       height: wrapHeight,
       transform: `translateZ(0)`,
       paddingTop: topHeight,
     },
-    // ref: el => actualContentRef.current = el,
   };
   // 设置绑定父级DOM
   const containerProps = {

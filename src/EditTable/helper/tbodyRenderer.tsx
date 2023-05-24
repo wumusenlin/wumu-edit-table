@@ -12,22 +12,16 @@ function tbodyRenderer(props: tbodyRendererProps) {
     onEdit,
     editId,
     handleChange = () => {},
+    notFoundContent,
   } = props;
 
-  const addRow = () => {};
+  // const addRow = () => { };
 
-  if (mustArray(dataSource).length === 0) {
-    return (
-      <div>
-        暂无数据
-        <button type="button" onClick={() => addRow()}>
-          新增行
-        </button>
-      </div>
-    );
-  }
+  const isEmpty = mustArray(dataSource).length === 0;
 
-  return (
+  return isEmpty ? (
+    notFoundContent
+  ) : (
     <tbody className="table-tbody">
       {mustArray(dataSource).map((record) =>
         rowRenderer({

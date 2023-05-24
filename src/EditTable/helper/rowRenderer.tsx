@@ -22,9 +22,7 @@ function rowRenderer(props: rowRendererProps) {
         const isEdit = id === editId;
         const tdStyle = {
           height: rowHeight,
-          boxShadow: isEdit
-            ? 'inset 0px 0px 0px 1px var(--highlight-color)'
-            : '',
+          boxShadow: isEdit ? 'inset 0px 0px 0px 1px var(--primary-color)' : '',
           padding: isEdit ? ' 0 8px' : '0 12px',
         };
         const inputChange = (val: any) => {

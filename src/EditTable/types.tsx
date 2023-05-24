@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface colProps {
   dataIndex: string;
   title: any;
@@ -8,6 +10,10 @@ export interface colProps {
 
 interface onEdit {
   (id: string, y?: number): void;
+}
+export interface autoCol {
+  autoWidthColIndex: null | number;
+  autoColWidth: number;
 }
 interface changeOptions {
   rowIndex: number;
@@ -37,6 +43,8 @@ export interface tableProps {
   headerHeight?: number;
   rowKey?: string;
   onChange?: onChange;
+  hiddenHerder?: boolean;
+  notFoundContent?: null | ReactNode;
 }
 
 export interface tbodyRendererProps {
@@ -46,6 +54,7 @@ export interface tbodyRendererProps {
   onEdit?: onEdit;
   editId?: string;
   handleChange?: handleChange;
+  notFoundContent?: null | ReactNode;
 }
 export interface headerRendererProps {
   columns: Array<colProps>;
@@ -70,18 +79,19 @@ export interface virtualListOptions {
   wrapperPropsStyle?: object;
 }
 
+export interface containerInfoProps {
+  offsetWidth: number;
+  clientWidth: number;
+  scrollLeft?: number;
+  scrollTop?: number;
+}
 export interface virtualListResponse {
   list: Array<any>;
   wrapperProps: object;
   containerProps: object;
   topHeight: number;
   bottomHeight: number;
-  containerInfo: number;
-}
-
-export interface autoCol {
-  autoWidthColIndex: null | number;
-  autoColWidth: number;
+  containerInfo: containerInfoProps;
 }
 
 interface inputChange {
@@ -91,4 +101,9 @@ export interface inputProps {
   inputChange?: inputChange;
   initValue: any;
   onEdit?: onEdit;
+}
+
+export interface notFoundContentWrap {
+  children: ReactNode;
+  containerInfo: containerInfoProps;
 }

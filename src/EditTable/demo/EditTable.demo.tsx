@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { EditTable } from 'wumu-edit-table';
+import '../css/main.css';
 
 export default () => {
+  const buttonStyle = {
+    height: 32,
+    color: 'var(--primary-color)',
+    marginRight: 32,
+  };
   const [editId, onEdit] = useState('');
   const columns = [
     {
@@ -120,14 +126,38 @@ export default () => {
   ];
   const [list, setList] = useState(dataSource);
 
+  const addLine = () => {
+    setList((preList) => preList.concat([{}]));
+  };
+  const deleteLine = () => {
+    setList((preList) => preList.slice(0, -1));
+  };
+  const deleteAll = () => {
+    setList([]);
+  };
+
   return (
-    <EditTable
-      editId={editId}
-      onEdit={onEdit}
-      columns={columns}
-      dataSource={list}
-      maxHeight={320}
-      onChange={(newList) => setList(newList)}
-    />
+    <div className="wumu-table">
+      <div style={{ display: 'flex', marginBottom: '16px' }}>
+        <button onClick={addLine} type="button" style={buttonStyle}>
+          新增一行到最后
+        </button>
+        <button onClick={deleteLine} type="button" style={buttonStyle}>
+          删除最后一行
+        </button>
+        <button onClick={deleteAll} type="button" style={buttonStyle}>
+          删除所有数据
+        </button>
+      </div>
+      <EditTable
+        editId={editId}
+        onEdit={onEdit}
+        columns={columns}
+        dataSource={list}
+        maxHeight={320}
+        onChange={(newList) => setList(newList)}
+        rowHeight={55}
+      />
+    </div>
   );
 };

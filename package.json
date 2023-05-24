@@ -1,11 +1,14 @@
 {
   "name": "wumu-edit-table",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A react edit-table component",
   "keywords": [
     "react",
     "edit",
-    "table"
+    "editable",
+    "table",
+    "react-component",
+    "edit-table"
   ],
   "homepage": "https://github.com/wumusenlin/wumu-edit-table",
   "repository": {

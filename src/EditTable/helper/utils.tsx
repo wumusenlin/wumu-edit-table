@@ -1,5 +1,6 @@
 import React from 'react';
-import { autoCol, colProps } from '../types';
+import '../css/tbody.css';
+import { autoCol, colProps, notFoundContentWrap } from '../types';
 
 export function genColGroup(props: {
   columns: Array<colProps>;
@@ -53,4 +54,22 @@ export function getAutoWidthCol(props: {
 
 export function setRowKey(list: Array<object>) {
   return list.map((x: any, i: number) => ({ ...x, rowKey: i }));
+}
+
+export function deafultNotFoundCount() {
+  return <div className="wumu-deafult-not-found-content">暂无数据~</div>;
+}
+
+export function genNotFoundContentWrap(props: notFoundContentWrap) {
+  const { containerInfo, children = deafultNotFoundCount() } = props;
+  const style = {
+    width: containerInfo.offsetWidth,
+    marginLeft: containerInfo.scrollLeft,
+  };
+
+  return (
+    <div>
+      <div style={style}>{children}</div>
+    </div>
+  );
 }
