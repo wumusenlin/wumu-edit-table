@@ -82,7 +82,7 @@ export default () => {
 
 ## ⚙ Options
 
-即将推出
+[git pages options](https://wumusenlin.github.io/wumu-edit-table/api)
 
 ## 👊 power by
 

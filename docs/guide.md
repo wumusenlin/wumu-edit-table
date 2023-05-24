@@ -1,12 +1,18 @@
 ---
-title: 快速使用
+title: 快速指南
 order: 1
 nav:
-  title: 快速使用
+  title: 快速指南
   order: 1
 ---
 
-## 引入包
+## 版本
+
+[![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
+
+## 开始使用
+
+### 引入包
 
 通过 npm 引入后直接在项目中引用
 

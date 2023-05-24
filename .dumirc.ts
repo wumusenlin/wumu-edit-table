@@ -7,7 +7,7 @@ export default defineConfig({
   publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   themeConfig: {
     name: 'edit-table',
-    logo: '/wumusenlin-logo.png',
+    logo: `${process.env.PUBLIC_PATH}/wumusenlin-logo.png`,
     // footer: 'wumusenlin'
     prefersColor: { default: 'auto', switch: true },
     socialLinks: {
@@ -17,5 +17,5 @@ export default defineConfig({
     nprogress: true,
   },
   theme: { '@c-primary': '#1DA57A' },
-  favicons: ['/edit-table.ico'],
+  favicons: [`${process.env.PUBLIC_PATH}edit-table.ico`],
 });
