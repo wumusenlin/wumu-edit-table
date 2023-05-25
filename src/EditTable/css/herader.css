@@ -1,16 +1,27 @@
 .table-header {
-  background-color: #fafafa;
-}
-
-[data-prefers-color='dark'] .table-header {
-  background-color: #383838;
+  background-color: var(--table-header-bg);
 }
 
 .table-th {
   padding: 0 12px;
-  border-right: 1px solid var(--table-border-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
+  position: relative;
+}
+
+.table-th::after {
+  content: '';
+  position: absolute;
+  top: 33%;
+  right: 0;
+  height: 33%;
+  width: 1px;
+
+  /* border-right: 1px solid var(--table-border-color); */
+}
+
+.table-fixed-th {
+  background-color: var(--table-header-bg);
 }

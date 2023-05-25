@@ -1,16 +1,6 @@
 .table-tbody {
-  --table-border-color: #bdbebd;
-  --table-hover-bgcolor: #f5f5f5;
-  --table-disable-bg: #dbdbdb;
-
   font-family: inherit;
   font-size: inherit;
-}
-
-[data-prefers-color='dark'] .table-tbody {
-  --table-border-color: #3d3d3d;
-  --table-hover-bgcolor: #565656;
-  --table-disable-bg: #2b2b2b;
 }
 
 .wumu-deafult-not-found-content {
@@ -23,6 +13,7 @@
 
 .table-tr {
   cursor: pointer;
+  background-color: var(--table-bg);
 }
 
 .table-tr:hover {
@@ -37,6 +28,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
+}
+
+.table-first-td {
+  border-left: 1px solid var(--table-border-color);
+}
+
+.table-first-tr {
+  border-top: 1px solid var(--table-border-color);
+}
+
+.table-fixed-td {
+  background-color: var(--table-bg);
+}
+
+.table-tr:hover .table-fixed-td {
+  background-color: var(--table-hover-bgcolor);
 }
 
 .table-td-readonly {

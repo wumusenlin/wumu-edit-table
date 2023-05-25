@@ -75,7 +75,6 @@ const EditTable: FC<tableProps> = (props) => {
   };
 
   useEffect(() => {
-    console.log('process.env', process.env);
     _setDataSource(setRowKey(dataSource));
   }, [dataSource.length]);
   useEffect(() => {

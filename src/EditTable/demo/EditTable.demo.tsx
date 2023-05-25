@@ -7,127 +7,31 @@ export default () => {
   const columns = [
     {
       title: '序号',
-      dataIndex: 'rowIndex',
+      dataIndex: 'index',
       width: 60,
       align: 'center',
-      // readonly: true,
+      fixed: 'left',
     },
-    {
-      title: 'A',
-      dataIndex: 'A',
-      width: 300,
-    },
-    {
-      title: 'B',
-      dataIndex: 'B',
-      align: 'right',
-    },
-    {
-      title: 'C',
-      dataIndex: 'C',
-      width: 300,
-    },
-    {
-      title: 'D',
-      dataIndex: 'D',
-    },
-    {
-      title: 'E',
-      dataIndex: 'E',
-      width: 380,
-    },
-    {
-      title: 'F',
-      dataIndex: 'F',
-      width: 300,
-    },
+    { title: '版本号', dataIndex: 'verison', width: 300 },
+    { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
+    { title: '备注', dataIndex: 'remark' },
   ];
   const dataSource = [
+    { verison: '0.0.1', log: 'init project', remark: '👊based on dumi v2' },
+    { verison: '0.0.2', log: 'add header Render' },
+    { verison: '0.0.3', log: 'feat style' },
+    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
     {
-      A: '干嘛',
-      B: '哎哟',
-      C: 'haha',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    { A: 'fasdfasdf', B: 'asdfasd', C: 'ghjfgh' },
-    { A: 'adsfasdf', B: 'fasdf', C: 'rsfgsdf' },
-    {
-      A: 'khjkghj',
-      B: '哎哟',
-      C: '8iuk',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    { A: 'wts', B: 'vbn', C: 'fhj' },
-    {
-      A: 'fhjf',
-      B: '哎哟',
-      C: 'haha',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    { A: '干嘛', B: 'shshsdfgsdfgsdfgsdfgsdfgsdfg', C: 'khjkghjk' },
-    { A: 'adsfads', B: 'ghdfgjgh', C: 'adsfasdfad' },
-    {
-      A: 'adsfads',
-      B: 'ghdfgjgh',
-      C: 'adsfasdfad',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'adsfads',
-      B: 'ghdfgjgh',
-      C: 'adsfasdfad',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'fhjf',
-      B: '哎哟',
-      C: 'haha',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'adsfads',
-      B: 'ghdfgjgh',
-      C: 'adsfasdfad',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'adsfads',
-      B: 'ghdfgjgh',
-      C: 'adsfasdfad',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'fhjf',
-      B: '哎哟',
-      C: 'haha',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    {
-      A: 'adsfads',
-      B: 'ghdfgjgh',
-      C: 'adsfasdfad',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
-    },
-    { A: 'adsfads', B: 'ghdfgjgh', C: 'adsfasdfad' },
-    {
-      A: 'fhjf',
-      B: '哎哟',
-      C: 'haha',
-      D: '噶速度进来看哈流口水的份',
-      E: 'guaiosdjlkgjasdgasdg',
+      verison: '🎊0.1.3',
+      log: 'add github pages',
+      remark:
+        '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
     },
   ];
-  const [list, setList] = useState(dataSource);
+  const [list, setList] = useState(
+    dataSource.map((x, index) => ({ ...x, index })),
+  );
 
   const addLine = () => {
     setList((preList) => preList.concat([{}]));

@@ -1,6 +1,12 @@
 import React from 'react';
 import '../css/tbody.css';
-import { autoCol, colProps, notFoundContentWrap } from '../types';
+import {
+  autoCol,
+  colProps,
+  genClassNameProps,
+  genStyleProps,
+  notFoundContentWrap,
+} from '../types';
 
 export function genColGroup(props: {
   columns: Array<colProps>;
@@ -72,4 +78,43 @@ export function genNotFoundContentWrap(props: notFoundContentWrap) {
       <div style={style}>{children}</div>
     </div>
   );
+}
+
+export function genClassName(props: genClassNameProps) {
+  const {
+    className,
+    rowIndex,
+    columnIndex,
+    readonly,
+    fixed,
+    fixedClassName = 'table-fixed-td',
+  } = props;
+  let str = className;
+  if (rowIndex === 0) {
+    str += ` table-first-tr`;
+  }
+  if (columnIndex === 0) {
+    str += ` table-first-td`;
+  }
+  if (readonly) {
+    str += ` table-td-readonly`;
+  }
+  if (fixed) {
+    str += ` ${fixedClassName}`;
+  }
+  return str;
+}
+
+export function genStyle(props: genStyleProps) {
+  const { style, fixed, align } = props;
+  if (align) {
+    style.textAlign = align;
+  }
+  if (fixed) {
+    style.position = 'sticky';
+    style.left = 0;
+    style.zIndex = 1;
+  }
+
+  return style;
 }

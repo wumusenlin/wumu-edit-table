@@ -4,7 +4,7 @@ export interface colProps {
   dataIndex: string;
   title: string | any;
   width?: number;
-  fixed?: 'right' | 'left' | null;
+  fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
   readonly?: undefined | boolean;
 }
@@ -16,17 +16,22 @@ export interface autoCol {
   autoWidthColIndex: null | number;
   autoColWidth: number;
 }
-interface changeOptions {
+interface handleChangeOptions {
+  rowIndex: number;
+  record: any;
+  dataIndex: string | Array<string>;
+}
+interface onChangeOptions {
   rowIndex: number;
   record: any;
   dataIndex: string | Array<string>;
   value: any;
 }
 interface onChange {
-  (data: Array<any>, options: changeOptions): void;
+  (data: Array<any>, options: onChangeOptions): void;
 }
 export interface handleChange {
-  (val: any, changeOptions: changeOptions): void;
+  (val: any, handleChangeOptions: handleChangeOptions): void;
 }
 interface onScrolledParmar {
   scrollLeft: number;
@@ -63,6 +68,7 @@ export interface headerRendererProps {
 }
 
 export interface rowRendererProps {
+  rowIndex: number;
   columns: Array<colProps>;
   record: any;
   rowHeight: number;
@@ -108,4 +114,22 @@ export interface inputProps {
 export interface notFoundContentWrap {
   children: ReactNode;
   containerInfo: containerInfoProps;
+}
+
+export interface genClassNameProps {
+  className: string;
+  rowIndex?: number;
+  columnIndex?: number;
+  readonly?: boolean | null;
+  fixed?: 'right' | 'left' | null | string;
+  fixedClassName?: string;
+}
+
+export interface genStyleProps {
+  style: string;
+  rowIndex: number;
+  columnIndex: number;
+  readonly?: boolean | null;
+  fixed?: 'right' | 'left' | null | string;
+  align?: 'left' | 'center' | 'right' | null | string;
 }

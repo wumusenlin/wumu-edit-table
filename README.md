@@ -12,7 +12,7 @@
 
 ## 在线示例
 
-[online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
+[github pages | online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
 
 ## 🎊features
 
@@ -44,40 +44,62 @@ $ npm i wumu-edit-table
 import React, { useState } from 'react';
 import { EditTable } from 'wumu-edit-table';
 
+
 export default () => {
   const [editId, onEdit] = useState('');
   const columns = [
-    { title: 'A', dataIndex: 'A',width: 300,},
-    { title: 'B', dataIndex: 'B'},
-    { title: 'C', dataIndex: 'C',width: 300,},
-    { title: 'D', dataIndex: 'D'},
-    { title: 'E', dataIndex: 'E', width: 380},
-    { title: 'F', dataIndex: 'F', width: 200},
+    { title: '序号', dataIndex: 'index', width: 60, align: 'center' },
+    { title: '版本号', dataIndex: 'verison', width: 300 },
+    { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
+    { title: '备注', dataIndex: 'remark' },
   ];
   const dataSource = [
-    { A: '四川成都', B: '前端开发', C: '益州大道', D: '1998-08-01', E: '攒够10万块钱' },
-    { A: '四川广元', B: '出纳',C: '金融城',D: '1996-07-17', E: '能够开心的玩耍' },
-    { A: '四川绵阳', B: '文字工作者', C: '居家',D: '1996-XX-XX', E: '佛系' },
+    { verison: '0.0.1', log: 'init project', remark: '👊based on dumi v2' },
+    { verison: '0.0.2', log: 'add header Render', },
+    { verison: '0.0.3', log: 'feat style' },
+    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
+    { verison: '🎊0.1.3', log: 'add github pages', remark: '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table' },
   ];
-  const [list, setList] = useState(dataSource)
+  const [list, setList] = useState(dataSource.map((x, index) => ({ ...x, index })));
 
-  const onChange = (newList)=>{
-    console.log('newList', newList)
-    setList(newList)
-  }
+  const addLine = () => {
+    setList((preList) => preList.concat([{}]));
+  };
+  const deleteLine = () => {
+    setList((preList) => preList.slice(0, -1));
+  };
+  const deleteAll = () => {
+    setList([]);
+  };
+  const onChange = (newList: any, options: any) => {
+    console.log('options', options);
+    setList(newList);
+  };
 
   return (
-    <EditTable
-      editId={editId}
-      onEdit={onEdit}
-      columns={columns}
-      dataSource={list}
-      maxHeight={320}
-      onChange={onChange}
-    />
+    <div>
+      <div style={{ display: 'flex', marginBottom: '16px' }}>
+        <button onClick={addLine} type="button">
+          新增一行到最后
+        </button>
+        <button onClick={deleteLine} type="button" >
+          删除最后一行
+        </button>
+        <button onClick={deleteAll} type="button">
+          删除所有数据
+        </button>
+      </div>
+      <EditTable
+        editId={editId}
+        onEdit={onEdit}
+        columns={columns}
+        dataSource={list}
+        onChange={onChange}
+      />
+    </div>
   );
 };
-
 ```
 
 ## ⚙ Options

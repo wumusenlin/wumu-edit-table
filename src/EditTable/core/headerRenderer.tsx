@@ -1,17 +1,28 @@
 import React from 'react';
 import '../css/herader.css';
+import { genClassName, genStyle } from '../helper/utils';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
   const { columns, headerHeight } = props;
 
-  const ths = columns.map((col, index) => {
-    const { title, dataIndex, align = 'left' } = col;
+  const ths = columns.map((col, columnIndex) => {
+    const { title, dataIndex, align = 'left', fixed, readonly } = col;
     const thStyle = { textAlign: align };
-    const key = `${dataIndex}-${index}`;
+    const key = `${dataIndex}-${columnIndex}`;
 
     return (
-      <th key={key} title={title} className="table-th" style={thStyle}>
+      <th
+        key={key}
+        title={title}
+        className={genClassName({
+          className: 'table-th',
+          readonly,
+          fixed,
+          fixedClassName: 'table-fixed-th',
+        })}
+        style={genStyle({ style: thStyle, align, fixed })}
+      >
         {title}
       </th>
     );

@@ -23,8 +23,9 @@ function tbodyRenderer(props: tbodyRendererProps) {
     notFoundContent
   ) : (
     <tbody className="table-tbody">
-      {mustArray(dataSource).map((record) =>
+      {mustArray(dataSource).map((record, rowIndex) =>
         rowRenderer({
+          rowIndex,
           record,
           columns,
           rowHeight,
