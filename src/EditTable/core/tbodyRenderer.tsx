@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/tbody.css';
+import { mustArray } from '../helper/fn';
 import { tbodyRendererProps } from '../types';
-import { mustArray } from './fn';
 import rowRenderer from './rowRenderer';
 
 function tbodyRenderer(props: tbodyRendererProps) {

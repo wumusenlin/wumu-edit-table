@@ -6,9 +6,9 @@ import React, {
   type FC,
 } from 'react';
 import '../index.css';
+import headerRenderer from './core/headerRenderer';
+import tbodyRenderer from './core/tbodyRenderer';
 import './css/main.css';
-import headerRenderer from './helper/headerRenderer';
-import tbodyRenderer from './helper/tbodyRenderer';
 import useVirtualList from './helper/useVirtualList';
 import {
   deafultNotFoundCount,
@@ -54,7 +54,7 @@ const EditTable: FC<tableProps> = (props) => {
         if (_headerWrapRef.current) {
           _headerWrapRef.current.scrollLeft = scrollLeft;
         }
-        onEdit('');
+        // onEdit('');
       },
       wrapperPropsStyle: {
         borderSpacing: 0,
@@ -64,8 +64,14 @@ const EditTable: FC<tableProps> = (props) => {
   const handleChange: handleChange = (val: any, options) => {
     const { rowIndex, dataIndex } = options;
     let targetDataSource = _dataSource;
+    // @ts-ignore
     targetDataSource[rowIndex][dataIndex] = val;
-    onChange(targetDataSource, {});
+    onChange(targetDataSource, {
+      rowIndex,
+      dataIndex,
+      value: val,
+      record: targetDataSource[rowIndex],
+    });
   };
 
   useEffect(() => {
@@ -118,7 +124,6 @@ const EditTable: FC<tableProps> = (props) => {
                   containerInfo,
                   children: deafultNotFoundCount(),
                 }),
-            autoCol,
           })}
           <div style={{ height: bottomHeight }}></div>
         </table>

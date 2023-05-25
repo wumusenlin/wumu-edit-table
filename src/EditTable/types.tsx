@@ -2,10 +2,10 @@ import { ReactNode } from 'react';
 
 export interface colProps {
   dataIndex: string;
-  title: any;
+  title: string | any;
   width?: number;
-  fixed?: 'right' | 'left';
-  align?: 'left' | 'center' | 'right';
+  fixed?: 'right' | 'left' | null;
+  align?: 'left' | 'center' | 'right' | null | string;
   readonly?: undefined | boolean;
 }
 
@@ -19,8 +19,8 @@ export interface autoCol {
 interface changeOptions {
   rowIndex: number;
   record: any;
-  cellId: string;
   dataIndex: string | Array<string>;
+  value: any;
 }
 interface onChange {
   (data: Array<any>, options: changeOptions): void;

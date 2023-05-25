@@ -138,6 +138,10 @@ export default () => {
   const deleteAll = () => {
     setList([]);
   };
+  const onChange = (newList: any, options: any) => {
+    console.log('options', options);
+    setList(newList);
+  };
 
   return (
     <div className="wumu-demo">
@@ -157,7 +161,7 @@ export default () => {
         onEdit={onEdit}
         columns={columns}
         dataSource={list}
-        onChange={(newList) => setList(newList)}
+        onChange={onChange}
       />
     </div>
   );

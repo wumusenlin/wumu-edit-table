@@ -12,17 +12,15 @@ const useVirtualList = (
     onScrolled = () => {},
     wrapperPropsStyle = {},
   } = options;
-  const containerRef = useRef();
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [startIdx, setStartIdx] = useState(0);
-  const [wrapHeight, setWrapHeight] = useState(
-    defaultList?.length * itemHeight,
-  );
   const [showRowCount] = useState(Math.ceil(maxHeight / itemHeight));
   const [containerInfo, setContainerInfo] = useState<containerInfoProps>({
     offsetWidth: 0,
     clientWidth: 0,
   });
   const topHeight = startIdx * itemHeight;
+  const wrapHeight = defaultList?.length * itemHeight;
 
   // 滚动设置当前虚拟表单位置
   const onScroll = (evt: WheelEvent) => {
@@ -49,7 +47,7 @@ const useVirtualList = (
   // 设置绑定父级DOM
   const containerProps = {
     onScroll,
-    ref: (el) => (containerRef.current = el),
+    ref: (el: HTMLDivElement) => (containerRef.current = el),
     style: {
       overflowY: 'overlay',
       overflowX: 'auto', //解决滚动条挤压宽度问题
@@ -58,9 +56,6 @@ const useVirtualList = (
     },
   };
 
-  useEffect(() => {
-    setWrapHeight(defaultList?.length * itemHeight);
-  }, [defaultList?.length]);
   useEffect(() => {
     if (containerRef?.current) {
       setContainerInfo({
@@ -71,7 +66,12 @@ const useVirtualList = (
   }, [containerRef?.current]);
 
   const list = defaultList.slice(startIdx, startIdx + showRowCount + overscan);
-
+  console.log(
+    'bottomHeight',
+    wrapHeight,
+    topHeight,
+    (list.length ?? 0) * itemHeight,
+  );
   return {
     list,
     wrapperProps,
