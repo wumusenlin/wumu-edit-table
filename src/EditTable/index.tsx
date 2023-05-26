@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type FC,
-} from 'react';
+import React, { useEffect, useRef, useState, type FC } from 'react';
 import '../index.css';
 import headerRenderer from './core/headerRenderer';
 import tbodyRenderer from './core/tbodyRenderer';
@@ -80,7 +74,7 @@ const EditTable: FC<tableProps> = (props) => {
   useEffect(() => {
     _setColumns(columns);
   }, [columns]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (containerInfo.clientWidth) {
       setAutoCol(
         getAutoWidthCol({

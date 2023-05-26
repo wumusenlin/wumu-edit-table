@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import { inputProps } from '../types';
-import './basicInput.css';
+import './input.css';
 
 const BasicInput: FC<inputProps> = (props) => {
   const {

@@ -57,21 +57,24 @@ const useVirtualList = (
   };
 
   useEffect(() => {
-    if (containerRef?.current) {
-      setContainerInfo({
-        offsetWidth: containerRef.current.offsetWidth,
-        clientWidth: containerRef.current.clientWidth,
-      });
+    if (!containerRef?.current) {
+      return;
     }
+    const resizeObserver = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        //@ts-ignore
+        const { offsetWidth, clientWidth } = entry.target;
+        setContainerInfo({ offsetWidth, clientWidth });
+      });
+    });
+    resizeObserver.observe(containerRef?.current);
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, [containerRef?.current]);
 
   const list = defaultList.slice(startIdx, startIdx + showRowCount + overscan);
-  console.log(
-    'bottomHeight',
-    wrapHeight,
-    topHeight,
-    (list.length ?? 0) * itemHeight,
-  );
+
   return {
     list,
     wrapperProps,

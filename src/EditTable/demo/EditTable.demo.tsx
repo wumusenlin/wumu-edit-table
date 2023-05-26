@@ -3,7 +3,13 @@ import { EditTable } from 'wumu-edit-table';
 import './demo.css';
 
 export default () => {
-  const [editId, onEdit] = useState('');
+  const [editId, onEdit] = useState('0-select');
+  const selectData = [
+    { value: 'senlin超长文字 看看', label: 'senlin超长文字 ' },
+    { value: 'senlin1', label: 'senlin1' },
+    { value: 'senlin2', label: 'senlin2' },
+    { value: 'senlin1', label: 'senlin1' },
+  ];
   const columns = [
     {
       title: '序号',
@@ -11,6 +17,13 @@ export default () => {
       width: 60,
       align: 'center',
       fixed: 'left',
+    },
+    {
+      title: '选择',
+      dataIndex: 'select',
+      width: 200,
+      inputType: 'select',
+      inputOptions: { selectData },
     },
     { title: '版本号', dataIndex: 'verison', width: 300 },
     { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
@@ -46,7 +59,7 @@ export default () => {
     console.log('options', options);
     setList(newList);
   };
-
+  console.log('editId', editId);
   return (
     <div className="wumu-demo">
       <div style={{ display: 'flex', marginBottom: '16px' }}>
@@ -62,7 +75,10 @@ export default () => {
       </div>
       <EditTable
         editId={editId}
-        onEdit={onEdit}
+        onEdit={(id) => {
+          console.log('id', id);
+          onEdit(id);
+        }}
         columns={columns}
         dataSource={list}
         onChange={onChange}

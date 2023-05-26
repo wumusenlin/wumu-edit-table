@@ -1,27 +1,28 @@
 .wumu-table {
-  color: #333;
-
+  --table-text-color: #333;
   --primary-color: #1da57a;
   --table-header-bg: #fafafa;
-  --table-border-color: #bdbebd;
+  --table-border-color: #e7e7e7;
   --table-hover-bgcolor: #f5f5f5;
   --table-disable-bg: #dbdbdb;
   --table-bg: #fff;
 
+  color: var(--table-text-color);
   font-family: sans-serif;
   font-size: 14px;
   background-color: initial;
 }
 
 [data-prefers-color='dark'] .wumu-table {
-  color: #ddd;
-
+  --table-text-color: #ddd;
   --primary-color: #12644a;
   --table-header-bg: #383838;
   --table-border-color: #3d3d3d;
   --table-hover-bgcolor: #565656;
   --table-disable-bg: #2b2b2b;
   --table-bg: #060606;
+
+  color: var(--table-text-color);
 }
 
 .wumu-table-header {

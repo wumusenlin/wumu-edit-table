@@ -1,5 +1,13 @@
 import { ReactNode } from 'react';
 
+export interface selectDataItem {
+  value: any;
+  label: any;
+}
+export interface inputOptionsProps {
+  selectData: Array<selectDataItem>;
+}
+
 export interface colProps {
   dataIndex: string;
   title: string | any;
@@ -7,6 +15,8 @@ export interface colProps {
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
   readonly?: undefined | boolean;
+  inputType?: 'text' | 'select';
+  inputOptions?: inputOptionsProps;
 }
 
 interface onEdit {

@@ -8,6 +8,11 @@ import {
   notFoundContentWrap,
 } from '../types';
 
+export const inputTypes = {
+  text: 'text',
+  select: 'select',
+};
+
 export function genColGroup(props: {
   columns: Array<colProps>;
   autoCol: autoCol;
@@ -48,14 +53,16 @@ export function getAutoWidthCol(props: {
 
   const autoColWidth =
     clientWidth -
-    1 -
     columns.reduce(
       (res, col, index) =>
         res + (index === autoWidthColIndex ? 0 : col.width ?? 120),
       0,
     );
 
-  return { autoWidthColIndex, autoColWidth };
+  return {
+    autoWidthColIndex,
+    autoColWidth: autoColWidth < 120 ? 120 : autoColWidth,
+  };
 }
 
 export function setRowKey(list: Array<object>) {

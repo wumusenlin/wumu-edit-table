@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://wumusenlin.github.io/wumu-edit-table">
-    <img width="200" src="https://s1.ax1x.com/2023/03/07/ppZOvxP.png">
+    <img width="150" src="https://s1.ax1x.com/2023/03/07/ppZOvxP.png">
   </a>
 </p>
 <h1 align="center">wumu-edit-table</h1>

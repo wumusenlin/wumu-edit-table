@@ -10,3 +10,7 @@ export function mustArray(
 export function isExist(val: any) {
   return val !== null && val !== undefined && val !== '';
 }
+
+export function notEmptyArray(list: any) {
+  return Array.isArray(list) && list.length > 0;
+}

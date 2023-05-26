@@ -1,0 +1,51 @@
+.wumu-input-dropdown {
+  --table-text-color: #333;
+  --table-bg: #fff;
+  --table-hover-bgcolor: #f5f5f5;
+  --table-border-color: #e7e7e7;
+  --table-shadow-color: rgb(65 65 65 / 35%);
+
+  box-shadow: 3px 3px 10px 1px var(--table-shadow-color);
+
+  /* box-shadow: 0 3px 6px -4px var(--table-hover-bgcolor), 0 6px 16px var(--table-hover-bgcolor), 0 9px 28px 8px var(--table-hover-bgcolor); */
+  background-color: var(--table-bg);
+  color: var(--table-text-color);
+  padding: 4px 0;
+  overflow: auto;
+  max-height: 200px;
+}
+
+[data-prefers-color='dark'] .wumu-input-dropdown {
+  --table-text-color: #ddd;
+  --table-bg: #060606;
+  --table-hover-bgcolor: #565656;
+  --table-border-color: #3d3d3d;
+  --table-shadow-color: rgb(205 205 205 / 35%);
+}
+
+.wumu-input {
+  height: calc(100% - 16px);
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+  padding: 0 4px;
+  border-radius: 2px;
+  background-color: field;
+  color: fieldtext;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.wumu-dropdown-item {
+  padding: 8px 4px;
+  white-space: nowrap;
+}
+
+.wumu-dropdown-item:hover {
+  background-color: var(--table-hover-bgcolor);
+  cursor: pointer;
+}

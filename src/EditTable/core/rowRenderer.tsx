@@ -1,6 +1,6 @@
 import React from 'react';
 import { genClassName, genStyle } from '../helper/utils';
-import BasicInput from '../input/basicInput';
+import Input from '../input';
 import { rowRendererProps } from '../types';
 
 function rowRenderer(props: rowRendererProps) {
@@ -37,7 +37,7 @@ function rowRenderer(props: rowRendererProps) {
         };
         const value = record[dataIndex];
         const content = isEdit ? (
-          <BasicInput
+          <Input
             initValue={value}
             inputChange={inputChange}
             onEdit={onEdit}
