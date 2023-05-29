@@ -1,18 +1,32 @@
-import React, { useEffect, useMemo, useRef, useState, type FC } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FC,
+} from 'react';
 import { createPortal } from 'react-dom';
+import { tableContext } from '..';
 import { mustArray } from '../helper/fn';
+import { genPrimaryColor } from '../helper/utils';
 import { inputProps } from '../types';
 import './input.css';
 
 const SelectInput: FC<inputProps> = (props) => {
+  const { topHeight } = useContext(tableContext);
   const {
     initValue,
     inputChange = () => {},
     onEdit = () => {},
     column,
+    config = null,
   } = props;
   const { align = 'left', inputOptions, dataIndex } = column;
   const { selectData } = inputOptions ?? {};
+  const text =
+    mustArray(selectData).find((s) => s.value === initValue)?.label ??
+    initValue;
   const selectRef = useRef<HTMLDivElement>(null);
   const [dropDownVisible, setDropDownVisible] = useState(true);
   const [inputBoxInfo, setInputBoxInfo] = useState({});
@@ -21,9 +35,9 @@ const SelectInput: FC<inputProps> = (props) => {
   const dropDownPosition = {
     position: 'absolute',
     zIndex: '10',
-    width: inputBoxInfo?.clientWidth ?? 120,
-    left: inputBoxInfo?.left - 8,
-    top: inputBoxInfo?.top + inputBoxInfo?.clientHeight + 2,
+    width: (inputBoxInfo?.clientWidth ?? 120) + 16,
+    left: inputBoxInfo?.left - 16,
+    top: inputBoxInfo?.top + inputBoxInfo?.clientHeight + 1 - topHeight,
   };
   const dropDownStyle = { ...dropDownPosition };
   const options = useMemo(() => {
@@ -33,11 +47,19 @@ const SelectInput: FC<inputProps> = (props) => {
     const options = mustArray(selectData).map((d, dIndex) => {
       const { value, label } = d;
       const key = `${dIndex}-${value}`;
+      const isSelected = value === initValue;
+      const className = `${
+        isSelected ? 'wumu-dropDown-selected-item' : ''
+      } wumu-dropdown-item`;
+      const style = isSelected
+        ? { backgroundColor: `${genPrimaryColor(config, 0.3)}` }
+        : {};
 
       return (
         <div
           key={key}
-          className="wumu-dropdown-item"
+          style={style}
+          className={className}
           onClick={(e) => {
             e.stopPropagation();
             inputChange(value);
@@ -52,9 +74,7 @@ const SelectInput: FC<inputProps> = (props) => {
     return <>{options}</>;
   }, [selectData?.length]);
 
-  console.log('inputBoxInfo', inputBoxInfo);
   useEffect(() => {
-    console.log('selectRef.current', selectRef.current);
     if (selectRef?.current) {
       let dom = selectRef.current;
       const { clientWidth, clientHeight, offsetTop, offsetLeft } =
@@ -69,6 +89,7 @@ const SelectInput: FC<inputProps> = (props) => {
         left += dom.offsetLeft; //叠加父容器的左边距
         dom = dom?.offsetParent;
       }
+      // console.log('left', left, top)
       setInputBoxInfo({ clientWidth, clientHeight, top, left });
     }
   }, [selectRef?.current]);
@@ -92,7 +113,7 @@ const SelectInput: FC<inputProps> = (props) => {
         style={style}
         onBlur={() => onEdit('')}
       >
-        {initValue}
+        {text}
       </div>
       {dropDownCount}
     </>

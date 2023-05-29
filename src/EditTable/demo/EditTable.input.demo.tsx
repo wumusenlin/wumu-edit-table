@@ -3,12 +3,36 @@ import { EditTable } from 'wumu-edit-table';
 import './demo.css';
 
 export default () => {
-  const [editId, onEdit] = useState('0-select');
+  const [editId, onEdit] = useState('');
   const selectData = [
-    { value: 'senlin超长文字 看看', label: 'senlin超长文字 ' },
-    { value: 'senlin1', label: 'senlin1' },
-    { value: 'senlin2', label: 'senlin2' },
-    { value: 'senlin1', label: 'senlin1' },
+    { value: 1, label: 'v0.0.1' },
+    { value: 2, label: 'v0.1.0' },
+    { value: 3, label: 'v0.1.2' },
+    { value: 4, label: 'v0.1.3' },
+  ];
+  const verisonList = [
+    {
+      id: 1,
+      verison: '0.0.1',
+      log: 'init project',
+      remark: '👊based on dumi v2',
+    },
+    { id: 2, verison: '0.0.2', log: 'add header Render' },
+    { id: 3, verison: '0.0.3', log: 'feat style' },
+    {
+      id: 4,
+      verison: '💥0.1.0',
+      log: 'add changeHandle',
+      remark: '基础功能已经可用',
+    },
+    { id: 5, verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
+    {
+      id: 6,
+      verison: '🎊0.1.3',
+      log: 'add github pages',
+      remark:
+        '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
+    },
   ];
   const columns = [
     {
@@ -19,7 +43,7 @@ export default () => {
       fixed: 'left',
     },
     {
-      title: '选择',
+      title: '选择版本号',
       dataIndex: 'select',
       width: 200,
       inputType: 'select',
@@ -29,21 +53,9 @@ export default () => {
     { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
     { title: '备注', dataIndex: 'remark' },
   ];
-  const dataSource = [
-    { verison: '0.0.1', log: 'init project', remark: '👊based on dumi v2' },
-    { verison: '0.0.2', log: 'add header Render' },
-    { verison: '0.0.3', log: 'feat style' },
-    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
-    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
-    {
-      verison: '🎊0.1.3',
-      log: 'add github pages',
-      remark:
-        '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
-    },
-  ];
+  const defaultDataSource = [{}];
   const [list, setList] = useState(
-    dataSource.map((x, index) => ({ ...x, index })),
+    defaultDataSource.map((x, index) => ({ ...x, index })),
   );
 
   const addLine = () => {
@@ -57,9 +69,13 @@ export default () => {
   };
   const onChange = (newList: any, options: any) => {
     console.log('options', options);
+    const { value, rowIndex } = options;
+    //找到对于的版本数据并set到数据源
+    const versionData = verisonList.find((v) => v.id === value) ?? {};
+    newList[rowIndex] = { ...newList[rowIndex], ...versionData };
     setList(newList);
   };
-  console.log('editId', editId);
+
   return (
     <div className="wumu-demo">
       <div style={{ display: 'flex', marginBottom: '16px' }}>
@@ -75,10 +91,7 @@ export default () => {
       </div>
       <EditTable
         editId={editId}
-        onEdit={(id) => {
-          console.log('id', id);
-          onEdit(id);
-        }}
+        onEdit={onEdit}
         columns={columns}
         dataSource={list}
         onChange={onChange}

@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, type FC } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useRef,
+  useState,
+  type FC,
+} from 'react';
 import '../index.css';
 import headerRenderer from './core/headerRenderer';
 import tbodyRenderer from './core/tbodyRenderer';
@@ -12,6 +18,8 @@ import {
   setRowKey,
 } from './helper/utils';
 import { autoCol, colProps, handleChange, tableProps } from './types';
+
+export const tableContext = createContext({});
 
 export function scrollBar() {
   return 16;
@@ -29,6 +37,7 @@ const EditTable: FC<tableProps> = (props) => {
     onChange = () => {},
     hiddenHerder = false,
     notFoundContent = null,
+    config = null,
   } = props;
 
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
@@ -39,21 +48,27 @@ const EditTable: FC<tableProps> = (props) => {
     autoColWidth: 120,
   });
 
-  const { list, wrapperProps, containerProps, bottomHeight, containerInfo } =
-    useVirtualList(_dataSource, {
-      itemHeight: rowHeight,
-      maxHeight,
-      overscan: 0,
-      onScrolled: ({ scrollLeft }) => {
-        if (_headerWrapRef.current) {
-          _headerWrapRef.current.scrollLeft = scrollLeft;
-        }
-        // onEdit('');
-      },
-      wrapperPropsStyle: {
-        borderSpacing: 0,
-      },
-    });
+  const {
+    list,
+    wrapperProps,
+    containerProps,
+    bottomHeight,
+    containerInfo,
+    topHeight,
+  } = useVirtualList(_dataSource, {
+    itemHeight: rowHeight,
+    maxHeight,
+    overscan: 0,
+    onScrolled: ({ scrollLeft }) => {
+      if (_headerWrapRef.current) {
+        _headerWrapRef.current.scrollLeft = scrollLeft;
+      }
+      // onEdit('');
+    },
+    wrapperPropsStyle: {
+      borderSpacing: 0,
+    },
+  });
 
   const handleChange: handleChange = (val: any, options) => {
     const { rowIndex, dataIndex } = options;
@@ -99,27 +114,30 @@ const EditTable: FC<tableProps> = (props) => {
       {headerContent}
       {/* @ts-ignore */}
       <div className="wumu-table-body" {...containerProps}>
-        <table {...wrapperProps}>
-          {genColGroup({ columns, autoCol })}
-          {tbodyRenderer({
-            dataSource: list,
-            columns: _columns,
-            rowHeight,
-            onEdit,
-            editId,
-            handleChange,
-            notFoundContent: notFoundContent
-              ? genNotFoundContentWrap({
-                  containerInfo,
-                  children: notFoundContent,
-                })
-              : genNotFoundContentWrap({
-                  containerInfo,
-                  children: deafultNotFoundCount(),
-                }),
-          })}
-          <div style={{ height: bottomHeight }}></div>
-        </table>
+        <tableContext.Provider value={{ topHeight }}>
+          <table {...wrapperProps}>
+            {genColGroup({ columns, autoCol })}
+            {tbodyRenderer({
+              config,
+              dataSource: list,
+              columns: _columns,
+              rowHeight,
+              onEdit,
+              editId,
+              handleChange,
+              notFoundContent: notFoundContent
+                ? genNotFoundContentWrap({
+                    containerInfo,
+                    children: notFoundContent,
+                  })
+                : genNotFoundContentWrap({
+                    containerInfo,
+                    children: deafultNotFoundCount(),
+                  }),
+            })}
+            <div style={{ height: bottomHeight }}></div>
+          </table>
+        </tableContext.Provider>
       </div>
     </div>
   );

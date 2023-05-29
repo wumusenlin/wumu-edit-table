@@ -9,8 +9,7 @@ export default defineConfig({
   themeConfig: {
     name: 'edit-table',
     logo: `${publicPath}wumusenlin-logo.png`,
-    // footer: 'wumusenlin'
-    prefersColor: { default: 'auto', switch: true },
+    prefersColor: { default: 'light', switch: false },
     socialLinks: {
       github: 'https://github.com/wumusenlin/wumu-edit-table',
       zhihu: 'https://www.zhihu.com/people/zhang-sen-lin-66',

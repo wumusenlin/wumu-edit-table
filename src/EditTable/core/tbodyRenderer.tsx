@@ -13,6 +13,7 @@ function tbodyRenderer(props: tbodyRendererProps) {
     editId,
     handleChange = () => {},
     notFoundContent,
+    config,
   } = props;
 
   // const addRow = () => { };
@@ -25,6 +26,7 @@ function tbodyRenderer(props: tbodyRendererProps) {
     <tbody className="table-tbody">
       {mustArray(dataSource).map((record, rowIndex) =>
         rowRenderer({
+          config,
           rowIndex,
           record,
           columns,

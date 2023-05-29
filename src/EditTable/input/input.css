@@ -4,6 +4,7 @@
   --table-hover-bgcolor: #f5f5f5;
   --table-border-color: #e7e7e7;
   --table-shadow-color: rgb(65 65 65 / 35%);
+  --primary-color: #1da57a;
 
   box-shadow: 3px 3px 10px 1px var(--table-shadow-color);
 
@@ -41,7 +42,7 @@
 }
 
 .wumu-dropdown-item {
-  padding: 8px 4px;
+  padding: 8px 12px;
   white-space: nowrap;
 }
 

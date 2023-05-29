@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 
+export interface color {
+  primaryColor?: any;
+}
+export interface config {
+  color?: color;
+}
 export interface selectDataItem {
   value: any;
   label: any;
@@ -61,6 +67,7 @@ export interface tableProps {
   onChange?: onChange;
   hiddenHerder?: boolean;
   notFoundContent?: null | ReactNode;
+  config?: config | null;
 }
 
 export interface tbodyRendererProps {
@@ -71,6 +78,7 @@ export interface tbodyRendererProps {
   editId?: string;
   handleChange?: handleChange;
   notFoundContent?: null | ReactNode;
+  config?: config | null;
 }
 export interface headerRendererProps {
   columns: Array<colProps>;
@@ -85,6 +93,7 @@ export interface rowRendererProps {
   onEdit?: onEdit;
   handleChange?: handleChange;
   editId?: string;
+  config?: config | null;
 }
 
 export interface virtualListOptions {
@@ -119,6 +128,7 @@ export interface inputProps {
   initValue: any;
   onEdit?: onEdit;
   column: colProps;
+  config?: config | null;
 }
 
 export interface notFoundContentWrap {
