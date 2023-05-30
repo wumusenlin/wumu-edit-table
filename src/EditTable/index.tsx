@@ -79,8 +79,19 @@ const EditTable: FC<tableProps> = (props) => {
   const handleChange: handleChange = (val: any, options) => {
     const { rowIndex, dataIndex } = options;
     let targetDataSource = _dataSource;
-    // @ts-ignore
-    targetDataSource[rowIndex][dataIndex] = val;
+    if (Array.isArray(dataIndex)) {
+      dataIndex.reduceRight((result, d, index) => {
+        if (index === 0) {
+          // @ts-ignore
+          targetDataSource[rowIndex][d] = result;
+        }
+        return { [d]: result };
+      }, val);
+    } else {
+      // @ts-ignore
+      targetDataSource[rowIndex][dataIndex] = val;
+    }
+
     onChange(targetDataSource, {
       rowIndex,
       dataIndex,
@@ -110,17 +121,19 @@ const EditTable: FC<tableProps> = (props) => {
     <div className="wumu-table-header" ref={_headerWrapRef}>
       <table>
         {genColGroup({ columns: _columns, autoCol, scrollBar: scrollBar() })}
-        {headerRenderer({ columns: _columns, headerHeight })}
+        {headerRenderer({ columns: _columns, headerHeight, containerInfo })}
       </table>
     </div>
   );
+
+  const contextValue = { topHeight };
 
   return (
     <div className="wumu-table">
       {headerContent}
       {/* @ts-ignore */}
       <div className="wumu-table-body" {...containerProps}>
-        <tableContext.Provider value={{ topHeight }}>
+        <tableContext.Provider value={contextValue}>
           <table {...wrapperProps}>
             {genColGroup({ columns, autoCol })}
             {tbodyRenderer({
@@ -131,6 +144,7 @@ const EditTable: FC<tableProps> = (props) => {
               onEdit,
               editId,
               handleChange,
+              containerInfo,
               notFoundContent: notFoundContent
                 ? genNotFoundContentWrap({
                     containerInfo,

@@ -16,9 +16,16 @@ export default () => {
     { title: '版本号', dataIndex: 'verison', width: 300 },
     { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
     { title: '备注', dataIndex: 'remark' },
+    { title: '用户-姓名', dataIndex: ['user', 'name'], width: 300 },
+    { title: '用户-年纪', dataIndex: ['user', 'age'] },
   ];
   const defaultDataSource = [
-    { verison: '0.0.1', log: 'init project', remark: '👊based on dumi v2' },
+    {
+      verison: '0.0.1',
+      log: 'init project',
+      remark: '👊based on dumi v2',
+      user: { name: 'xiaohua', age: 18 },
+    },
     { verison: '0.0.2', log: 'add header Render' },
     { verison: '0.0.3', log: 'feat style' },
     { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },

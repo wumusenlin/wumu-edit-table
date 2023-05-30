@@ -11,17 +11,16 @@
   position: relative;
 }
 
-.table-th::after {
+.table-th::before {
   content: '';
   position: absolute;
   top: 33%;
   right: 0;
   height: 33%;
   width: 1px;
-
-  /* border-right: 1px solid var(--table-border-color); */
 }
 
 .table-fixed-th {
   background-color: var(--table-header-bg);
+  overflow: visible;
 }

@@ -13,6 +13,7 @@ function tbodyRenderer(props: tbodyRendererProps) {
     editId,
     handleChange = () => {},
     notFoundContent,
+    containerInfo,
     config,
   } = props;
 
@@ -34,6 +35,7 @@ function tbodyRenderer(props: tbodyRendererProps) {
           onEdit,
           editId,
           handleChange,
+          containerInfo,
         }),
       )}
     </tbody>

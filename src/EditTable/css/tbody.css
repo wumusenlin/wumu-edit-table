@@ -40,6 +40,7 @@
 
 .table-fixed-td {
   background-color: var(--table-bg);
+  overflow: visible;
 }
 
 .table-tr:hover .table-fixed-td {

@@ -4,13 +4,22 @@ import { genClassName, genStyle } from '../helper/utils';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
-  const { columns, headerHeight } = props;
+  const { columns, headerHeight, containerInfo } = props;
 
   const ths = columns.map((col, columnIndex) => {
     const { title, dataIndex, align = 'left', fixed, readonly } = col;
     const thStyle = { textAlign: align };
     const key = `${dataIndex}-${columnIndex}`;
+    const extraClassName =
+      containerInfo?.scrollLeft > 0 && fixed === 'left'
+        ? 'fixed-left-shadow'
+        : null;
 
+    const thContont = fixed ? (
+      <div className="table-cell-overflow-hidden">{title}</div>
+    ) : (
+      title
+    );
     return (
       <th
         key={key}
@@ -20,10 +29,11 @@ function headerRenderer(props: headerRendererProps) {
           readonly,
           fixed,
           fixedClassName: 'table-fixed-th',
+          extraClassName,
         })}
         style={genStyle({ style: thStyle, align, fixed })}
       >
-        {title}
+        {thContont}
       </th>
     );
   });

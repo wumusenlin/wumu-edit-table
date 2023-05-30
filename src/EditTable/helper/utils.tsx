@@ -96,6 +96,7 @@ export function genClassName(props: genClassNameProps) {
     readonly,
     fixed,
     fixedClassName = 'table-fixed-td',
+    extraClassName,
   } = props;
   let str = className;
   if (rowIndex === 0) {
@@ -109,6 +110,9 @@ export function genClassName(props: genClassNameProps) {
   }
   if (fixed) {
     str += ` ${fixedClassName}`;
+  }
+  if (extraClassName) {
+    str += ` ${extraClassName}`;
   }
   return str;
 }

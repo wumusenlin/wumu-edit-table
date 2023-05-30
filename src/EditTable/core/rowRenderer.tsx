@@ -16,6 +16,7 @@ function rowRenderer(props: rowRendererProps) {
     record,
     rowHeight,
     editId,
+    containerInfo,
     onEdit = () => {},
     handleChange = () => {},
     config = null,
@@ -50,22 +51,42 @@ function rowRenderer(props: rowRendererProps) {
             record,
           });
         };
-        const value = record[dataIndex];
+        const value = () => {
+          if (Array.isArray(dataIndex)) {
+            let val = record;
+            dataIndex.forEach((d) => {
+              if (val instanceof Object) {
+                val = val[d];
+              } else {
+                val = null;
+              }
+            });
+            return val;
+          }
+          return record[dataIndex];
+        };
         const content = isEdit ? (
           <Input
             config={config}
-            initValue={value}
+            initValue={value()}
             inputChange={inputChange}
             onEdit={onEdit}
             column={col}
           />
         ) : inputType === inputTypes.select ? (
           mustArray(col?.inputOptions?.selectData).find(
-            (s) => s.value === value,
+            (s) => s.value === value(),
           )?.label
+        ) : fixed ? (
+          <div className="table-cell-overflow-hidden">{value()}</div>
         ) : (
-          value
+          value()
         );
+        console.log('dataIndex', dataIndex, fixed, containerInfo);
+        const extraClassName =
+          containerInfo?.scrollLeft > 0 && fixed === 'left'
+            ? 'fixed-left-shadow'
+            : null;
         return (
           <td
             id={id}
@@ -77,8 +98,9 @@ function rowRenderer(props: rowRendererProps) {
               columnIndex,
               readonly,
               fixed,
+              extraClassName,
             })}
-            title={value}
+            title={value()}
             onClick={() =>
               typeof onEdit === 'function' && !readonly ? onEdit(id) : void 0
             }

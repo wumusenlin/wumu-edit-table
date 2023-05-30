@@ -7,10 +7,11 @@
 
 [![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 [![NPM downloads](http://img.shields.io/npm/dm/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wumusenlin/wumu-edit-table/blob/main/LICENSE)
 
 ## A simple react edit-table component
 
-## 在线示例
+## DEMO
 
 [github pages | online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
 
@@ -81,13 +82,13 @@ export default () => {
     <div>
       <div style={{ display: 'flex', marginBottom: '16px' }}>
         <button onClick={addLine} type="button">
-          新增一行到最后
+          add last line
         </button>
         <button onClick={deleteLine} type="button" >
-          删除最后一行
+          delete last line
         </button>
         <button onClick={deleteAll} type="button">
-          删除所有数据
+          delete all
         </button>
       </div>
       <EditTable
@@ -101,6 +102,10 @@ export default () => {
   );
 };
 ```
+
+## 📖 Docs
+
+[docs](https://wumusenlin.github.io/wumu-edit-table)
 
 ## ⚙ Options
 

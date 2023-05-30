@@ -45,3 +45,23 @@
   table-layout: fixed;
   width: 100%;
 }
+
+.fixed-left-shadow::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  width: 30px;
+  transform: translate(100%);
+  transition: box-shadow 0.3s;
+  content: '';
+  pointer-events: none;
+  box-shadow: inset 10px 0 8px -8px #00000026;
+}
+
+.table-cell-overflow-hidden {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

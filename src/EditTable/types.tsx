@@ -79,10 +79,12 @@ export interface tbodyRendererProps {
   handleChange?: handleChange;
   notFoundContent?: null | ReactNode;
   config?: config | null;
+  containerInfo: containerInfoProps;
 }
 export interface headerRendererProps {
   columns: Array<colProps>;
   headerHeight: number;
+  containerInfo: containerInfoProps;
 }
 
 export interface rowRendererProps {
@@ -94,6 +96,7 @@ export interface rowRendererProps {
   handleChange?: handleChange;
   editId?: string;
   config?: config | null;
+  containerInfo?: containerInfoProps;
 }
 
 export interface virtualListOptions {
@@ -143,6 +146,7 @@ export interface genClassNameProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   fixedClassName?: string;
+  extraClassName?: string | null;
 }
 
 export interface genStyleProps {

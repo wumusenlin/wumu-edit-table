@@ -2,7 +2,7 @@
 title: edit-table
 hero:
   title: edit-table
-  description: 简易使用的react可编辑表格
+  description: 轻量的无依赖的react可编辑表格
   actions:
     - text: 开始使用
       link: /guide
