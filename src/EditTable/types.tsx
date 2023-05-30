@@ -153,3 +153,7 @@ export interface genStyleProps {
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
 }
+
+export interface tableContextProps {
+  topHeight: number;
+}

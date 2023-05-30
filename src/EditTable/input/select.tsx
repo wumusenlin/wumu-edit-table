@@ -14,6 +14,7 @@ import { inputProps } from '../types';
 import './input.css';
 
 const SelectInput: FC<inputProps> = (props) => {
+  const initRef = useRef<any>({ current: { inited: false } });
   const { topHeight } = useContext(tableContext);
   const {
     initValue,
@@ -29,7 +30,7 @@ const SelectInput: FC<inputProps> = (props) => {
     initValue;
   const selectRef = useRef<HTMLDivElement>(null);
   const [dropDownVisible, setDropDownVisible] = useState(true);
-  const [inputBoxInfo, setInputBoxInfo] = useState({});
+  const [inputBoxInfo, setInputBoxInfo] = useState<any>({});
 
   const style = { textAlign: align };
   const dropDownPosition = {
@@ -39,10 +40,10 @@ const SelectInput: FC<inputProps> = (props) => {
     left: inputBoxInfo?.left - 16,
     top: inputBoxInfo?.top + inputBoxInfo?.clientHeight + 1 - topHeight,
   };
-  const dropDownStyle = { ...dropDownPosition };
+
   const options = useMemo(() => {
-    if (selectData.length === 0) {
-      return <div>暂无数据</div>;
+    if (selectData?.length === 0) {
+      return <div className="wumu-dropdown-notfount">暂无数据 ~</div>;
     }
     const options = mustArray(selectData).map((d, dIndex) => {
       const { value, label } = d;
@@ -74,12 +75,20 @@ const SelectInput: FC<inputProps> = (props) => {
     return <>{options}</>;
   }, [selectData?.length]);
 
+  const handleClick = () => {
+    if (!initRef.current.inited) {
+      initRef.current.inited = true;
+    } else {
+      setDropDownVisible(false);
+      onEdit('');
+    }
+  };
+
   useEffect(() => {
     if (selectRef?.current) {
-      let dom = selectRef.current;
+      let dom: HTMLElement = selectRef.current;
       const { clientWidth, clientHeight, offsetTop, offsetLeft } =
         selectRef.current ?? {};
-      // const { left, top } = selectRef.current?.getBoundingClientRect?.()
       let top = offsetTop; //获取该元素对应父容器的上边距
       let left = offsetLeft; //对应父容器的上边距
       //判断是否有父容器，如果存在则累加其边距
@@ -87,16 +96,25 @@ const SelectInput: FC<inputProps> = (props) => {
         //等效 obj = obj.offsetParent;while (obj != undefined)
         top += dom.offsetTop; //叠加父容器的上边距
         left += dom.offsetLeft; //叠加父容器的左边距
+        // @ts-ignore
         dom = dom?.offsetParent;
       }
-      // console.log('left', left, top)
+
       setInputBoxInfo({ clientWidth, clientHeight, top, left });
     }
   }, [selectRef?.current]);
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
 
   const dropDownCount = dropDownVisible
     ? createPortal(
-        <div className="wumu-input-dropdown" style={dropDownStyle}>
+        <div
+          className="wumu-input-dropdown"
+          // @ts-ignore
+          style={dropDownPosition}
+        >
           {options}
         </div>,
         document.body,
@@ -110,6 +128,7 @@ const SelectInput: FC<inputProps> = (props) => {
         className="wumu-input"
         autoFocus
         name={dataIndex}
+        // @ts-ignore
         style={style}
         onBlur={() => onEdit('')}
       >

@@ -50,3 +50,10 @@
   background-color: var(--table-hover-bgcolor);
   cursor: pointer;
 }
+
+.wumu-dropdown-notfount {
+  padding: 32px 8px;
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+}

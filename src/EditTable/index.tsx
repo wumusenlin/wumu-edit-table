@@ -17,9 +17,15 @@ import {
   getAutoWidthCol,
   setRowKey,
 } from './helper/utils';
-import { autoCol, colProps, handleChange, tableProps } from './types';
+import {
+  autoCol,
+  colProps,
+  handleChange,
+  tableContextProps,
+  tableProps,
+} from './types';
 
-export const tableContext = createContext({});
+export const tableContext = createContext<tableContextProps>({});
 
 export function scrollBar() {
   return 16;

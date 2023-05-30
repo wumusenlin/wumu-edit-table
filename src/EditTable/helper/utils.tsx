@@ -152,7 +152,7 @@ export function colorLuminance(hexParm: any, lumParm: any) {
   return rgb;
 }
 
-export function genPrimaryColor(config: config | null, lum: any | undefined) {
+export function genPrimaryColor(config: config | null, lum?: any | undefined) {
   let tempColor = config?.color?.primaryColor;
   if (lum) {
     if (tempColor) {
