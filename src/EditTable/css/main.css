@@ -46,6 +46,10 @@
   width: 100%;
 }
 
+.fixed-left-shadow {
+  border-right: none;
+}
+
 .fixed-left-shadow::after {
   position: absolute;
   top: 0;
