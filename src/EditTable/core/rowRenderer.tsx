@@ -82,7 +82,7 @@ function rowRenderer(props: rowRendererProps) {
         ) : (
           value()
         );
-        console.log('dataIndex', dataIndex, fixed, containerInfo);
+
         const extraClassName =
           containerInfo?.scrollLeft > 0 && fixed === 'left'
             ? 'fixed-left-shadow'

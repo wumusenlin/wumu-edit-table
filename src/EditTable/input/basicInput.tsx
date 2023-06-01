@@ -9,7 +9,7 @@ const BasicInput: FC<inputProps> = (props) => {
     onEdit = () => {},
     column,
   } = props;
-  const { align = 'left' } = column;
+  const { align = 'left', inputOptions = {} } = column;
   const style = { textAlign: align };
   return (
     <input
@@ -21,6 +21,7 @@ const BasicInput: FC<inputProps> = (props) => {
       }}
       autoFocus
       onBlur={() => onEdit('')}
+      {...inputOptions}
     />
   );
 };
