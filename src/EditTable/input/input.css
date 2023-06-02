@@ -48,7 +48,7 @@
 
 .wumu-dropdown-item:hover {
   background-color: var(--table-hover-bgcolor);
-  cursor: pointer;
+  cursor: cell;
 }
 
 .wumu-dropdown-notfount {

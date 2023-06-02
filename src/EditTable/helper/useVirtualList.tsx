@@ -11,7 +11,7 @@ const useVirtualList = (
     maxHeight = 400,
     onScrolled = () => {},
     wrapperPropsStyle = {},
-  } = options;
+  } = options ?? {};
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [startIdx, setStartIdx] = useState(0);
   const [showRowCount] = useState(Math.ceil(maxHeight / itemHeight));

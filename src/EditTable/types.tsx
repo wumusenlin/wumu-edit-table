@@ -161,3 +161,16 @@ export interface genStyleProps {
 export interface tableContextProps {
   topHeight: number;
 }
+
+export interface cellRenderProps {
+  rowIndex: number;
+  record: any;
+  rowHeight: number;
+  onEdit?: onEdit;
+  handleChange?: handleChange;
+  editId?: string;
+  config?: config | null;
+  containerInfo?: containerInfoProps;
+  col: colProps;
+  columnIndex: number;
+}

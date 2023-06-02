@@ -12,7 +12,7 @@
 }
 
 .table-tr {
-  cursor: pointer;
+  cursor: cell;
   background-color: var(--table-bg);
 }
 

@@ -54,14 +54,7 @@ const EditTable: FC<tableProps> = (props) => {
     autoColWidth: 120,
   });
 
-  const {
-    list,
-    wrapperProps,
-    containerProps,
-    bottomHeight,
-    containerInfo,
-    topHeight,
-  } = useVirtualList(_dataSource, {
+  const virtualListOptins = {
     itemHeight: rowHeight,
     maxHeight,
     overscan: 0,
@@ -69,12 +62,19 @@ const EditTable: FC<tableProps> = (props) => {
       if (_headerWrapRef.current) {
         _headerWrapRef.current.scrollLeft = scrollLeft;
       }
-      // onEdit('');
     },
     wrapperPropsStyle: {
       borderSpacing: 0,
     },
-  });
+  };
+  const {
+    list,
+    wrapperProps,
+    containerProps,
+    bottomHeight,
+    containerInfo,
+    topHeight,
+  } = useVirtualList(_dataSource, virtualListOptins);
 
   const handleChange: handleChange = (val: any, options) => {
     const { rowIndex, dataIndex } = options;
