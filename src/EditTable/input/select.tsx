@@ -38,7 +38,7 @@ const SelectInput: FC<inputProps> = (props) => {
     zIndex: '10',
     width: (inputBoxInfo?.clientWidth ?? 120) + 16,
     left: inputBoxInfo?.left - 16,
-    top: inputBoxInfo?.top + inputBoxInfo?.clientHeight + 1 - topHeight,
+    top: inputBoxInfo?.top + inputBoxInfo?.clientHeight + 3 - topHeight,
   };
 
   const options = useMemo(() => {

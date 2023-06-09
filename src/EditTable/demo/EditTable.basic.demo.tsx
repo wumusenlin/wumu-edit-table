@@ -13,13 +13,6 @@ export default () => {
       align: 'center',
       fixed: 'left',
     },
-    {
-      title: '序号2',
-      dataIndex: 'index2',
-      width: 60,
-      align: 'center',
-      fixed: 'left',
-    },
     { title: '版本号', dataIndex: 'verison', width: 300 },
     {
       title: '更新日志',
