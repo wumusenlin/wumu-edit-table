@@ -19,7 +19,7 @@ nav:
 | onChange     | 输入时值变化的回调 `newList`是新构造的数据，`options`里有当前操作的列项、行和 value 等信息 | <code>function(newList,options)<code> |
 | headerHeight | 表头高度                                                                                   | `number`                              | `55`   |
 | inputType    | 输入类型，支持`text`,`select`                                                              | `string`                              | `text` |
-| inputOptions | 输入框的配置，如输入类型为下拉选择（`select`）时需要配置 inputOptions:{selectData:[]}      | [inputOptions](#inputoptions)         |
+| inputOptions | 输入框的配置，如输入类型为下拉选择`select`时需要配置 `inputOptions:{selectData:[]}`        | [inputOptions](#inputoptions)         |
 
 ### columns
 
@@ -33,6 +33,7 @@ nav:
 
 ### inputOptions
 
-| 属性       | 说明             | 类型               | 默认值 | 版本 |
-| ---------- | ---------------- | ------------------ | ------ | ---- |
-| selectData | 可选择的下拉选项 | { label, value }[] |
+| 属性        | 说明               | 类型                 | 默认值 | 版本 |
+| ----------- | ------------------ | -------------------- | ------ | ---- |
+| selectData  | 可选择的下拉选项   | `{ label, value }[]` |
+| placeholder | 编辑状态的提示文字 | `string`             |

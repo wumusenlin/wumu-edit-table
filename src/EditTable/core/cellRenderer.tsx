@@ -72,7 +72,7 @@ function cellRenderer(props: cellRenderProps) {
   );
 
   const extraClassName =
-    containerInfo?.scrollLeft > 0 && fixed === 'left'
+    (containerInfo?.scrollLeft ?? 0) > 0 && fixed === 'left'
       ? 'fixed-left-shadow'
       : null;
   return (

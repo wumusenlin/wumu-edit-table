@@ -22,7 +22,9 @@ export function genColGroup(props: {
   const { columns, autoCol, scrollBar } = props;
   const { autoWidthColIndex, autoColWidth } = autoCol;
   const targetColumns = scrollBar
-    ? columns.concat([{ width: scrollBar }])
+    ? columns.concat([
+        { width: scrollBar, dataIndex: '_innerScrollBar', title: '' },
+      ])
     : columns;
   return (
     <colgroup>

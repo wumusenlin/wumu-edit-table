@@ -150,9 +150,9 @@ export interface genClassNameProps {
 }
 
 export interface genStyleProps {
-  style: string;
-  rowIndex: number;
-  columnIndex: number;
+  style: any;
+  rowIndex?: number;
+  columnIndex?: number;
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
