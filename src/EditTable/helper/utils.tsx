@@ -72,12 +72,12 @@ export function setRowKey(list: Array<object>) {
   return list.map((x: any, i: number) => ({ ...x, _rowKey: i, rowIndex: i }));
 }
 
-export function deafultNotFoundCount() {
-  return <div className="wumu-deafult-not-found-content">暂无数据~</div>;
+export function defaultNotFoundContent() {
+  return <div className="wumu-default-not-found-content">暂无数据~</div>;
 }
 
 export function genNotFoundContentWrap(props: notFoundContentWrap) {
-  const { containerInfo, children = deafultNotFoundCount() } = props;
+  const { containerInfo, children = defaultNotFoundContent() } = props;
   const style = {
     width: containerInfo.offsetWidth,
     marginLeft: containerInfo.scrollLeft,

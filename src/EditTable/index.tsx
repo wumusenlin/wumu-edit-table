@@ -11,7 +11,7 @@ import tbodyRenderer from './core/tbodyRenderer';
 import './css/main.css';
 import useVirtualList from './helper/useVirtualList';
 import {
-  deafultNotFoundCount,
+  defaultNotFoundContent,
   genColGroup,
   genNotFoundContentWrap,
   getAutoWidthCol,
@@ -54,11 +54,11 @@ const EditTable: FC<tableProps> = (props) => {
     autoColWidth: 120,
   });
 
-  const virtualListOptins = {
+  const virtualListOptions = {
     itemHeight: rowHeight,
     maxHeight,
     overscan: 0,
-    onScrolled: ({ scrollLeft }) => {
+    onScrolled: ({ scrollLeft }: any) => {
       if (_headerWrapRef.current) {
         _headerWrapRef.current.scrollLeft = scrollLeft;
       }
@@ -74,7 +74,7 @@ const EditTable: FC<tableProps> = (props) => {
     bottomHeight,
     containerInfo,
     topHeight,
-  } = useVirtualList(_dataSource, virtualListOptins);
+  } = useVirtualList(_dataSource, virtualListOptions);
 
   const handleChange: handleChange = (val: any, options) => {
     const { rowIndex, dataIndex } = options;
@@ -152,7 +152,7 @@ const EditTable: FC<tableProps> = (props) => {
                   })
                 : genNotFoundContentWrap({
                     containerInfo,
-                    children: deafultNotFoundCount(),
+                    children: defaultNotFoundContent(),
                   }),
             })}
             <div style={{ height: bottomHeight }}></div>
