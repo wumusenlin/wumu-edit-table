@@ -63,15 +63,18 @@ export default () => {
 
   return (
     <div className="wumu-demo">
-      <div style={{ display: 'flex', marginBottom: '16px' }}>
+      <div
+        className="wumu-demo-wrap"
+        style={{ display: 'flex', marginBottom: '16px' }}
+      >
         <button onClick={addLine} type="button" className="wumu-demo-button">
-          新增一行到最后
+          新增行到最后
         </button>
         <button onClick={deleteLine} type="button" className="wumu-demo-button">
-          删除最后一行
+          删除最后行
         </button>
         <button onClick={deleteAll} type="button" className="wumu-demo-button">
-          删除所有数据
+          全部删除
         </button>
       </div>
       <EditTable
@@ -80,6 +83,8 @@ export default () => {
         columns={columns}
         dataSource={list}
         onChange={onChange}
+        // onAdd={addLine}
+        // onDelete={deleteLine}
       />
     </div>
   );

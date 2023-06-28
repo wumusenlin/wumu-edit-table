@@ -14,3 +14,5 @@ export function isExist(val: any) {
 export function notEmptyArray(list: any) {
   return Array.isArray(list) && list.length > 0;
 }
+
+export const isFunction = (x: any): boolean => typeof x === 'function';

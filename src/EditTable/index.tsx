@@ -14,6 +14,7 @@ import {
   defaultNotFoundContent,
   genColGroup,
   genNotFoundContentWrap,
+  genToolBar,
   getAutoWidthCol,
   setRowKey,
 } from './helper/utils';
@@ -44,6 +45,8 @@ const EditTable: FC<tableProps> = (props) => {
     hiddenHerder = false,
     notFoundContent = null,
     config = null,
+    onAdd,
+    onDelete,
   } = props;
 
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
@@ -130,6 +133,7 @@ const EditTable: FC<tableProps> = (props) => {
 
   return (
     <div className="wumu-table">
+      {genToolBar({ onAdd, onDelete })}
       {headerContent}
       {/* @ts-ignore */}
       <div className="wumu-table-body" {...containerProps}>

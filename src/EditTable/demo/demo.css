@@ -1,5 +1,23 @@
+.wumu-demo-wrap {
+  padding: 12px;
+  background-color: #ebebeb;
+}
+
 .wumu-demo-button {
   height: 32px;
   color: var(--primary-color);
   margin-right: 32px;
+  border: none;
+  background-color: white;
+  border-radius: 6px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.wumu-demo-button:last-child {
+  margin-right: 0;
+}
+
+.wumu-demo-button:hover {
+  background-color: rgb(239, 239, 239);
 }
