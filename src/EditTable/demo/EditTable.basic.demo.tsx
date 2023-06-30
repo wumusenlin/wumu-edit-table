@@ -14,6 +14,7 @@ export default () => {
       fixed: 'left',
     },
     { title: '版本号', dataIndex: 'verison', width: 300 },
+
     {
       title: '更新日志',
       dataIndex: 'log',
@@ -21,7 +22,7 @@ export default () => {
       width: 300,
       inputOptions: { placeholder: '请输入更新日志' },
     },
-    { title: '备注', dataIndex: 'remark' },
+    { title: '备注', dataIndex: 'remark', width: 400 },
     { title: '用户-姓名', dataIndex: ['user', 'name'], width: 300 },
     { title: '用户-年纪', dataIndex: ['user', 'age'] },
   ];

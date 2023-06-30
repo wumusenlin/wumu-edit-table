@@ -85,6 +85,7 @@ export interface headerRendererProps {
   columns: Array<colProps>;
   headerHeight: number;
   containerInfo: containerInfoProps;
+  fixedInfo: any;
 }
 
 export interface rowRendererProps {
@@ -146,7 +147,6 @@ export interface genClassNameProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   fixedClassName?: string;
-  extraClassName?: string | null;
 }
 
 export interface genStyleProps {
@@ -173,4 +173,16 @@ export interface cellRenderProps {
   containerInfo?: containerInfoProps;
   col: colProps;
   columnIndex: number;
+  fixedInfo: any;
+}
+
+export interface optionsConfig {
+  label: string;
+  fn: () => void;
+}
+
+export interface OptionsColumnsProps {
+  columns: Array<colProps>;
+  deleteConfig: optionsConfig;
+  addConfig: optionsConfig;
 }

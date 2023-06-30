@@ -5,17 +5,7 @@ import { tbodyRendererProps } from '../types';
 import rowRenderer from './rowRenderer';
 
 function tbodyRenderer(props: tbodyRendererProps) {
-  const {
-    dataSource,
-    columns,
-    rowHeight = 40,
-    onEdit,
-    editId,
-    handleChange = () => {},
-    notFoundContent,
-    containerInfo,
-    config,
-  } = props;
+  const { dataSource, notFoundContent, ...otherProps } = props;
 
   // const addRow = () => { };
 
@@ -27,15 +17,9 @@ function tbodyRenderer(props: tbodyRendererProps) {
     <tbody className="table-tbody">
       {mustArray(dataSource).map((record, rowIndex) =>
         rowRenderer({
-          config,
           rowIndex,
           record,
-          columns,
-          rowHeight,
-          onEdit,
-          editId,
-          handleChange,
-          containerInfo,
+          ...otherProps,
         }),
       )}
     </tbody>

@@ -15,15 +15,22 @@ function cellRenderer(props: cellRenderProps) {
     record,
     rowHeight,
     editId,
-    containerInfo,
     onEdit = () => {},
     handleChange = () => {},
     config = null,
     col,
     columnIndex,
+    fixedInfo,
   } = props;
   const { _rowKey: rowKey } = record;
-  const { dataIndex, align = 'left', readonly = false, fixed, inputType } = col;
+  const {
+    dataIndex,
+    align = 'left',
+    readonly = false,
+    fixed,
+    inputType,
+    permanentNode,
+  } = col;
   const key = `${columnIndex}-${dataIndex}`;
   const id = `${rowKey}-${dataIndex}`;
   const isEdit = id === editId;
@@ -32,6 +39,30 @@ function cellRenderer(props: cellRenderProps) {
     boxShadow: isEdit ? `inset 0px 0px 0px 1px ${genPrimaryColor(config)}` : '',
     padding: isEdit ? ' 0 8px' : '0 12px',
   };
+  if (permanentNode) {
+    return (
+      <td
+        id={id}
+        key={key}
+        style={genStyle({
+          style: tdStyle,
+          align,
+          fixed,
+          fixedInfo,
+          columnIndex,
+        })}
+        className={genClassName({
+          className: 'table-td',
+          rowIndex,
+          columnIndex,
+          readonly,
+          fixed,
+        })}
+      >
+        {permanentNode}
+      </td>
+    );
+  }
 
   const inputChange = (val: any) => {
     handleChange(val, {
@@ -71,22 +102,17 @@ function cellRenderer(props: cellRenderProps) {
     value()
   );
 
-  const extraClassName =
-    (containerInfo?.scrollLeft ?? 0) > 0 && fixed === 'left'
-      ? 'fixed-left-shadow'
-      : null;
   return (
     <td
       id={id}
       key={key}
-      style={genStyle({ style: tdStyle, align, fixed })}
+      style={genStyle({ style: tdStyle, align, fixed, fixedInfo, columnIndex })}
       className={genClassName({
         className: 'table-td',
         rowIndex,
         columnIndex,
         readonly,
         fixed,
-        extraClassName,
       })}
       title={value()}
       onClick={() =>

@@ -8,7 +8,7 @@ import {
   genStyleProps,
   notFoundContentWrap,
 } from '../types';
-import { isExist, isFunction } from './fn';
+import { isExist, isFunction, mustArray } from './fn';
 
 export const inputTypes = {
   text: 'text',
@@ -69,6 +69,34 @@ export function getAutoWidthCol(props: {
   };
 }
 
+export function genFixedInfo(columns: Array<colProps>) {
+  let leftWidth = 0;
+  let rightWidth = 0;
+  const left = {};
+  const right = {};
+  const len = mustArray(columns).length;
+  mustArray(columns)
+    .reverse()
+    .forEach((col, index) => {
+      const { width = 120, fixed } = col;
+      if (fixed === 'right') {
+        right[len - index - 1] = rightWidth;
+        rightWidth += width;
+      }
+    });
+  mustArray(columns)
+    .reverse()
+    .forEach((col, index) => {
+      const { width, fixed } = col;
+      if (fixed === 'left') {
+        left[index] = leftWidth;
+        leftWidth += width;
+      }
+    });
+
+  return { left, right };
+}
+
 export function setRowKey(list: Array<object>) {
   return list.map((x: any, i: number) => ({ ...x, _rowKey: i, rowIndex: i }));
 }
@@ -99,7 +127,6 @@ export function genClassName(props: genClassNameProps) {
     readonly,
     fixed,
     fixedClassName = 'table-fixed-td',
-    extraClassName,
   } = props;
   let str = className;
   if (rowIndex === 0) {
@@ -112,23 +139,38 @@ export function genClassName(props: genClassNameProps) {
     str += ` table-td-readonly`;
   }
   if (fixed) {
+    if (fixed === 'left') {
+      str += ` fixed-left-shadow`;
+    } else if (fixed === 'right') {
+      str += ` fixed-right-shadow`;
+    }
     str += ` ${fixedClassName}`;
   }
-  if (extraClassName) {
-    str += ` ${extraClassName}`;
-  }
+
   return str;
 }
 
 export function genStyle(props: genStyleProps) {
-  const { style, fixed, align } = props;
+  const {
+    style,
+    fixed,
+    align,
+    fixedInfo,
+    columnIndex,
+    defaultRightWidth = 0,
+  } = props;
   if (align) {
     style.textAlign = align;
   }
   if (fixed) {
     style.position = 'sticky';
-    style.left = 0;
+
     style.zIndex = 1;
+    if (fixed === 'left') {
+      style.left = fixedInfo.left[columnIndex];
+    } else if (fixed === 'right') {
+      style.right = fixedInfo.right[columnIndex] + defaultRightWidth;
+    }
   }
 
   return style;

@@ -13,6 +13,7 @@ import useVirtualList from './helper/useVirtualList';
 import {
   defaultNotFoundContent,
   genColGroup,
+  genFixedInfo,
   genNotFoundContentWrap,
   genToolBar,
   getAutoWidthCol,
@@ -48,7 +49,6 @@ const EditTable: FC<tableProps> = (props) => {
     onAdd,
     onDelete,
   } = props;
-
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
   const [_dataSource, _setDataSource] = useState<Array<object>>([]);
   const [_columns, _setColumns] = useState<Array<colProps>>([]);
@@ -56,12 +56,14 @@ const EditTable: FC<tableProps> = (props) => {
     autoWidthColIndex: null,
     autoColWidth: 120,
   });
-
+  const [scrollInfo, setScrollInfo] = useState<object>({});
+  const [_fixedInfo, _setFixedInfo] = useState<object | null>(null);
   const virtualListOptions = {
     itemHeight: rowHeight,
     maxHeight,
     overscan: 0,
-    onScrolled: ({ scrollLeft }: any) => {
+    onScrolled: ({ scrollLeft, scrollTop }: any) => {
+      setScrollInfo({ scrollLeft, scrollTop });
       if (_headerWrapRef.current) {
         _headerWrapRef.current.scrollLeft = scrollLeft;
       }
@@ -108,6 +110,7 @@ const EditTable: FC<tableProps> = (props) => {
   }, [dataSource.length]);
   useEffect(() => {
     _setColumns(columns);
+    _setFixedInfo(genFixedInfo(columns));
   }, [columns]);
   useEffect(() => {
     if (containerInfo.clientWidth) {
@@ -124,15 +127,25 @@ const EditTable: FC<tableProps> = (props) => {
     <div className="wumu-table-header" ref={_headerWrapRef}>
       <table>
         {genColGroup({ columns: _columns, autoCol, scrollBar: scrollBar() })}
-        {headerRenderer({ columns: _columns, headerHeight, containerInfo })}
+        {headerRenderer({
+          columns: _columns,
+          headerHeight,
+          containerInfo: { ...scrollInfo, ...containerInfo },
+          fixedInfo: _fixedInfo,
+        })}
       </table>
     </div>
   );
 
   const contextValue = { topHeight };
 
+  const wrapClassName = `wumu-table ${
+    scrollInfo?.scrollLeft > 0 ? 'has-left-shadow' : ''
+  }  ${scrollInfo?.scrollLeft <= 0 ? 'has-right-shadow' : ''}`;
+
   return (
-    <div className="wumu-table">
+    <div className={wrapClassName}>
+      {/* <div className="wumu-table"> */}
       {genToolBar({ onAdd, onDelete })}
       {headerContent}
       {/* @ts-ignore */}
@@ -148,14 +161,15 @@ const EditTable: FC<tableProps> = (props) => {
               onEdit,
               editId,
               handleChange,
-              containerInfo,
+              containerInfo: { ...scrollInfo, ...containerInfo },
+              fixedInfo: _fixedInfo,
               notFoundContent: notFoundContent
                 ? genNotFoundContentWrap({
-                    containerInfo,
+                    containerInfo: { ...scrollInfo, ...containerInfo },
                     children: notFoundContent,
                   })
                 : genNotFoundContentWrap({
-                    containerInfo,
+                    containerInfo: { ...scrollInfo, ...containerInfo },
                     children: defaultNotFoundContent(),
                   }),
             })}
