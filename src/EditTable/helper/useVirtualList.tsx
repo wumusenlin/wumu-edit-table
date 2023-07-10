@@ -82,6 +82,7 @@ const useVirtualList = (
     topHeight,
     bottomHeight: wrapHeight - topHeight - (list.length ?? 0) * itemHeight,
     containerInfo,
+    hasScrollY: wrapHeight > maxHeight,
   };
 };
 

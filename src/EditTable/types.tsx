@@ -86,6 +86,7 @@ export interface headerRendererProps {
   headerHeight: number;
   containerInfo: containerInfoProps;
   fixedInfo: any;
+  scrollBar?: number;
 }
 
 export interface rowRendererProps {

@@ -4,7 +4,7 @@ import { genClassName, genStyle } from '../helper/utils';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
-  const { columns, headerHeight, fixedInfo } = props;
+  const { columns, headerHeight, fixedInfo, scrollBar } = props;
 
   const ths = columns.map((col, columnIndex) => {
     const { title, dataIndex, align = 'left', fixed, readonly } = col;
@@ -32,7 +32,7 @@ function headerRenderer(props: headerRendererProps) {
           fixed,
           fixedInfo,
           columnIndex,
-          defaultRightWidth: 16,
+          defaultRightWidth: scrollBar,
         })}
       >
         {thContont}

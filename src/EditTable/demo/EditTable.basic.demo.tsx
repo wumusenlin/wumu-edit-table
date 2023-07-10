@@ -24,7 +24,7 @@ export default () => {
     },
     { title: '备注', dataIndex: 'remark', width: 400 },
     { title: '用户-姓名', dataIndex: ['user', 'name'], width: 300 },
-    { title: '用户-年纪', dataIndex: ['user', 'age'] },
+    { title: '用户-年纪', dataIndex: ['user', 'age'], fixed: 'right' },
   ];
   const defaultDataSource = [
     {

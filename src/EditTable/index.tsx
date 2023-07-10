@@ -79,6 +79,7 @@ const EditTable: FC<tableProps> = (props) => {
     bottomHeight,
     containerInfo,
     topHeight,
+    hasScrollY,
   } = useVirtualList(_dataSource, virtualListOptions);
 
   const handleChange: handleChange = (val: any, options) => {
@@ -126,12 +127,17 @@ const EditTable: FC<tableProps> = (props) => {
   const headerContent = hiddenHerder ? null : (
     <div className="wumu-table-header" ref={_headerWrapRef}>
       <table>
-        {genColGroup({ columns: _columns, autoCol, scrollBar: scrollBar() })}
+        {genColGroup({
+          columns: _columns,
+          autoCol,
+          scrollBar: hasScrollY ? scrollBar() : undefined,
+        })}
         {headerRenderer({
           columns: _columns,
           headerHeight,
           containerInfo: { ...scrollInfo, ...containerInfo },
           fixedInfo: _fixedInfo,
+          scrollBar: hasScrollY ? scrollBar() : undefined,
         })}
       </table>
     </div>
