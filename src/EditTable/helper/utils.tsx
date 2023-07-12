@@ -127,6 +127,7 @@ export function genClassName(props: genClassNameProps) {
     readonly,
     fixed,
     fixedClassName = 'table-fixed-td',
+    fixedInfo,
   } = props;
   let str = className;
   if (rowIndex === 0) {
@@ -139,10 +140,15 @@ export function genClassName(props: genClassNameProps) {
     str += ` table-td-readonly`;
   }
   if (fixed) {
-    if (fixed === 'left') {
-      str += ` fixed-left-shadow`;
-    } else if (fixed === 'right') {
-      str += ` fixed-right-shadow`;
+    console.log('fixedInfo', fixedInfo?.left);
+    if (fixed === 'left' && fixedInfo) {
+      if (columnIndex === Math.max(...Object.keys(fixedInfo?.left))) {
+        str += ` fixed-left-shadow`;
+      }
+    } else if (fixed === 'right' && fixedInfo) {
+      if (columnIndex === Math.min(...Object.keys(fixedInfo?.right))) {
+        str += ` fixed-right-shadow`;
+      }
     }
     str += ` ${fixedClassName}`;
   }

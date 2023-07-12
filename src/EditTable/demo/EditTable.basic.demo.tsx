@@ -13,6 +13,13 @@ export default () => {
       align: 'center',
       fixed: 'left',
     },
+    {
+      title: '序号2',
+      dataIndex: 'index',
+      width: 60,
+      align: 'center',
+      fixed: 'left',
+    },
     { title: '版本号', dataIndex: 'verison', width: 300 },
 
     {
@@ -23,7 +30,12 @@ export default () => {
       inputOptions: { placeholder: '请输入更新日志' },
     },
     { title: '备注', dataIndex: 'remark', width: 400 },
-    { title: '用户-姓名', dataIndex: ['user', 'name'], width: 300 },
+    {
+      title: '用户-姓名',
+      dataIndex: ['user', 'name'],
+      width: 300,
+      fixed: 'right',
+    },
     { title: '用户-年纪', dataIndex: ['user', 'age'], fixed: 'right' },
   ];
   const defaultDataSource = [

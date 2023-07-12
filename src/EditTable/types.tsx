@@ -14,6 +14,11 @@ export interface inputOptionsProps {
   selectData: Array<selectDataItem>;
 }
 
+export interface fixedInfo {
+  left: object;
+  right: object;
+}
+
 export interface colProps {
   dataIndex: string;
   title: string | any;
@@ -85,7 +90,7 @@ export interface headerRendererProps {
   columns: Array<colProps>;
   headerHeight: number;
   containerInfo: containerInfoProps;
-  fixedInfo: any;
+  fixedInfo: fixedInfo;
   scrollBar?: number;
 }
 
@@ -148,6 +153,7 @@ export interface genClassNameProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   fixedClassName?: string;
+  fixedInfo?: fixedInfo;
 }
 
 export interface genStyleProps {
@@ -157,6 +163,7 @@ export interface genStyleProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
+  fixedInfo?: fixedInfo;
 }
 
 export interface tableContextProps {

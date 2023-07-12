@@ -56,6 +56,7 @@ function cellRenderer(props: cellRenderProps) {
           rowIndex,
           columnIndex,
           readonly,
+          fixedInfo,
           fixed,
         })}
       >
@@ -113,6 +114,7 @@ function cellRenderer(props: cellRenderProps) {
         columnIndex,
         readonly,
         fixed,
+        fixedInfo,
       })}
       title={value()}
       onClick={() =>
