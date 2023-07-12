@@ -140,7 +140,6 @@ export function genClassName(props: genClassNameProps) {
     str += ` table-td-readonly`;
   }
   if (fixed) {
-    console.log('fixedInfo', fixedInfo?.left);
     if (fixed === 'left' && fixedInfo) {
       if (columnIndex === Math.max(...Object.keys(fixedInfo?.left))) {
         str += ` fixed-left-shadow`;

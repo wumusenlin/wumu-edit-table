@@ -5,7 +5,6 @@ import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
   const { columns, headerHeight, fixedInfo, scrollBar } = props;
-  console.log('headerRenderer-fixedInfo', fixedInfo);
   const ths = columns.map((col, columnIndex) => {
     const { title, dataIndex, align = 'left', fixed, readonly } = col;
     const thStyle = { textAlign: align };

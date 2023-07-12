@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type FC,
@@ -22,6 +23,7 @@ import {
 import {
   autoCol,
   colProps,
+  fixedInfoProps,
   handleChange,
   tableContextProps,
   tableProps,
@@ -57,7 +59,10 @@ const EditTable: FC<tableProps> = (props) => {
     autoColWidth: 120,
   });
   const [scrollInfo, setScrollInfo] = useState<object>({});
-  const [_fixedInfo, _setFixedInfo] = useState<object | null>(null);
+  const [_fixedInfo, _setFixedInfo] = useState<fixedInfoProps>({
+    left: {},
+    right: {},
+  });
   const virtualListOptions = {
     itemHeight: rowHeight,
     maxHeight,
@@ -145,9 +150,16 @@ const EditTable: FC<tableProps> = (props) => {
 
   const contextValue = { topHeight };
 
-  const wrapClassName = `wumu-table ${
-    scrollInfo?.scrollLeft > 0 ? 'has-left-shadow' : ''
-  }  ${scrollInfo?.scrollLeft <= 0 ? 'has-right-shadow' : ''}`;
+  const wrapClassName = useMemo(() => {
+    let classStr = `wumu-table`;
+    if (scrollInfo?.scrollLeft > 0) {
+      classStr = classStr + ` has-left-shadow`;
+    }
+
+    classStr = classStr + ` has-right-shadow`;
+
+    return classStr;
+  }, [scrollInfo, containerInfo, autoCol]);
 
   return (
     <div className={wrapClassName}>

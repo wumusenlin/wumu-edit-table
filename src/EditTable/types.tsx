@@ -14,7 +14,7 @@ export interface inputOptionsProps {
   selectData: Array<selectDataItem>;
 }
 
-export interface fixedInfo {
+export interface fixedInfoProps {
   left: object;
   right: object;
 }
@@ -85,12 +85,13 @@ export interface tbodyRendererProps {
   notFoundContent?: null | ReactNode;
   config?: config | null;
   containerInfo: containerInfoProps;
+  fixedInfo: fixedInfoProps;
 }
 export interface headerRendererProps {
   columns: Array<colProps>;
   headerHeight: number;
   containerInfo: containerInfoProps;
-  fixedInfo: fixedInfo;
+  fixedInfo: fixedInfoProps;
   scrollBar?: number;
 }
 
