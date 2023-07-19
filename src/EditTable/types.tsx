@@ -73,6 +73,8 @@ export interface tableProps {
   hiddenHerder?: boolean;
   notFoundContent?: null | ReactNode;
   config?: config | null;
+  onAdd?: any;
+  onDelete?: any;
 }
 
 export interface tbodyRendererProps {

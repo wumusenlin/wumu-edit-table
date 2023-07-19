@@ -29,7 +29,7 @@ import {
   tableProps,
 } from './types';
 
-export const tableContext = createContext<tableContextProps>({});
+export const tableContext = createContext<tableContextProps>({ topHeight: 0 });
 
 export function scrollBar() {
   return 16;
@@ -152,6 +152,7 @@ const EditTable: FC<tableProps> = (props) => {
 
   const wrapClassName = useMemo(() => {
     let classStr = `wumu-table`;
+    // @ts-ignore
     if (scrollInfo?.scrollLeft > 0) {
       classStr = classStr + ` has-left-shadow`;
     }
