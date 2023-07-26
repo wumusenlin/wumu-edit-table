@@ -4,6 +4,27 @@ import './demo.css';
 
 export default () => {
   const [editId, onEdit] = useState('');
+  const defaultDataSource = [
+    {
+      verison: '0.0.1',
+      log: 'init project',
+      remark: '👊based on dumi v2',
+      user: { name: 'xiaohua', age: 18 },
+    },
+    { verison: '0.0.2', log: 'add header Render' },
+    { verison: '0.0.3', log: 'feat style' },
+    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
+    {
+      verison: '🎊0.1.3',
+      log: 'add github pages',
+      remark:
+        '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
+    },
+  ];
+  const [list, setList] = useState(
+    defaultDataSource.map((x, index) => ({ ...x, index })),
+  );
 
   const columns = [
     {
@@ -26,36 +47,30 @@ export default () => {
       title: '更新人-姓名',
       dataIndex: ['user', 'name'],
       width: 120,
-      fixed: 'right',
     },
     {
       title: '更新人-年纪',
       width: 120,
       dataIndex: ['user', 'age'],
+    },
+    {
+      title: '操作',
+      width: 120,
+      dataIndex: 'options',
       fixed: 'right',
+      align: 'center',
+      permanentNode: (v, r) => (
+        <a
+          onClick={() => {
+            console.log(r);
+            setList((preList) => preList.slice(0, -1));
+          }}
+        >
+          删除
+        </a>
+      ),
     },
   ];
-  const defaultDataSource = [
-    {
-      verison: '0.0.1',
-      log: 'init project',
-      remark: '👊based on dumi v2',
-      user: { name: 'xiaohua', age: 18 },
-    },
-    { verison: '0.0.2', log: 'add header Render' },
-    { verison: '0.0.3', log: 'feat style' },
-    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
-    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
-    {
-      verison: '🎊0.1.3',
-      log: 'add github pages',
-      remark:
-        '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
-    },
-  ];
-  const [list, setList] = useState(
-    defaultDataSource.map((x, index) => ({ ...x, index })),
-  );
 
   const addLine = () => {
     setList((preList) => preList.concat([{}]));

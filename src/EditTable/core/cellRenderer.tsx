@@ -1,5 +1,5 @@
 import React from 'react';
-import { mustArray } from '../helper/fn';
+import { isFunction, mustArray } from '../helper/fn';
 import {
   genClassName,
   genPrimaryColor,
@@ -39,39 +39,7 @@ function cellRenderer(props: cellRenderProps) {
     boxShadow: isEdit ? `inset 0px 0px 0px 1px ${genPrimaryColor(config)}` : '',
     padding: isEdit ? ' 0 8px' : '0 12px',
   };
-  if (permanentNode) {
-    return (
-      <td
-        id={id}
-        key={key}
-        style={genStyle({
-          style: tdStyle,
-          align,
-          fixed,
-          fixedInfo,
-          columnIndex,
-        })}
-        className={genClassName({
-          className: 'table-td',
-          rowIndex,
-          columnIndex,
-          readonly,
-          fixedInfo,
-          fixed,
-        })}
-      >
-        {permanentNode}
-      </td>
-    );
-  }
 
-  const inputChange = (val: any) => {
-    handleChange(val, {
-      rowIndex: rowKey,
-      dataIndex,
-      record,
-    });
-  };
   const value = () => {
     if (Array.isArray(dataIndex)) {
       let val = record;
@@ -86,6 +54,44 @@ function cellRenderer(props: cellRenderProps) {
     }
     return record[dataIndex];
   };
+
+  if (permanentNode) {
+    const node = isFunction(permanentNode)
+      ? permanentNode(value(), record)
+      : permanentNode;
+    return (
+      <td
+        id={id}
+        key={key}
+        style={genStyle({
+          style: tdStyle,
+          align,
+          fixed,
+          fixedInfo,
+          columnIndex,
+        })}
+        className={genClassName({
+          className: 'table-td-node',
+          rowIndex,
+          columnIndex,
+          readonly,
+          fixedInfo,
+          fixed,
+        })}
+      >
+        {node}
+      </td>
+    );
+  }
+
+  const inputChange = (val: any) => {
+    handleChange(val, {
+      rowIndex: rowKey,
+      dataIndex,
+      record,
+    });
+  };
+
   const content = isEdit ? (
     <Input
       config={config}
