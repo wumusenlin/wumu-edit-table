@@ -78,7 +78,10 @@ export default () => {
 
   return (
     <div className="wumu-demo">
-      <div style={{ display: 'flex', marginBottom: '16px' }}>
+      <div
+        className="wumu-demo-wrap"
+        style={{ display: 'flex', marginBottom: '16px' }}
+      >
         <button onClick={addLine} type="button" className="wumu-demo-button">
           新增一行到最后
         </button>
