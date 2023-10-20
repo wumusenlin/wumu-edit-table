@@ -156,7 +156,7 @@ export interface genClassNameProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   fixedClassName?: string;
-  fixedInfo?: fixedInfo;
+  fixedInfo?: fixedInfoProps;
 }
 
 export interface genStyleProps {
@@ -166,7 +166,7 @@ export interface genStyleProps {
   readonly?: boolean | null;
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
-  fixedInfo?: fixedInfo;
+  fixedInfo?: fixedInfoProps;
 }
 
 export interface tableContextProps {
