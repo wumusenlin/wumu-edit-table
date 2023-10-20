@@ -22,7 +22,7 @@ function cellRenderer(props: cellRenderProps) {
     columnIndex,
     fixedInfo,
   } = props;
-  const { _rowKey: rowKey } = record;
+  const { _rowIndex: rowKey } = record;
   const {
     dataIndex,
     align = 'left',

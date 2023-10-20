@@ -34,17 +34,61 @@ export default () => {
         '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
     },
   ];
+
+  const defaultDataSource = [
+    {
+      versionId: 1,
+      verison: '0.0.1',
+      log: 'init project',
+      remark: '👊based on dumi v2',
+    },
+    {
+      versionId: 4,
+      verison: '💥0.1.0',
+      log: 'add changeHandle',
+      remark: '基础功能已经可用',
+    },
+    {},
+  ];
+  const [list, setList] = useState(
+    defaultDataSource.map((x, index) => ({ ...x, index })),
+  );
+  const onAdd = (r) => {
+    const index = r._rowIndex + 1;
+    setList((state) => {
+      return state.slice(0, index).concat({}).concat(state.slice(index));
+    });
+  };
+  const onDelete = (r) => {
+    const index = r._rowIndex;
+    setList((preList) => {
+      if (index < 0) {
+        return preList;
+      }
+      return preList.slice(0, index).concat(preList.slice(index + 1));
+    });
+  };
+
   const columns = [
     {
-      title: '序号',
-      dataIndex: 'index',
+      title: '➕',
+      dataIndex: 'add',
       width: 60,
       align: 'center',
       fixed: 'left',
+      permanentNode: (value, record) => (
+        <a
+          title="新增行"
+          style={{ cursor: 'pointer', color: 'green' }}
+          onClick={() => onAdd(record)}
+        >
+          ➕
+        </a>
+      ),
     },
     {
       title: '选择版本号',
-      dataIndex: 'select',
+      dataIndex: 'versionId',
       width: 200,
       inputType: 'select',
       inputOptions: { selectData },
@@ -52,21 +96,24 @@ export default () => {
     { title: '版本号', dataIndex: 'verison', width: 300 },
     { title: '更新日志', dataIndex: 'log', align: 'right', width: 300 },
     { title: '备注', dataIndex: 'remark' },
+    {
+      title: '➖',
+      dataIndex: 'add',
+      width: 80,
+      align: 'center',
+      fixed: 'right',
+      permanentNode: (value, record) => (
+        <a
+          title="删除行"
+          style={{ cursor: 'pointer', color: 'green' }}
+          onClick={() => onDelete(record)}
+        >
+          ➖
+        </a>
+      ),
+    },
   ];
-  const defaultDataSource = [{}];
-  const [list, setList] = useState(
-    defaultDataSource.map((x, index) => ({ ...x, index })),
-  );
 
-  const addLine = () => {
-    setList((preList) => preList.concat([{}]));
-  };
-  const deleteLine = () => {
-    setList((preList) => preList.slice(0, -1));
-  };
-  const deleteAll = () => {
-    setList([]);
-  };
   const onChange = (newList: any, options: any) => {
     console.log('options', options);
     const { value, rowIndex } = options;
@@ -78,20 +125,6 @@ export default () => {
 
   return (
     <div className="wumu-demo">
-      <div
-        className="wumu-demo-wrap"
-        style={{ display: 'flex', marginBottom: '16px' }}
-      >
-        <button onClick={addLine} type="button" className="wumu-demo-button">
-          新增行到最后
-        </button>
-        <button onClick={deleteLine} type="button" className="wumu-demo-button">
-          删除最后行
-        </button>
-        <button onClick={deleteAll} type="button" className="wumu-demo-button">
-          全部删除
-        </button>
-      </div>
       <EditTable
         editId={editId}
         onEdit={onEdit}

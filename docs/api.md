@@ -6,6 +6,14 @@ nav:
   order: 3
 ---
 
+<!-- 定义表格宽度 -->
+<style>
+table th:first-of-type {
+    width: 150px;
+}
+
+</style>
+
 ## wumu-edit-table
 
 | 属性         | 说明                                                                                       | 类型                                  | 默认值 | 版本 |
@@ -23,13 +31,14 @@ nav:
 
 ### columns
 
-| 属性      | 说明                                                 | 类型                               | 默认值 | 版本 |
-| --------- | ---------------------------------------------------- | ---------------------------------- | ------ | ---- |
-| dataIndex | 列数据在数据项中对应的路径，支持通过数组查询嵌套路径 | <code>string &#124; string[]<code> |
-| width     | 列宽                                                 | `number`                           | `120`  |
-| title     | 列头显示文字                                         | `string`                           |
-| align     | 对齐方式,支持`left`，`center`，`right`               | `string`                           | `left` |
-| fixed     | 吸附列,支持`left`，`right`                           | `string`                           |
+| 属性          | 说明                                                 | 类型                                  | 默认值 | 版本 |
+| ------------- | ---------------------------------------------------- | ------------------------------------- | ------ | ---- |
+| dataIndex     | 列数据在数据项中对应的路径，支持通过数组查询嵌套路径 | <code>string &#124; string[]<code>    |
+| width         | 列宽                                                 | `number`                              | `120`  |
+| title         | 列头显示文字                                         | `string`                              |
+| align         | 对齐方式,支持`left`，`center`，`right`               | `string`                              | `left` |
+| fixed         | 吸附列,支持`left`，`right`                           | `string`                              |
+| permanentNode | 自定义渲染的元素                                     | `Node`/`function(value,record)=>Node` |
 
 ### inputOptions
 

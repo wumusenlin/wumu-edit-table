@@ -18,3 +18,11 @@ nav:
 支持`select`下拉选择框;
 此例子通过`onChange`来处理`dataSource`达到了选择版本号后会将版本的各种信息带出的效果；
 <code src="../../src/EditTable/demo/EditTable.input.demo.tsx"></code>
+
+## 行内新增/删除
+
+通过在行内设置的`新增`或`删除`来对行进行操作；
+如下:
+列`➕`为新增一行到当前行的下一行；
+列`➖`为删除当前行；
+<code src="../../src/EditTable/demo/EditTable.inline.demo.tsx"></code>

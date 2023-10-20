@@ -98,7 +98,7 @@ export function genFixedInfo(columns: Array<colProps>) {
 }
 
 export function setRowKey(list: Array<object>) {
-  return list.map((x: any, i: number) => ({ ...x, _rowKey: i, rowIndex: i }));
+  return list.map((x: any, i: number) => ({ ...x, _rowIndex: i, rowIndex: i }));
 }
 
 export function defaultNotFoundContent() {
