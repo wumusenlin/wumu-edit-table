@@ -105,7 +105,10 @@ export default () => {
 
 ## 📖 Docs
 
-[docs](https://wumusenlin.github.io/wumu-edit-table)
+[github pages](https://wumusenlin.github.io/wumu-edit-table)
+
+[国内地址(腾讯云部署)](http://wumusenlin.xyz:8002/)
+作者自己维护的地址可能存在更新不及时的问题，请以 npm 版本为准
 
 ## ⚙ Options
 
