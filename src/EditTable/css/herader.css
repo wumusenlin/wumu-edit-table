@@ -21,6 +21,10 @@
   border-right: 1px solid #ccc;
 }
 
+.table-th:last-child::before {
+  content: none;
+}
+
 .table-fixed-th {
   background-color: var(--table-header-bg);
   overflow: visible;

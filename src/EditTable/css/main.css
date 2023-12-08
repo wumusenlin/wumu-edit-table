@@ -26,8 +26,9 @@
 }
 
 .wumu-table-header {
-  overflow: hidden;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .wumu-table-header table {
@@ -53,8 +54,8 @@
 .has-left-shadow .fixed-left-shadow::after {
   position: absolute;
   top: 0;
-  right: -1px;
-  bottom: -1px;
+  right: 0;
+  bottom: 0;
   width: 30px;
   transform: translate(100%);
   transition: box-shadow 0.3s;
@@ -66,14 +67,12 @@
 .has-right-shadow .fixed-right-shadow::after {
   position: absolute;
   top: 0;
-  left: -31px;
-  bottom: -1px;
+  left: -30px;
+  bottom: 0;
   width: 30px;
   transition: box-shadow 0.3s;
   content: '';
   pointer-events: none;
-
-  /* box-shadow: inset 10px 0 8px -8px #00000026; */
   box-shadow: inset -10px 0 8px -8px #00000026;
 }
 

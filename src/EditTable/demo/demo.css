@@ -7,11 +7,11 @@
   height: 32px;
   color: var(--primary-color);
   margin-right: 32px;
-  border: none;
   background-color: white;
   border-radius: 6px;
   padding: 0 8px;
   cursor: pointer;
+  border: 1px solid #ddd;
 }
 
 .wumu-demo-button:last-child {
@@ -19,5 +19,5 @@
 }
 
 .wumu-demo-button:hover {
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(246, 246, 246);
 }

@@ -8,9 +8,14 @@ nav:
 
 ## 基础用法
 
-点击单元格进入此单元格编辑模式;
-通过`onChange`来获取编辑后的数据以及当前操作的列与行；
+点击单元格进入此单元格`编辑模式`;
+通过`onChange`来获取编辑后的数据以及当前操作的列与行信息；
 表格支持虚拟滚动，拒绝性能瓶颈；
+<code src="../../src/EditTable/demo/EditTable.simple.demo.tsx"></code>
+
+## 固定列
+
+通过在`columns`中的`fixed`属性来实现列的固定；如下示例左侧固定了两列，右侧固定了一列
 <code src="../../src/EditTable/demo/EditTable.basic.demo.tsx"></code>
 
 ## 多类型输入

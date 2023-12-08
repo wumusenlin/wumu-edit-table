@@ -164,11 +164,10 @@ const EditTable: FC<tableProps> = (props) => {
 
   return (
     <div className={wrapClassName}>
-      {/* <div className="wumu-table"> */}
       {genToolBar({ onAdd, onDelete })}
-      {headerContent}
       {/* @ts-ignore */}
       <div className="wumu-table-body" {...containerProps}>
+        {headerContent}
         <tableContext.Provider value={contextValue}>
           <table {...wrapperProps}>
             {genColGroup({ columns, autoCol })}

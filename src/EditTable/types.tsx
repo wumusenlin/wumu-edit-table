@@ -167,6 +167,7 @@ export interface genStyleProps {
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
   fixedInfo?: fixedInfoProps;
+  defaultRightWidth?: number;
 }
 
 export interface tableContextProps {
