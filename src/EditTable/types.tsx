@@ -18,6 +18,7 @@ export interface fixedInfoProps {
   left: object;
   right: object;
 }
+export type permanentNodeFun = (val: any, record: any) => void;
 
 export interface colProps {
   dataIndex: string;
@@ -26,8 +27,9 @@ export interface colProps {
   fixed?: 'right' | 'left' | null | string;
   align?: 'left' | 'center' | 'right' | null | string;
   readonly?: undefined | boolean;
-  inputType?: 'text' | 'select';
+  inputType?: 'text' | 'select' | null | string;
   inputOptions?: inputOptionsProps;
+  permanentNode?: permanentNodeFun;
 }
 
 interface onEdit {

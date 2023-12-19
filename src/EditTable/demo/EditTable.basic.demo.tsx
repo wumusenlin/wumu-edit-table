@@ -108,8 +108,6 @@ export default () => {
         columns={columns}
         dataSource={list}
         onChange={onChange}
-        // onAdd={addLine}
-        // onDelete={deleteLine}
       />
     </div>
   );
