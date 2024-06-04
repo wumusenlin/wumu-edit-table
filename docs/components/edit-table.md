@@ -11,7 +11,15 @@ nav:
 点击单元格进入此单元格`编辑模式`;
 通过`onChange`来获取编辑后的数据以及当前操作的列与行信息；
 表格支持虚拟滚动，拒绝性能瓶颈；
+
+### 编辑已有数据
+
 <code src="../../src/EditTable/demo/EditTable.simple.demo.tsx"></code>
+
+### 新增/删除行
+
+为了给予用户最大程度的自己控制数据的能力，该`EditTable`被设计为`受控组件`。需要自行维护数据源，所以你可以在任何时候任何位置新增或删除`行数据`。一下为作者示例
+<code src="../../src/EditTable/demo/EditTable.editRow.demo.tsx"></code>
 
 ## 固定列
 

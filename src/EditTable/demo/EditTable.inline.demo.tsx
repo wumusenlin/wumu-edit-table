@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EditTable } from 'wumu-edit-table';
-import './demo.css';
 
 export default () => {
   const [editId, onEdit] = useState('');
@@ -60,7 +59,7 @@ export default () => {
   const onAdd = (r: any) => {
     const index = r._rowIndex + 1;
     setList((state) => {
-      return state.slice(0, index).concat({}).concat(state.slice(index));
+      return state.slice(0, index).concat([{}]).concat(state.slice(index));
     });
   };
   const onDelete = (r: any) => {
@@ -128,14 +127,13 @@ export default () => {
   };
 
   return (
-    <div className="wumu-demo">
-      <EditTable
-        editId={editId}
-        onEdit={onEdit}
-        columns={columns}
-        dataSource={list}
-        onChange={onChange}
-      />
-    </div>
+    <EditTable
+      editId={editId}
+      onEdit={onEdit}
+      columns={columns}
+      dataSource={list}
+      onChange={onChange}
+      config={{ color: { primaryColor: '#3ca8f9' } }}
+    />
   );
 };
