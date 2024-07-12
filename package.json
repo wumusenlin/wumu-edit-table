@@ -1,6 +1,6 @@
 {
   "name": "wumu-edit-table",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "A simple react edit-table component",
   "keywords": [
     "edit",

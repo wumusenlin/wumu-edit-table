@@ -12,5 +12,5 @@
       "wumu-edit-table/*": ["src/*", "*"]
     }
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
+  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/demo"]
 }
