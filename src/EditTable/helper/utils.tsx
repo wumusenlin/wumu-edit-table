@@ -8,7 +8,7 @@ import {
   genStyleProps,
   notFoundContentWrap,
 } from '../types';
-import { isExist, isFunction, mustArray } from './fn';
+import { mustArray } from './fn';
 
 export const inputTypes = {
   text: 'text',
@@ -216,46 +216,4 @@ export function genPrimaryColor(config: config | null, lum?: any | undefined) {
   }
 
   return `${tempColor ?? 'var(--primary-color)'}`;
-}
-
-export function genToolBar(toolbar) {
-  const { onAdd, onDelete, deleteAll } = toolbar ?? {};
-  if ([onAdd, onDelete, deleteAll].every((fn) => !isExist(fn))) {
-    return null;
-  }
-
-  return (
-    <div className="wumu-toolbar">
-      {isFunction(onAdd) ? (
-        <button
-          onClick={onAdd}
-          type="button"
-          className="wumu-demo-button"
-          title="新增行"
-        >
-          +
-        </button>
-      ) : null}
-      {isFunction(onDelete) ? (
-        <button
-          onClick={onDelete}
-          type="button"
-          className="wumu-demo-button"
-          title="删除行"
-        >
-          -
-        </button>
-      ) : null}
-      {isFunction(deleteAll) ? (
-        <button
-          onClick={deleteAll}
-          type="button"
-          className="wumu-demo-button"
-          title="删除所有"
-        >
-          删除所有数据
-        </button>
-      ) : null}
-    </div>
-  );
 }

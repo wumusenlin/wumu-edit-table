@@ -6,6 +6,21 @@ nav:
   order: 3
 ---
 
+## 核心参数
+
+### editId
+
+组件有的每个单元格有两种状态，一种是初始的状态（显示状态），另一种是编辑状态（传入`editId`后组件内部自行判断，可通过回调函数`onEdit`获取当前点击的`editId`的值）。
+关于`editId`的定义，通过列的`dataIndex`属性和`index`属性组成，相当于横纵坐标。如基础用法示例中的第一行的`姓名`列的 id 即为`0-name`；`0`代表的第一行的下标，`name`代表的是`姓名`列的`dataIndex`属性，通过短横线`-`连接；
+
+### dataSource
+
+`dataSource`的数据源，是一个数组，每个元素代表一行数据，每个元素是一个对象，对象的属性和`columns`中的`dataIndex`属性一一对应；
+
+### onChange
+
+`onChange`回调函数，在编辑后触发，参数为`newList`和`options`；(具体请查看`接口参数`)
+
 <!-- 定义表格宽度 -->
 <style>
 table th:first-of-type {

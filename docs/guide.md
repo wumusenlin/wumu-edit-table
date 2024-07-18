@@ -10,6 +10,11 @@ nav:
 
 [![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
 
+## 设计理念
+
+该组基于`react.js`构造,是一个简单轻量无依赖的可编辑的`Table`组件；采用了虚拟滚动的实现，可以轻松应付大量数据。
+组件采用的是可控模式，需要传入一个`dataSource`数据源；在修改后会触发一个`onChange`回调，配套用于修改数据源。
+
 ## 开始使用
 
 ### 引入包

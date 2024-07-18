@@ -6,7 +6,6 @@ import React, {
   useState,
   type FC,
 } from 'react';
-import '../index.css';
 import headerRenderer from './core/headerRenderer';
 import tbodyRenderer from './core/tbodyRenderer';
 import './css/main.css';
@@ -16,7 +15,6 @@ import {
   genColGroup,
   genFixedInfo,
   genNotFoundContentWrap,
-  genToolBar,
   getAutoWidthCol,
   setRowKey,
 } from './helper/utils';
@@ -48,8 +46,6 @@ const EditTable: FC<tableProps> = (props) => {
     hiddenHerder = false,
     notFoundContent = null,
     config = null,
-    onAdd,
-    onDelete,
   } = props;
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
   const [_dataSource, _setDataSource] = useState<Array<object>>([]);
@@ -164,8 +160,6 @@ const EditTable: FC<tableProps> = (props) => {
 
   return (
     <div className={wrapClassName}>
-      {genToolBar({ onAdd, onDelete })}
-      {/* @ts-ignore */}
       <div className="wumu-table-body" {...containerProps}>
         {headerContent}
         <tableContext.Provider value={contextValue}>
@@ -181,15 +175,10 @@ const EditTable: FC<tableProps> = (props) => {
               handleChange,
               containerInfo: { ...scrollInfo, ...containerInfo },
               fixedInfo: _fixedInfo,
-              notFoundContent: notFoundContent
-                ? genNotFoundContentWrap({
-                    containerInfo: { ...scrollInfo, ...containerInfo },
-                    children: notFoundContent,
-                  })
-                : genNotFoundContentWrap({
-                    containerInfo: { ...scrollInfo, ...containerInfo },
-                    children: defaultNotFoundContent(),
-                  }),
+              notFoundContent: genNotFoundContentWrap({
+                containerInfo: { ...scrollInfo, ...containerInfo },
+                children: notFoundContent ?? defaultNotFoundContent(),
+              }),
             })}
             <div style={{ height: bottomHeight }}></div>
           </table>

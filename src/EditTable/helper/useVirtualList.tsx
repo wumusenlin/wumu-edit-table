@@ -26,7 +26,6 @@ const useVirtualList = (
   const onScroll = (evt: WheelEvent) => {
     const { scrollTop = 0, scrollLeft = 0 } = evt.target as HTMLDivElement;
     onScrolled({ scrollLeft, scrollTop });
-    // setContainerInfo((old) => ({ ...old, scrollTop, scrollLeft }));
     // 把overscan数量分摊到上方和下方
     const currentIndex =
       overscan > 0
