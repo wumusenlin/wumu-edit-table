@@ -13,6 +13,8 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/wumusenlin/wumu-edit-table',
       zhihu: 'https://www.zhihu.com/people/zhang-sen-lin-66',
+      yuque: 'https://blog.csdn.net/weixin_44197210?type=blog',
+      gitlab: 'https://juejin.cn/user/1987506650231213/posts',
     },
     nprogress: true,
   },

@@ -5,11 +5,17 @@
 </p>
 <h1 align="center">wumu-edit-table</h1>
 
-[![NPM version](https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
+[![NPM version][npm-image]][npm-url]
 [![NPM downloads](http://img.shields.io/npm/dm/wumu-edit-table.svg?style=flat)](https://npmjs.org/package/wumu-edit-table)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wumusenlin/wumu-edit-table/blob/main/LICENSE)
+[![ docs by dumi][dumi-url]](https://d.umijs.org/)
 
-## A simple react edit-table component
+<!-- [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wumusenlin/wumu-edit-table/blob/main/LICENSE)
+[![contributors][contributors-shield]][contributors-url]
+[![forks][forks-shield]][forks-url]
+[![stargazers][stargazers-shield]][stargazers-url]
+[![issues][issues-shield]][issues-url] -->
+
+## A simple react edit-table component (一个轻量的无依赖的 React 可编辑表格)
 
 ## DEMO
 
@@ -128,3 +134,15 @@ based on dumi v2
 ## 📊 LICENSE
 
 MIT
+
+[npm-image]: https://img.shields.io/npm/v/wumu-edit-table.svg?style=flat
+[npm-url]: http://npmjs.org/package/wumu-edit-table
+[contributors-shield]: https://img.shields.io/github/contributors/wumusenlin/wumu-edit-table.svg?style=flat
+[contributors-url]: https://github.com/wumusenlin/wumu-edit-table/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/wumusenlin/wumu-edit-table.svg?style=flat
+[forks-url]: https://github.com/wumusenlin/wumu-edit-table/network/members
+[issues-shield]: https://img.shields.io/github/issues/wumusenlin/wumu-edit-table.svg?style=flat
+[issues-url]: https://github.com/wumusenlin/wumu-edit-table/issues/new/choose
+[stargazers-shield]: https://img.shields.io/github/stars/wumusenlin/wumu-edit-table.svg?style=flat
+[stargazers-url]: https://github.com/wumusenlin/wumu-edit-table/stargazers
+[dumi-url]: https://img.shields.io/badge/docs%20by-dumi-blue
