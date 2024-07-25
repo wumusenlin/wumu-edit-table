@@ -82,3 +82,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.wumu-drag-moving {
+  background-color: var(--table-border-color);
+  opacity: 0.8;
+}
+
+.wumu-drag-clone-element {
+  background-color: var(--primary-color);
+}

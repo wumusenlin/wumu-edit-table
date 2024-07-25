@@ -4,7 +4,8 @@ import { genClassName, genStyle } from '../helper/utils';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
-  const { columns, headerHeight, fixedInfo, scrollBar } = props;
+  const { columns, headerHeight, fixedInfo, scrollBar, trId, headerDraggable } =
+    props;
   const ths = columns.map((col, columnIndex) => {
     const { title, dataIndex, align = 'left', fixed, readonly } = col;
     const thStyle = { textAlign: align };
@@ -27,6 +28,7 @@ function headerRenderer(props: headerRendererProps) {
           fixedClassName: 'table-fixed-th',
           columnIndex,
         })}
+        data-index={dataIndex.toString()}
         style={genStyle({
           style: thStyle,
           align,
@@ -35,6 +37,7 @@ function headerRenderer(props: headerRendererProps) {
           columnIndex,
           defaultRightWidth: scrollBar,
         })}
+        draggable={headerDraggable}
       >
         {thContont}
       </th>
@@ -44,7 +47,7 @@ function headerRenderer(props: headerRendererProps) {
 
   return (
     <thead>
-      <tr style={trStyle} className="table-header">
+      <tr style={trStyle} className="table-header" id={trId}>
         {ths}
       </tr>
     </thead>
