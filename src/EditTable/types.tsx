@@ -77,6 +77,7 @@ export interface tableProps {
   config?: config | null;
   onAdd?: any;
   onDelete?: any;
+  headerDraggable?: boolean;
 }
 
 export interface tbodyRendererProps {

@@ -101,7 +101,7 @@ export default () => {
     { title: '备注', dataIndex: 'remark' },
     {
       title: '操作',
-      dataIndex: 'add',
+      dataIndex: 'remove',
       width: 80,
       align: 'center',
       fixed: 'right',
@@ -134,6 +134,7 @@ export default () => {
       dataSource={list}
       onChange={onChange}
       config={{ color: { primaryColor: '#3ca8f9' } }}
+      headerDraggable
     />
   );
 };

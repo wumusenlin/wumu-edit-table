@@ -46,6 +46,7 @@ export default () => {
         columns={columns}
         dataSource={list}
         onChange={onChange}
+        headerDraggable
       />
     </div>
   );
