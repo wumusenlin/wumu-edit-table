@@ -32,9 +32,7 @@ export interface colProps {
   permanentNode?: permanentNodeFun;
 }
 
-interface onEdit {
-  (id: string, y?: number): void;
-}
+type OnEdit = (id: string, y?: number) => void;
 export interface autoCol {
   autoWidthColIndex: null | number;
   autoColWidth: number;
@@ -65,7 +63,7 @@ interface onScrolled {
 export interface tableProps {
   columns: Array<colProps>;
   dataSource: Array<object>;
-  onEdit?: onEdit;
+  onEdit?: OnEdit;
   editId?: string;
   rowHeight?: number;
   maxHeight?: number;

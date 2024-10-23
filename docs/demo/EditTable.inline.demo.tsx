@@ -134,7 +134,6 @@ export default () => {
       dataSource={list}
       onChange={onChange}
       config={{ color: { primaryColor: '#3ca8f9' } }}
-      headerDraggable
     />
   );
 };

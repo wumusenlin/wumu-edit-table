@@ -38,3 +38,8 @@ nav:
 列`➕`为新增一行到当前行的下一行；
 列`➖`为删除当前行；
 <code src="../demo/EditTable.inline.demo.tsx"></code>
+
+## 表头排序
+
+可以通过拖拽表头进行排序
+<code src="../demo/EditTable.headerSort.demo.tsx"></code>
