@@ -4,8 +4,15 @@ import { genClassName, genStyle } from '../helper/utils';
 import { headerRendererProps } from '../types';
 
 function headerRenderer(props: headerRendererProps) {
-  const { columns, headerHeight, fixedInfo, scrollBar, trId, headerDraggable } =
-    props;
+  const {
+    columns,
+    headerHeight,
+    headerBackground = 'var(--table-header-bg)',
+    fixedInfo,
+    scrollBar,
+    trId,
+    headerDraggable,
+  } = props;
   const ths = columns.map((col, columnIndex) => {
     const { title, dataIndex, align = 'left', fixed, readonly } = col;
     const thStyle = { textAlign: align };
@@ -43,7 +50,7 @@ function headerRenderer(props: headerRendererProps) {
       </th>
     );
   });
-  const trStyle = { height: headerHeight };
+  const trStyle = { height: headerHeight, background: headerBackground };
 
   return (
     <thead>

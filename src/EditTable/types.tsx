@@ -15,7 +15,11 @@ import {
   onEdit,
   onScrolled,
 } from './type/types.basic';
-import { IUsefulCell, IUsefulRowProps } from './type/types.useful';
+import {
+  IUsefulCell,
+  IUsefulHeaderStyle,
+  IUsefulRowProps,
+} from './type/types.useful';
 
 export interface notFoundContentWrap {
   children: ReactNode;
@@ -38,13 +42,13 @@ export interface rowRendererProps extends IUsefulRowProps {
   record: any;
 }
 
-export interface headerRendererProps {
+export interface headerRendererProps extends IUsefulHeaderStyle {
   columns: Array<basicColProps>;
-  headerHeight: number;
   containerInfo: containerInfoProps;
   fixedInfo: basicFixedInfoProps;
   scrollBar?: number;
   headerDraggable?: boolean;
+  trId?: string;
 }
 
 export interface virtualListOptions {
@@ -114,14 +118,13 @@ export interface OptionsColumnsProps {
   addConfig: optionsConfig;
 }
 
-export interface ITable {
+export interface ITable extends IUsefulHeaderStyle {
   columns: Array<basicColProps>;
   dataSource: Array<object>;
   onEdit?: onEdit;
   editId?: string;
   rowHeight?: number;
   maxHeight?: number;
-  headerHeight?: number;
   rowKey?: string;
   onChange?: onChange;
   hiddenHerder?: boolean;

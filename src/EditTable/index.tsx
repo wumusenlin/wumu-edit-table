@@ -43,6 +43,7 @@ const EditTable: FC<ITable> = (props) => {
     rowHeight = 40,
     maxHeight = 400,
     headerHeight = 55,
+    headerBackground = 'var(--table-header-bg)',
     onChange = () => {},
     hiddenHerder = false,
     notFoundContent = null,
@@ -153,6 +154,7 @@ const EditTable: FC<ITable> = (props) => {
         {headerRenderer({
           columns: _columns,
           headerHeight,
+          headerBackground,
           containerInfo: { ...scrollInfo, ...containerInfo },
           fixedInfo: _fixedInfo,
           scrollBar: hasScrollY ? scrollBar() : undefined,

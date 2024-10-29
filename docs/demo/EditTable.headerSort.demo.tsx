@@ -56,6 +56,7 @@ export default () => {
         dataSource={list}
         onChange={onChange}
         headerDraggable
+        headerBackground="#e5f6fc"
       />
     </div>
   );

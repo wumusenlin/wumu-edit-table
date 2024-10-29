@@ -20,3 +20,8 @@ export interface IUsefulCell {
 export interface IUsefulRowProps extends IUsefulCell {
   columns: Array<colProps>;
 }
+
+export interface IUsefulHeaderStyle {
+  headerHeight?: number;
+  headerBackground?: string;
+}

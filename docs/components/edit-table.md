@@ -42,4 +42,5 @@ nav:
 ## 表头排序
 
 可以通过拖拽表头进行排序
+也可设置表头背景颜色
 <code src="../demo/EditTable.headerSort.demo.tsx"></code>
