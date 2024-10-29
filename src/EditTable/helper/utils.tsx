@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/tbody.css';
+import { colProps, config } from '../type/types.basic';
 import {
   genClassNameProps,
   genStyleProps,
