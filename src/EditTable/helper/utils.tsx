@@ -1,11 +1,9 @@
 import React from 'react';
 import '../css/tbody.css';
 import {
-  autoCol,
-  colProps,
-  config,
   genClassNameProps,
   genStyleProps,
+  IColGroup,
   notFoundContentWrap,
 } from '../types';
 import { mustArray } from './fn';
@@ -15,11 +13,7 @@ export const inputTypes = {
   select: 'select',
 };
 
-export function genColGroup(props: {
-  columns: Array<colProps>;
-  autoCol: autoCol;
-  scrollBar?: number;
-}) {
+export function genColGroup(props: IColGroup) {
   const { columns, autoCol, scrollBar } = props;
   const { autoWidthColIndex, autoColWidth } = autoCol;
   const targetColumns = scrollBar

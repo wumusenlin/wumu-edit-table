@@ -1,113 +1,50 @@
 import { ReactNode } from 'react';
+import {
+  TAlign,
+  TFixed,
+  IAutoCol as basicAutoCol,
+  colProps as basicColProps,
+  fixedInfoProps as basicFixedInfoProps,
+  config,
+  containerInfoProps,
+  handleChangeOptions,
+  inputChange,
+  onAdd,
+  onChange,
+  onDelete,
+  onEdit,
+  onScrolled,
+} from './type/types.basic';
+import { IUsefulCell, IUsefulRowProps } from './type/types.useful';
 
-export interface color {
-  primaryColor?: any;
-}
-export interface config {
-  color?: color;
-}
-export interface selectDataItem {
-  value: any;
-  label: any;
-}
-export interface inputOptionsProps {
-  selectData: Array<selectDataItem>;
-}
-
-export interface fixedInfoProps {
-  left: object;
-  right: object;
-}
-export type permanentNodeFun = (val: any, record: any) => void;
-
-export interface colProps {
-  dataIndex: string;
-  title: string | any;
-  width?: number;
-  fixed?: 'right' | 'left' | null | string;
-  align?: 'left' | 'center' | 'right' | null | string;
-  readonly?: undefined | boolean;
-  inputType?: 'text' | 'select' | null | string;
-  inputOptions?: inputOptionsProps;
-  permanentNode?: permanentNodeFun;
-}
-
-type onEdit = (id: string, y?: number) => void;
-export interface autoCol {
-  autoWidthColIndex: null | number;
-  autoColWidth: number;
-}
-interface handleChangeOptions {
-  rowIndex: number;
-  record: any;
-  dataIndex: string | Array<string>;
-}
-interface onChangeOptions {
-  rowIndex: number;
-  record: any;
-  dataIndex: string | Array<string>;
-  value: any;
-}
-interface onChange {
-  (data: Array<any>, options: onChangeOptions): void;
-}
-export interface handleChange {
-  (val: any, handleChangeOptions: handleChangeOptions): void;
-}
-interface onScrolledParmar {
-  scrollLeft: number;
-}
-interface onScrolled {
-  (onScrolledParmar: onScrolledParmar): void;
-}
-export interface tableProps {
-  columns: Array<colProps>;
-  dataSource: Array<object>;
-  onEdit?: onEdit;
-  editId?: string;
-  rowHeight?: number;
-  maxHeight?: number;
-  headerHeight?: number;
-  rowKey?: string;
-  onChange?: onChange;
-  hiddenHerder?: boolean;
-  notFoundContent?: null | ReactNode;
-  config?: config | null;
-  onAdd?: any;
-  onDelete?: any;
-  headerDraggable?: boolean;
-}
-
-export interface tbodyRendererProps {
-  columns: Array<colProps>;
-  dataSource: Array<object>;
-  rowHeight: number;
-  onEdit?: onEdit;
-  editId?: string;
-  handleChange?: handleChange;
-  notFoundContent?: null | ReactNode;
-  config?: config | null;
+export interface notFoundContentWrap {
+  children: ReactNode;
   containerInfo: containerInfoProps;
-  fixedInfo: fixedInfoProps;
 }
-export interface headerRendererProps {
-  columns: Array<colProps>;
-  headerHeight: number;
-  containerInfo: containerInfoProps;
-  fixedInfo: fixedInfoProps;
+
+export interface IColGroup {
+  columns: Array<basicColProps>;
+  autoCol: basicAutoCol;
   scrollBar?: number;
 }
 
-export interface rowRendererProps {
+export interface tbodyRendererProps extends IUsefulRowProps {
+  dataSource: Array<object>;
+  notFoundContent?: null | ReactNode;
+}
+
+export interface rowRendererProps extends IUsefulRowProps {
   rowIndex: number;
-  columns: Array<colProps>;
   record: any;
-  rowHeight: number;
-  onEdit?: onEdit;
-  handleChange?: handleChange;
-  editId?: string;
-  config?: config | null;
-  containerInfo?: containerInfoProps;
+}
+
+export interface headerRendererProps {
+  columns: Array<basicColProps>;
+  headerHeight: number;
+  containerInfo: containerInfoProps;
+  fixedInfo: basicFixedInfoProps;
+  scrollBar?: number;
+  headerDraggable?: boolean;
 }
 
 export interface virtualListOptions {
@@ -119,12 +56,6 @@ export interface virtualListOptions {
   wrapperPropsStyle?: object;
 }
 
-export interface containerInfoProps {
-  offsetWidth: number;
-  clientWidth: number;
-  scrollLeft?: number;
-  scrollTop?: number;
-}
 export interface virtualListResponse {
   list: Array<any>;
   wrapperProps: object;
@@ -134,20 +65,12 @@ export interface virtualListResponse {
   containerInfo: containerInfoProps;
 }
 
-interface inputChange {
-  (value: any): void;
-}
 export interface inputProps {
   inputChange?: inputChange;
   initValue: any;
   onEdit?: onEdit;
-  column: colProps;
+  column: basicColProps;
   config?: config | null;
-}
-
-export interface notFoundContentWrap {
-  children: ReactNode;
-  containerInfo: containerInfoProps;
 }
 
 export interface genClassNameProps {
@@ -155,9 +78,9 @@ export interface genClassNameProps {
   rowIndex?: number;
   columnIndex?: number;
   readonly?: boolean | null;
-  fixed?: 'right' | 'left' | null | string;
+  fixed?: TFixed;
   fixedClassName?: string;
-  fixedInfo?: fixedInfoProps;
+  fixedInfo?: basicFixedInfoProps;
 }
 
 export interface genStyleProps {
@@ -165,9 +88,9 @@ export interface genStyleProps {
   rowIndex?: number;
   columnIndex?: number;
   readonly?: boolean | null;
-  fixed?: 'right' | 'left' | null | string;
-  align?: 'left' | 'center' | 'right' | null | string;
-  fixedInfo?: fixedInfoProps;
+  fixed?: TFixed;
+  align?: TAlign;
+  fixedInfo?: basicFixedInfoProps;
   defaultRightWidth?: number;
 }
 
@@ -175,18 +98,9 @@ export interface tableContextProps {
   topHeight: number;
 }
 
-export interface cellRenderProps {
-  rowIndex: number;
-  record: any;
-  rowHeight: number;
-  onEdit?: onEdit;
-  handleChange?: handleChange;
-  editId?: string;
-  config?: config | null;
-  containerInfo?: containerInfoProps;
-  col: colProps;
+export interface cellRenderProps extends IUsefulCell {
+  col: basicColProps;
   columnIndex: number;
-  fixedInfo: any;
 }
 
 export interface optionsConfig {
@@ -195,7 +109,39 @@ export interface optionsConfig {
 }
 
 export interface OptionsColumnsProps {
-  columns: Array<colProps>;
+  columns: Array<basicColProps>;
   deleteConfig: optionsConfig;
   addConfig: optionsConfig;
+}
+
+export interface ITable {
+  columns: Array<basicColProps>;
+  dataSource: Array<object>;
+  onEdit?: onEdit;
+  editId?: string;
+  rowHeight?: number;
+  maxHeight?: number;
+  headerHeight?: number;
+  rowKey?: string;
+  onChange?: onChange;
+  hiddenHerder?: boolean;
+  notFoundContent?: null | ReactNode;
+  config?: config | null;
+  onAdd?: onAdd;
+  onDelete?: onDelete;
+  headerDraggable?: boolean;
+}
+
+export interface IColProps extends basicColProps {
+  dataIndex: string;
+}
+export interface fixedInfoProps extends basicFixedInfoProps {
+  left: object;
+}
+export interface IAutoCol extends basicAutoCol {
+  autoColWidth: number;
+}
+
+export interface handleChange {
+  (val: any, handleChangeOptions: handleChangeOptions): void;
 }

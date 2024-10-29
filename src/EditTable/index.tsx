@@ -20,12 +20,12 @@ import {
   setRowKey,
 } from './helper/utils';
 import {
-  autoCol,
-  colProps,
+  IAutoCol,
+  IColProps,
+  ITable,
   fixedInfoProps,
   handleChange,
   tableContextProps,
-  tableProps,
 } from './types';
 
 export const tableContext = createContext<tableContextProps>({ topHeight: 0 });
@@ -34,7 +34,7 @@ export function scrollBar() {
   return 16;
 }
 
-const EditTable: FC<tableProps> = (props) => {
+const EditTable: FC<ITable> = (props) => {
   const {
     columns,
     dataSource,
@@ -52,8 +52,8 @@ const EditTable: FC<tableProps> = (props) => {
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
   const [_timeKey] = useState(Date.now());
   const [_dataSource, _setDataSource] = useState<Array<object>>([]);
-  const [_columns, _setColumns] = useState<Array<colProps>>([]);
-  const [autoCol, setAutoCol] = useState<autoCol>({
+  const [_columns, _setColumns] = useState<Array<IColProps>>([]);
+  const [autoCol, setAutoCol] = useState<IAutoCol>({
     autoWidthColIndex: null,
     autoColWidth: 120,
   });
