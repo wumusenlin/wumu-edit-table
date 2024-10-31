@@ -1,6 +1,6 @@
 {
   "name": "wumu-edit-table",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "A simple react edit-table component (一个轻量的无依赖的React可编辑表格)",
   "keywords": [
     "edit",

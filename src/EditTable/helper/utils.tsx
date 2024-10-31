@@ -2,9 +2,9 @@ import React from 'react';
 import '../css/tbody.css';
 import { colProps, config } from '../type/types.basic';
 import {
+  IColGroup,
   genClassNameProps,
   genStyleProps,
-  IColGroup,
   notFoundContentWrap,
 } from '../types';
 import { mustArray } from './fn';
@@ -15,16 +15,12 @@ export const inputTypes = {
 };
 
 export function genColGroup(props: IColGroup) {
-  const { columns, autoCol, scrollBar } = props;
+  const { columns, autoCol } = props;
   const { autoWidthColIndex, autoColWidth } = autoCol;
-  const targetColumns = scrollBar
-    ? columns.concat([
-        { width: scrollBar, dataIndex: '_innerScrollBar', title: '' },
-      ])
-    : columns;
+
   return (
     <colgroup>
-      {targetColumns.map((col, i) => {
+      {columns.map((col, i) => {
         const { width } = col;
         const key = `col-${i}`;
         if (autoWidthColIndex === i) {
@@ -102,16 +98,13 @@ export function defaultNotFoundContent() {
 
 export function genNotFoundContentWrap(props: notFoundContentWrap) {
   const { containerInfo, children = defaultNotFoundContent() } = props;
-  const style = {
+  const style: React.CSSProperties = {
     width: containerInfo.offsetWidth,
-    marginLeft: containerInfo.scrollLeft,
+    position: 'sticky',
+    left: 0,
   };
 
-  return (
-    <div>
-      <div style={style}>{children}</div>
-    </div>
-  );
+  return <div style={style}>{children}</div>;
 }
 
 export function genClassName(props: genClassNameProps) {

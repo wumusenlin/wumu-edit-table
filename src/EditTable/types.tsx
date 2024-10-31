@@ -29,7 +29,6 @@ export interface notFoundContentWrap {
 export interface IColGroup {
   columns: Array<basicColProps>;
   autoCol: basicAutoCol;
-  scrollBar?: number;
 }
 
 export interface tbodyRendererProps extends IUsefulRowProps {
@@ -44,11 +43,9 @@ export interface rowRendererProps extends IUsefulRowProps {
 
 export interface headerRendererProps extends IUsefulHeaderStyle {
   columns: Array<basicColProps>;
-  containerInfo: containerInfoProps;
   fixedInfo: basicFixedInfoProps;
-  scrollBar?: number;
   headerDraggable?: boolean;
-  trId?: string;
+  tableUid?: string;
 }
 
 export interface virtualListOptions {
@@ -58,6 +55,7 @@ export interface virtualListOptions {
   height?: number;
   onScrolled?: onScrolled;
   wrapperPropsStyle?: object;
+  calcDelay?: number;
 }
 
 export interface virtualListResponse {
@@ -105,6 +103,8 @@ export interface tableContextProps {
 export interface cellRenderProps extends IUsefulCell {
   col: basicColProps;
   columnIndex: number;
+  rowIndex: number;
+  record: any;
 }
 
 export interface optionsConfig {
@@ -133,6 +133,7 @@ export interface ITable extends IUsefulHeaderStyle {
   onAdd?: onAdd;
   onDelete?: onDelete;
   headerDraggable?: boolean;
+  calcDelay?: number;
 }
 
 export interface IColProps extends basicColProps {

@@ -21,6 +21,7 @@ function cellRenderer(props: cellRenderProps) {
     col,
     columnIndex,
     fixedInfo,
+    tableUid,
   } = props;
   const { _rowIndex: rowKey } = record;
   const {
@@ -31,7 +32,7 @@ function cellRenderer(props: cellRenderProps) {
     inputType,
     permanentNode,
   } = col;
-  const key = `${columnIndex}-${dataIndex}`;
+  const key = `${tableUid}-${columnIndex}-${dataIndex}`;
   const id = `${rowKey}-${dataIndex}`;
   const isEdit = id === editId;
   const tdStyle = {

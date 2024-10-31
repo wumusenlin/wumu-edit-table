@@ -11,16 +11,32 @@ export default () => {
       remark: '👊based on dumi v2',
       user: { name: 'xiaohua', age: 18 },
     },
+    {},
     { verison: '0.0.2', log: 'add header Render' },
     { verison: '0.0.3', log: 'feat style' },
+    {},
     { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    {},
     { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
+    {},
+    {},
     {
       verison: '🎊0.1.3',
       log: 'add github pages',
       remark:
         '地址: https://wumusenlin.github.io/wumu-edit-table/components/edit-table',
     },
+    {},
+    {},
+    {},
+    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    {},
+    { verison: '0.0.3', log: 'feat style' },
+    {},
+    { verison: '💥0.1.0', log: 'add changeHandle', remark: '基础功能已经可用' },
+    {},
+    { verison: '0.1.2', log: 'add api docs', remark: '✨新增api文档' },
+    {},
   ];
   const [list, setList] = useState(
     defaultDataSource.map((x, index) => ({ ...x, index })),
@@ -63,7 +79,11 @@ export default () => {
         <a
           onClick={() => {
             console.log(r);
-            setList((preList) => preList.slice(0, -1));
+            setList((preList) =>
+              preList
+                .slice(0, r._rowIndex)
+                .concat(preList.slice(r._rowIndex + 1)),
+            );
           }}
         >
           删除

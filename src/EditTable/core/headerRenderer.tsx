@@ -9,8 +9,7 @@ function headerRenderer(props: headerRendererProps) {
     headerHeight,
     headerBackground = 'var(--table-header-bg)',
     fixedInfo,
-    scrollBar,
-    trId,
+    tableUid,
     headerDraggable,
   } = props;
   const ths = columns.map((col, columnIndex) => {
@@ -18,7 +17,7 @@ function headerRenderer(props: headerRendererProps) {
     const thStyle = { textAlign: align };
     const key = `${dataIndex}-${columnIndex}`;
 
-    const thContont = fixed ? (
+    const thContent = fixed ? (
       <div className="table-cell-overflow-hidden">{title}</div>
     ) : (
       title
@@ -42,11 +41,10 @@ function headerRenderer(props: headerRendererProps) {
           fixed,
           fixedInfo,
           columnIndex,
-          defaultRightWidth: scrollBar,
         })}
         draggable={headerDraggable}
       >
-        {thContont}
+        {thContent}
       </th>
     );
   });
@@ -54,7 +52,7 @@ function headerRenderer(props: headerRendererProps) {
 
   return (
     <thead>
-      <tr style={trStyle} className="table-header" id={trId}>
+      <tr style={trStyle} className="table-header" id={tableUid}>
         {ths}
       </tr>
     </thead>

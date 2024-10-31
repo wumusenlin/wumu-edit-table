@@ -12,7 +12,8 @@ export interface selectDataItem {
   label: any;
 }
 export interface inputOptionsProps {
-  selectData: Array<selectDataItem>;
+  selectData?: Array<selectDataItem>;
+  placeholder?: string;
 }
 
 export interface fixedInfoProps {
@@ -48,6 +49,7 @@ export interface handleChange {
 
 interface onScrolledParams {
   scrollLeft: number;
+  scrollTop: number;
 }
 export interface onScrolled {
   (onScrolledParma: onScrolledParams): void;
@@ -68,7 +70,7 @@ export type TAlign = 'left' | 'center' | 'right' | null | string;
 export type InputType = 'text' | 'select' | null | string;
 
 export interface colProps {
-  dataIndex: string;
+  dataIndex: string | string[];
   title: string | any;
   width?: number;
   fixed?: TFixed;

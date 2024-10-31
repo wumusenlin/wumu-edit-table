@@ -7,8 +7,6 @@ import rowRenderer from './rowRenderer';
 function tbodyRenderer(props: tbodyRendererProps) {
   const { dataSource, notFoundContent, ...otherProps } = props;
 
-  // const addRow = () => { };
-
   const isEmpty = mustArray(dataSource).length === 0;
 
   return isEmpty ? (

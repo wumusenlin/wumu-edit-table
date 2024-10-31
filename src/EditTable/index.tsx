@@ -30,10 +30,6 @@ import {
 
 export const tableContext = createContext<tableContextProps>({ topHeight: 0 });
 
-export function scrollBar() {
-  return 16;
-}
-
 const EditTable: FC<ITable> = (props) => {
   const {
     columns,
@@ -49,34 +45,42 @@ const EditTable: FC<ITable> = (props) => {
     notFoundContent = null,
     config = null,
     headerDraggable = false,
+    calcDelay = 50, // 重新计算渲染初始行的节流时间（毫秒，参考throttle方法实现；仅作用于y轴滚动时）
   } = props;
+
   const _headerWrapRef = useRef<HTMLDivElement | null>(null);
-  const [_timeKey] = useState(Date.now());
+  const tableUid = useMemo(() => `#table-header${Date.now()}`, []);
+
   const [_dataSource, _setDataSource] = useState<Array<object>>([]);
   const [_columns, _setColumns] = useState<Array<IColProps>>([]);
+  const [hasScrollLeft, setHasScrollLeft] = useState(false);
+
   const [autoCol, setAutoCol] = useState<IAutoCol>({
     autoWidthColIndex: null,
     autoColWidth: 120,
   });
-  const [scrollInfo, setScrollInfo] = useState<object>({});
   const [_fixedInfo, _setFixedInfo] = useState<fixedInfoProps>({
     left: {},
     right: {},
   });
-  const trId = useMemo(() => `#table-header${_timeKey}`, [_timeKey]);
+
   const virtualListOptions = {
     itemHeight: rowHeight,
     maxHeight,
     overscan: 0,
-    onScrolled: ({ scrollLeft, scrollTop }: any) => {
-      setScrollInfo({ scrollLeft, scrollTop });
+    calcDelay,
+    onScrolled: ({ scrollLeft }: any) => {
+      // 同步表头的横向滚动
       if (_headerWrapRef.current) {
         _headerWrapRef.current.scrollLeft = scrollLeft;
       }
+      if (scrollLeft > 0) {
+        setHasScrollLeft(true);
+      } else {
+        setHasScrollLeft(false);
+      }
     },
-    wrapperPropsStyle: {
-      borderSpacing: 0,
-    },
+    wrapperPropsStyle: { borderSpacing: 0 },
   };
   const {
     list,
@@ -85,7 +89,6 @@ const EditTable: FC<ITable> = (props) => {
     bottomHeight,
     containerInfo,
     topHeight,
-    hasScrollY,
   } = useVirtualList(_dataSource, virtualListOptions);
 
   const handleChange: handleChange = (val: any, options) => {
@@ -129,64 +132,58 @@ const EditTable: FC<ITable> = (props) => {
       );
     }
   }, [containerInfo]);
-
   useEffect(() => {
     if (!headerDraggable) return;
 
-    const elementTr = document.getElementById(trId) as HTMLElement;
+    const elementTr = document.getElementById(tableUid) as HTMLElement;
     if (!elementTr) return;
-    console.log('dragManager初始化');
+
     const dragManager = new DragManager(elementTr, _columns, _setColumns);
 
     return () => {
       dragManager.destroy();
     };
-  }, [headerDraggable, trId, _setColumns, _columns]);
-
-  const headerContent = hiddenHerder ? null : (
-    <div className="wumu-table-header" ref={_headerWrapRef}>
-      <table>
-        {genColGroup({
-          columns: _columns,
-          autoCol,
-          scrollBar: hasScrollY ? scrollBar() : undefined,
-        })}
-        {headerRenderer({
-          columns: _columns,
-          headerHeight,
-          headerBackground,
-          containerInfo: { ...scrollInfo, ...containerInfo },
-          fixedInfo: _fixedInfo,
-          scrollBar: hasScrollY ? scrollBar() : undefined,
-          headerDraggable,
-          trId,
-        })}
-      </table>
-    </div>
-  );
-
-  const contextValue = { topHeight };
+  }, [headerDraggable, tableUid, _setColumns, _columns]);
 
   const wrapClassName = useMemo(() => {
     let classStr = `wumu-table`;
-    // @ts-ignore
-    if (scrollInfo?.scrollLeft > 0) {
+    if (hasScrollLeft) {
       classStr = classStr + ` has-left-shadow`;
     }
 
     classStr = classStr + ` has-right-shadow`;
 
     return classStr;
-  }, [scrollInfo, containerInfo, autoCol]);
+  }, [hasScrollLeft]);
 
+  const colGroup = genColGroup({ columns: _columns, autoCol });
+  const headerContent = hiddenHerder ? null : (
+    <div className="wumu-table-header" ref={_headerWrapRef}>
+      <table>
+        {colGroup}
+        {headerRenderer({
+          columns: _columns,
+          headerHeight,
+          headerBackground,
+          fixedInfo: _fixedInfo,
+          headerDraggable,
+          tableUid,
+        })}
+      </table>
+    </div>
+  );
+  const contextValue = { topHeight };
+
+  console.log('render开始');
   return (
     <div className={wrapClassName}>
       <div className="wumu-table-body" {...containerProps}>
         {headerContent}
         <tableContext.Provider value={contextValue}>
           <table {...wrapperProps}>
-            {genColGroup({ columns: _columns, autoCol })}
+            {colGroup}
             {tbodyRenderer({
+              tableUid,
               config,
               dataSource: list,
               columns: _columns,
@@ -194,10 +191,9 @@ const EditTable: FC<ITable> = (props) => {
               onEdit,
               editId,
               handleChange,
-              containerInfo: { ...scrollInfo, ...containerInfo },
               fixedInfo: _fixedInfo,
               notFoundContent: genNotFoundContentWrap({
-                containerInfo: { ...scrollInfo, ...containerInfo },
+                containerInfo,
                 children: notFoundContent ?? defaultNotFoundContent(),
               }),
             })}

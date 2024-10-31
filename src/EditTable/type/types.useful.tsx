@@ -15,6 +15,7 @@ export interface IUsefulCell {
   config?: config | null;
   containerInfo?: containerInfoProps;
   fixedInfo: fixedInfoProps;
+  tableUid: string;
 }
 
 export interface IUsefulRowProps extends IUsefulCell {
