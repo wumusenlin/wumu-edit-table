@@ -15,47 +15,45 @@
 [![stargazers][stargazers-shield]][stargazers-url]
 [![issues][issues-shield]][issues-url] -->
 
-## A simple react edit-table component
- [中文文档](README.zh.md)
+## 一个轻量的无依赖的 React 可编辑表格
+
 ## DEMO
 
-[github pages | online demo](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
+[在线示例](https://wumusenlin.github.io/wumu-edit-table/components/edit-table)
 
 ## 🎊features
 
-- 📑 add/delete row [git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E8%A1%8C%E5%86%85%E6%96%B0%E5%A2%9E%E5%88%A0%E9%99%A4)
-- 📑 custom cellRender
-- 📑 feat: select input[git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E5%A4%9A%E7%B1%BB%E5%9E%8B%E8%BE%93%E5%85%A5)
-- 📑 fixed Column（scroll-x can fixed left column or right column）[git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E5%9B%BA%E5%AE%9A%E5%88%97)
+- 📑 行内新增和删除 [git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E8%A1%8C%E5%86%85%E6%96%B0%E5%A2%9E%E5%88%A0%E9%99%A4)
+- 📑 自定义 cellRender
+- 📑 新增 select 类型输入[git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E5%A4%9A%E7%B1%BB%E5%9E%8B%E8%BE%93%E5%85%A5)
+- 📑 固定列（横向滚动左侧固定和右侧固定）[git pages](https://wumusenlin.github.io/wumu-edit-table/components/edit-table#%E5%9B%BA%E5%AE%9A%E5%88%97)
 
 ## ✨lightspot
 
-- 🏳‍🌈 simple use, you click cell and you can edit cell 
-- 🚀 Virtual Scroll: Ensures smooth performance even with massive data
+- 🏳‍🌈 简单易用，点哪编辑哪
+- 🚀 虚拟滚动，再多数据都不怕卡顿啦
 
 ## 📌 todo list
 
-1. ~~☑️ add/delete row~~
-2. ~~☑️ custom cellRender~~
-3. 📑 other select input：~~select~~、checkbox
-4. ~~📑 fixed Column~~
-5. 📑 columns resize
-6. ~~📑 column Drag and drop~~
+1. ~~📑 行内新增和删除~~
+2. ~~📑 自定义 cellRender~~
+3. 📑 其他类型 input：~~select~~、checkbox
+4. ~~📑 固定列~~
+5. 📑 表头可伸缩
+6. ~~📑 表头拖拽排序~~
 
 ## 🔨Usage
 
-### install package
+### 引入包
 
 ```bash
 $ npm i wumu-edit-table
 ```
 
-### simple usage
+### 简单使用
 
-It was referred to [antd design table](https://4x-ant-design.antgroup.com/components/table-cn/#API)when designing the api;
-Define the table header and data;
-Define the cell currently being `editId`；
-Define the current table data`dataSource`
+设计 api 时参考了[antd design table](https://4x-ant-design.antgroup.com/components/table-cn/#API)
+定义表头和数据;定义当前编辑的单元格`editId`；定义当前数据`dataSource`
 
 ```javaScript
 import React, { useState } from 'react';
@@ -122,6 +120,10 @@ export default () => {
 ## 📖 Docs
 
 [github pages](https://wumusenlin.github.io/wumu-edit-table)
+
+[国内地址(腾讯云部署)](http://wumusenlin.xyz:8002/)
+作者自己维护的地址可能存在更新不及时的问题，请以 npm 版本为准
+
 ## ⚙ Options
 
 [git pages options](https://wumusenlin.github.io/wumu-edit-table/api)
