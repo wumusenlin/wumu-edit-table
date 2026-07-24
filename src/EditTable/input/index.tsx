@@ -1,11 +1,11 @@
 import React, { type FC } from 'react';
 import { inputTypes } from '../helper/utils';
-import { inputProps } from '../types';
+import { InputProps } from '../types';
 import BasicInput from './basicInput';
 import './input.css';
 import SelectInput from './select';
 
-const Input: FC<inputProps> = (props) => {
+const Input: FC<InputProps> = (props) => {
   const { column } = props;
   const { inputType } = column;
 

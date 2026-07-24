@@ -1,9 +1,9 @@
 import React from 'react';
 import '../css/herader.css';
 import { genClassName, genStyle } from '../helper/utils';
-import { headerRendererProps } from '../types';
+import { HeaderRendererProps } from '../types';
 
-function headerRenderer(props: headerRendererProps) {
+function headerRenderer(props: HeaderRendererProps) {
   const {
     columns,
     headerHeight,

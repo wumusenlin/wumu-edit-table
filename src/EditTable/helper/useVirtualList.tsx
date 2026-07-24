@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { containerInfoProps } from '../type/types.basic';
-import { virtualListOptions } from '../types';
+import { ContainerInfoProps } from '../type/types.basic';
+import { VirtualListOptions } from '../types';
 
 const useVirtualList = (
   defaultList: Array<any>,
-  options: virtualListOptions,
+  options: VirtualListOptions,
 ) => {
   const {
     overscan = 0,
@@ -18,7 +18,7 @@ const useVirtualList = (
   const timeController = useRef({ lastTime: Date.now(), timer: null });
   const [startIdx, setStartIdx] = useState(0);
   const [showRowCount] = useState(Math.ceil(maxHeight / itemHeight));
-  const [containerInfo, setContainerInfo] = useState<containerInfoProps>({
+  const [containerInfo, setContainerInfo] = useState<ContainerInfoProps>({
     offsetWidth: 0,
     clientWidth: 0,
   });

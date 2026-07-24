@@ -1,8 +1,8 @@
 import React from 'react';
-import { rowRendererProps } from '../types';
+import { RowRendererProps } from '../types';
 import cellRenderer from './cellRenderer';
 
-function rowRenderer(props: rowRendererProps) {
+function rowRenderer(props: RowRendererProps) {
   const { columns, rowIndex, tableUid } = props;
   const key = `${tableUid}-${rowIndex}`;
   return (

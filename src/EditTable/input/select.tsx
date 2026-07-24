@@ -10,10 +10,10 @@ import { createPortal } from 'react-dom';
 import { tableContext } from '..';
 import { mustArray } from '../helper/fn';
 import { genPrimaryColor } from '../helper/utils';
-import { inputProps } from '../types';
+import { InputProps } from '../types';
 import './input.css';
 
-const SelectInput: FC<inputProps> = (props) => {
+const SelectInput: FC<InputProps> = (props) => {
   const initRef = useRef<any>({ current: { inited: false } });
   const { topHeight } = useContext(tableContext);
   const {
