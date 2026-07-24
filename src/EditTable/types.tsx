@@ -1,151 +1,126 @@
-import { ReactNode } from 'react';
-import {
+import type { CSSProperties, ReactNode } from 'react';
+import type {
+  AutoCol,
+  ColumnProps,
+  ContainerInfoProps,
+  FixedInfoProps,
+  InputChange,
+  OnAdd,
+  OnChange,
+  OnDelete,
+  OnEdit,
+  OnScrolled,
   TAlign,
   TFixed,
-  IAutoCol as basicAutoCol,
-  colProps as basicColProps,
-  fixedInfoProps as basicFixedInfoProps,
-  config,
-  containerInfoProps,
-  handleChangeOptions,
-  inputChange,
-  onAdd,
-  onChange,
-  onDelete,
-  onEdit,
-  onScrolled,
+  TableConfig,
 } from './type/types.basic';
-import {
-  IUsefulCell,
-  IUsefulHeaderStyle,
-  IUsefulRowProps,
+import type {
+  HeaderStyleProps,
+  UsefulCellProps,
+  UsefulRowProps,
 } from './type/types.useful';
 
-export interface notFoundContentWrap {
+export interface NotFoundContentWrapProps {
   children: ReactNode;
-  containerInfo: containerInfoProps;
+  containerInfo: ContainerInfoProps;
 }
 
-export interface IColGroup {
-  columns: Array<basicColProps>;
-  autoCol: basicAutoCol;
+export interface ColGroupProps {
+  columns: Array<ColumnProps>;
+  autoCol: AutoCol;
 }
 
-export interface tbodyRendererProps extends IUsefulRowProps {
+export interface TbodyRendererProps extends UsefulRowProps {
   dataSource: Array<object>;
   notFoundContent?: null | ReactNode;
 }
 
-export interface rowRendererProps extends IUsefulRowProps {
+export interface RowRendererProps extends UsefulRowProps {
   rowIndex: number;
   record: any;
 }
 
-export interface headerRendererProps extends IUsefulHeaderStyle {
-  columns: Array<basicColProps>;
-  fixedInfo: basicFixedInfoProps;
+export interface HeaderRendererProps extends HeaderStyleProps {
+  columns: Array<ColumnProps>;
+  fixedInfo: FixedInfoProps;
   headerDraggable?: boolean;
   tableUid?: string;
 }
 
-export interface virtualListOptions {
+export interface VirtualListOptions {
   overscan?: number;
   itemHeight?: number;
   maxHeight?: number;
-  height?: number;
-  onScrolled?: onScrolled;
-  wrapperPropsStyle?: object;
+  onScrolled?: OnScrolled;
+  wrapperPropsStyle?: CSSProperties;
   calcDelay?: number;
 }
 
-export interface virtualListResponse {
-  list: Array<any>;
-  wrapperProps: object;
-  containerProps: object;
-  topHeight: number;
-  bottomHeight: number;
-  containerInfo: containerInfoProps;
-}
-
-export interface inputProps {
-  inputChange?: inputChange;
+export interface InputProps {
+  inputChange?: InputChange;
   initValue: any;
-  onEdit?: onEdit;
-  column: basicColProps;
-  config?: config | null;
+  onEdit?: OnEdit;
+  column: ColumnProps;
+  config?: TableConfig | null;
 }
 
-export interface genClassNameProps {
+export interface GenClassNameProps {
   className: string;
   rowIndex?: number;
   columnIndex?: number;
   readonly?: boolean | null;
   fixed?: TFixed;
   fixedClassName?: string;
-  fixedInfo?: basicFixedInfoProps;
+  fixedInfo?: FixedInfoProps;
 }
 
-export interface genStyleProps {
-  style: any;
+export interface GenStyleProps {
+  style: CSSProperties;
   rowIndex?: number;
   columnIndex?: number;
   readonly?: boolean | null;
   fixed?: TFixed;
   align?: TAlign;
-  fixedInfo?: basicFixedInfoProps;
+  fixedInfo: FixedInfoProps;
   defaultRightWidth?: number;
 }
 
-export interface tableContextProps {
+export interface TableContextProps {
   topHeight: number;
 }
 
-export interface cellRenderProps extends IUsefulCell {
-  col: basicColProps;
+export interface CellRenderProps extends UsefulCellProps {
+  col: ColumnProps;
   columnIndex: number;
   rowIndex: number;
   record: any;
 }
 
-export interface optionsConfig {
+interface OptionsConfig {
   label: string;
   fn: () => void;
 }
 
 export interface OptionsColumnsProps {
-  columns: Array<basicColProps>;
-  deleteConfig: optionsConfig;
-  addConfig: optionsConfig;
+  columns: Array<ColumnProps>;
+  deleteConfig: OptionsConfig;
+  addConfig: OptionsConfig;
 }
 
-export interface ITable extends IUsefulHeaderStyle {
-  columns: Array<basicColProps>;
+export interface EditTableProps extends HeaderStyleProps {
+  columns: Array<ColumnProps>;
   dataSource: Array<object>;
-  onEdit?: onEdit;
+  onEdit?: OnEdit;
   editId?: string;
   rowHeight?: number;
   maxHeight?: number;
   rowKey?: string;
-  onChange?: onChange;
+  onChange?: OnChange;
   hiddenHerder?: boolean;
   notFoundContent?: null | ReactNode;
-  config?: config | null;
-  onAdd?: onAdd;
-  onDelete?: onDelete;
+  config?: TableConfig | null;
+  onAdd?: OnAdd;
+  onDelete?: OnDelete;
   headerDraggable?: boolean;
   calcDelay?: number;
-}
-
-export interface IColProps extends basicColProps {
-  dataIndex: string;
-}
-export interface fixedInfoProps extends basicFixedInfoProps {
-  left: object;
-}
-export interface IAutoCol extends basicAutoCol {
-  autoColWidth: number;
-}
-
-export interface handleChange {
-  (val: any, handleChangeOptions: handleChangeOptions): void;
 }

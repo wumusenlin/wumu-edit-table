@@ -1,20 +1,19 @@
 import React from 'react';
 import '../css/tbody.css';
-import { colProps, config } from '../type/types.basic';
+import type { ColumnProps, TableConfig } from '../type/types.basic';
 import {
-  IColGroup,
-  genClassNameProps,
-  genStyleProps,
-  notFoundContentWrap,
+  ColGroupProps,
+  GenClassNameProps,
+  GenStyleProps,
+  NotFoundContentWrapProps,
 } from '../types';
-import { mustArray } from './fn';
 
 export const inputTypes = {
   text: 'text',
   select: 'select',
 };
 
-export function genColGroup(props: IColGroup) {
+export function genColGroup(props: ColGroupProps) {
   const { columns, autoCol } = props;
   const { autoWidthColIndex, autoColWidth } = autoCol;
 
@@ -33,7 +32,7 @@ export function genColGroup(props: IColGroup) {
 }
 
 export function getAutoWidthCol(props: {
-  columns: Array<colProps>;
+  columns: Array<ColumnProps>;
   clientWidth: number;
 }) {
   const { columns, clientWidth = 0 } = props;
@@ -60,30 +59,25 @@ export function getAutoWidthCol(props: {
   };
 }
 
-export function genFixedInfo(columns: Array<colProps>) {
+export function genFixedInfo(columns: ReadonlyArray<ColumnProps>) {
   let leftWidth = 0;
   let rightWidth = 0;
-  const left = {};
-  const right = {};
-  const len = mustArray(columns).length;
-  mustArray(columns)
-    .reverse()
-    .forEach((col, index) => {
-      const { width = 120, fixed } = col;
-      if (fixed === 'right') {
-        right[len - index - 1] = rightWidth;
-        rightWidth += width;
-      }
-    });
-  mustArray(columns)
-    .reverse()
-    .forEach((col, index) => {
-      const { width, fixed } = col;
-      if (fixed === 'left') {
-        left[index] = leftWidth;
-        leftWidth += width;
-      }
-    });
+  const left: Record<number, number> = {};
+  const right: Record<number, number> = {};
+
+  columns.forEach(({ fixed, width = 120 }, index) => {
+    if (fixed === 'left') {
+      left[index] = leftWidth;
+      leftWidth += width;
+    }
+  });
+  for (let index = columns.length - 1; index >= 0; index -= 1) {
+    const { fixed, width = 120 } = columns[index];
+    if (fixed === 'right') {
+      right[index] = rightWidth;
+      rightWidth += width;
+    }
+  }
 
   return { left, right };
 }
@@ -96,7 +90,7 @@ export function defaultNotFoundContent() {
   return <div className="wumu-default-not-found-content">暂无数据~</div>;
 }
 
-export function genNotFoundContentWrap(props: notFoundContentWrap) {
+export function genNotFoundContentWrap(props: NotFoundContentWrapProps) {
   const { containerInfo, children = defaultNotFoundContent() } = props;
   const style: React.CSSProperties = {
     width: containerInfo.offsetWidth,
@@ -107,7 +101,7 @@ export function genNotFoundContentWrap(props: notFoundContentWrap) {
   return <div style={style}>{children}</div>;
 }
 
-export function genClassName(props: genClassNameProps) {
+export function genClassName(props: GenClassNameProps) {
   const {
     className,
     rowIndex,
@@ -143,7 +137,7 @@ export function genClassName(props: genClassNameProps) {
   return str;
 }
 
-export function genStyle(props: genStyleProps) {
+export function genStyle(props: GenStyleProps) {
   const {
     style,
     fixed,
@@ -169,7 +163,14 @@ export function genStyle(props: genStyleProps) {
   return style;
 }
 
-export function colorLuminance(hexParm: any, lumParm: any) {
+export function getRecordValue(record: any, dataIndex: string | string[]) {
+  return (Array.isArray(dataIndex) ? dataIndex : [dataIndex]).reduce(
+    (value, key) => (value instanceof Object ? value[key] : null),
+    record,
+  );
+}
+
+export function colorLuminance(hexParm: string, lumParm = 0) {
   // validate hex string
   let hex = String(hexParm).replace(/[^0-9a-f]/gi, '');
   if (hex.length < 6) {
@@ -194,7 +195,7 @@ export function colorLuminance(hexParm: any, lumParm: any) {
   return rgb;
 }
 
-export function genPrimaryColor(config: config | null, lum?: any | undefined) {
+export function genPrimaryColor(config: TableConfig | null, lum?: number) {
   let tempColor = config?.color?.primaryColor;
   if (lum) {
     if (tempColor) {

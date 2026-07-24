@@ -1,8 +1,8 @@
 import React, { type FC } from 'react';
-import { inputProps } from '../types';
+import { InputProps } from '../types';
 import './input.css';
 
-const BasicInput: FC<inputProps> = (props) => {
+const BasicInput: FC<InputProps> = (props) => {
   const {
     initValue,
     inputChange = () => {},

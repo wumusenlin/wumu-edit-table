@@ -20,17 +20,20 @@ import {
   setRowKey,
 } from './helper/utils';
 import {
-  IAutoCol,
-  IColProps,
-  ITable,
-  fixedInfoProps,
-  handleChange,
-  tableContextProps,
+  AutoCol,
+  ColumnProps,
+  FixedInfoProps,
+  HandleChange,
+} from './type/types.basic';
+import {
+  EditTableProps,
+  TableContextProps,
+  VirtualListOptions,
 } from './types';
 
-export const tableContext = createContext<tableContextProps>({ topHeight: 0 });
+export const tableContext = createContext<TableContextProps>({ topHeight: 0 });
 
-const EditTable: FC<ITable> = (props) => {
+const EditTable: FC<EditTableProps> = (props) => {
   const {
     columns,
     dataSource,
@@ -52,24 +55,24 @@ const EditTable: FC<ITable> = (props) => {
   const tableUid = useMemo(() => `#table-header${Date.now()}`, []);
 
   const [_dataSource, _setDataSource] = useState<Array<object>>([]);
-  const [_columns, _setColumns] = useState<Array<IColProps>>([]);
+  const [_columns, _setColumns] = useState<Array<ColumnProps>>([]);
   const [hasScrollLeft, setHasScrollLeft] = useState(false);
 
-  const [autoCol, setAutoCol] = useState<IAutoCol>({
+  const [autoCol, setAutoCol] = useState<AutoCol>({
     autoWidthColIndex: null,
     autoColWidth: 120,
   });
-  const [_fixedInfo, _setFixedInfo] = useState<fixedInfoProps>({
+  const [_fixedInfo, _setFixedInfo] = useState<FixedInfoProps>({
     left: {},
     right: {},
   });
 
-  const virtualListOptions = {
+  const virtualListOptions: VirtualListOptions = {
     itemHeight: rowHeight,
     maxHeight,
     overscan: 0,
     calcDelay,
-    onScrolled: ({ scrollLeft }: any) => {
+    onScrolled: ({ scrollLeft }) => {
       // 同步表头的横向滚动
       if (_headerWrapRef.current) {
         _headerWrapRef.current.scrollLeft = scrollLeft;
@@ -91,9 +94,9 @@ const EditTable: FC<ITable> = (props) => {
     topHeight,
   } = useVirtualList(_dataSource, virtualListOptions);
 
-  const handleChange: handleChange = (val: any, options) => {
+  const handleChange: HandleChange = (val, options) => {
     const { rowIndex, dataIndex } = options;
-    let targetDataSource = _dataSource;
+    const targetDataSource = _dataSource;
     if (Array.isArray(dataIndex)) {
       dataIndex.reduceRight((result, d, index) => {
         if (index === 0) {
@@ -174,7 +177,6 @@ const EditTable: FC<ITable> = (props) => {
   );
   const contextValue = { topHeight };
 
-  console.log('render开始');
   return (
     <div className={wrapClassName}>
       <div className="wumu-table-body" {...containerProps}>

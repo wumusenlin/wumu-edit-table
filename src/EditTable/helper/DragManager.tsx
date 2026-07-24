@@ -1,13 +1,16 @@
+import type { Dispatch, SetStateAction } from 'react';
+import type { ColumnProps } from '../type/types.basic';
+
 export class DragManager {
   private elementTr: HTMLElement;
-  private columns: Array<any>;
-  private setColumns: (columns: Array<any>) => void;
+  private columns: Array<ColumnProps>;
+  private setColumns: Dispatch<SetStateAction<Array<ColumnProps>>>;
   private currentTh: HTMLElement | null = null;
 
   constructor(
     elementTr: HTMLElement,
-    columns: Array<any>,
-    setColumns: (columns: Array<any>) => void,
+    columns: Array<ColumnProps>,
+    setColumns: Dispatch<SetStateAction<Array<ColumnProps>>>,
   ) {
     this.elementTr = elementTr;
     this.columns = columns;
@@ -57,9 +60,9 @@ export class DragManager {
       return;
     }
 
-    let liArray = Array.from(this.elementTr.childNodes);
-    let currentIndex = liArray.indexOf(this.currentTh);
-    let targetIndex = liArray.indexOf(target);
+    const headerCells = Array.from(this.elementTr.children);
+    const currentIndex = headerCells.indexOf(this.currentTh);
+    const targetIndex = headerCells.indexOf(target);
 
     const leftFixedColumns = this.columns.filter((col) => col.fixed === 'left');
     const rightFixedColumns = this.columns.filter(

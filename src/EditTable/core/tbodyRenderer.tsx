@@ -1,10 +1,10 @@
 import React from 'react';
 import '../css/tbody.css';
 import { mustArray } from '../helper/fn';
-import { tbodyRendererProps } from '../types';
+import { TbodyRendererProps } from '../types';
 import rowRenderer from './rowRenderer';
 
-function tbodyRenderer(props: tbodyRendererProps) {
+function tbodyRenderer(props: TbodyRendererProps) {
   const { dataSource, notFoundContent, ...otherProps } = props;
 
   const isEmpty = mustArray(dataSource).length === 0;

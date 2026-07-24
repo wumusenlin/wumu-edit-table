@@ -1,75 +1,75 @@
-export interface color {
+export interface ColorConfig {
   primaryColor?: string;
   headerBackground?: string;
 }
 
-export interface config {
-  color?: color;
+export interface TableConfig {
+  color?: ColorConfig;
 }
 
-export interface selectDataItem {
+export interface SelectDataItem {
   value: any;
   label: any;
 }
-export interface inputOptionsProps {
-  selectData?: Array<selectDataItem>;
+export interface InputOptionsProps {
+  selectData?: Array<SelectDataItem>;
   placeholder?: string;
 }
 
-export interface fixedInfoProps {
-  left: object;
-  right: object;
+export interface FixedInfoProps {
+  left: Record<number, number>;
+  right: Record<number, number>;
 }
 
-export interface containerInfoProps {
+export interface ContainerInfoProps {
   offsetWidth: number;
   clientWidth: number;
   scrollLeft?: number;
   scrollTop?: number;
 }
 
-export interface onChangeOptions {
+export interface OnChangeOptions {
   rowIndex: number;
   record: any;
   dataIndex: string | Array<string>;
   value: any;
 }
-export interface onChange {
-  (data: Array<any>, options: onChangeOptions): void;
+export interface OnChange {
+  (data: Array<any>, options: OnChangeOptions): void;
 }
 
-export interface handleChangeOptions {
+export interface HandleChangeOptions {
   rowIndex: number;
   record: any;
   dataIndex: string | Array<string>;
 }
-export interface handleChange {
-  (val: any, handleChangeOptions: handleChangeOptions): void;
+export interface HandleChange {
+  (val: any, handleChangeOptions: HandleChangeOptions): void;
 }
 
-interface onScrolledParams {
+interface OnScrolledParams {
   scrollLeft: number;
   scrollTop: number;
 }
-export interface onScrolled {
-  (onScrolledParma: onScrolledParams): void;
+export interface OnScrolled {
+  (params: OnScrolledParams): void;
 }
-export interface IAutoCol {
+export interface AutoCol {
   autoWidthColIndex: null | number;
   autoColWidth: number;
 }
 
-export type onEdit = (id: string, y?: number) => void;
-export type onAdd = (record: any) => void;
-export type onDelete = (record: any) => void;
-export type permanentNodeFun = (val: any, record: any) => void;
-export type inputChange = (value: any) => void;
+export type OnEdit = (id: string, y?: number) => void;
+export type OnAdd = (record: any) => void;
+export type OnDelete = (record: any) => void;
+export type PermanentNodeFn = (val: any, record: any) => void;
+export type InputChange = (value: any) => void;
 
 export type TFixed = 'right' | 'left' | null | string;
 export type TAlign = 'left' | 'center' | 'right' | null | string;
 export type InputType = 'text' | 'select' | null | string;
 
-export interface colProps {
+export interface ColumnProps {
   dataIndex: string | string[];
   title: string | any;
   width?: number;
@@ -77,6 +77,6 @@ export interface colProps {
   align?: TAlign;
   readonly?: undefined | boolean;
   inputType?: InputType;
-  inputOptions?: inputOptionsProps;
-  permanentNode?: permanentNodeFun;
+  inputOptions?: InputOptionsProps;
+  permanentNode?: PermanentNodeFn;
 }

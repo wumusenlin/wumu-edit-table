@@ -7,16 +7,4 @@ export function mustArray(
   return [];
 }
 
-export function isExist(val: any) {
-  return val !== null && val !== undefined && val !== '';
-}
-
-export function notExist(val: any) {
-  return !isExist(val);
-}
-
-export function notEmptyArray(list: any) {
-  return Array.isArray(list) && list.length > 0;
-}
-
 export const isFunction = (x: any): boolean => typeof x === 'function';

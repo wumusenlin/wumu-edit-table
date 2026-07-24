@@ -10,7 +10,6 @@ function genOptionsColumns(options: OptionsColumnsProps) {
     width: 60,
     align: 'center',
     fixed: 'left',
-    // permanentNode: <div>+</div>
   };
   const optionCol = {
     title: '操作',
@@ -18,7 +17,6 @@ function genOptionsColumns(options: OptionsColumnsProps) {
     width: 60,
     align: 'center',
     fixed: 'right',
-    // permanentNode: <div>删除</div>
   };
 
   return mustArray(columns)

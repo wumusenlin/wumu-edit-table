@@ -1,28 +1,28 @@
 import {
-  colProps,
-  config,
-  containerInfoProps,
-  fixedInfoProps,
-  handleChange,
-  onEdit,
+  ColumnProps,
+  ContainerInfoProps,
+  FixedInfoProps,
+  HandleChange,
+  OnEdit,
+  TableConfig,
 } from './types.basic';
 
-export interface IUsefulCell {
-  onEdit?: onEdit;
-  handleChange?: handleChange;
+export interface UsefulCellProps {
+  onEdit?: OnEdit;
+  handleChange?: HandleChange;
   rowHeight: number;
   editId?: string;
-  config?: config | null;
-  containerInfo?: containerInfoProps;
-  fixedInfo: fixedInfoProps;
+  config?: TableConfig | null;
+  containerInfo?: ContainerInfoProps;
+  fixedInfo: FixedInfoProps;
   tableUid: string;
 }
 
-export interface IUsefulRowProps extends IUsefulCell {
-  columns: Array<colProps>;
+export interface UsefulRowProps extends UsefulCellProps {
+  columns: Array<ColumnProps>;
 }
 
-export interface IUsefulHeaderStyle {
+export interface HeaderStyleProps {
   headerHeight?: number;
   headerBackground?: string;
 }

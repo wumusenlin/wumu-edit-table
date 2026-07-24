@@ -3,13 +3,14 @@ import { isFunction, mustArray } from '../helper/fn';
 import {
   genClassName,
   genPrimaryColor,
+  getRecordValue,
   genStyle,
   inputTypes,
 } from '../helper/utils';
 import Input from '../input';
-import { cellRenderProps } from '../types';
+import { CellRenderProps } from '../types';
 
-function cellRenderer(props: cellRenderProps) {
+function cellRenderer(props: CellRenderProps) {
   const {
     rowIndex,
     record,
@@ -41,24 +42,11 @@ function cellRenderer(props: cellRenderProps) {
     padding: isEdit ? ' 0 8px' : '0 12px',
   };
 
-  const value = () => {
-    if (Array.isArray(dataIndex)) {
-      let val = record;
-      dataIndex.forEach((d) => {
-        if (val instanceof Object) {
-          val = val[d];
-        } else {
-          val = null;
-        }
-      });
-      return val;
-    }
-    return record[dataIndex];
-  };
+  const value = getRecordValue(record, dataIndex);
 
   if (permanentNode) {
     const node = isFunction(permanentNode)
-      ? permanentNode(value(), record)
+      ? permanentNode(value, record)
       : permanentNode;
     return (
       <td
@@ -96,18 +84,18 @@ function cellRenderer(props: cellRenderProps) {
   const content = isEdit ? (
     <Input
       config={config}
-      initValue={value()}
+      initValue={value}
       inputChange={inputChange}
       onEdit={onEdit}
       column={col}
     />
   ) : inputType === inputTypes.select ? (
-    mustArray(col?.inputOptions?.selectData).find((s) => s.value === value())
+    mustArray(col?.inputOptions?.selectData).find((s) => s.value === value)
       ?.label
   ) : fixed ? (
-    <div className="table-cell-overflow-hidden">{value()}</div>
+    <div className="table-cell-overflow-hidden">{value}</div>
   ) : (
-    value()
+    value
   );
 
   return (
@@ -123,7 +111,7 @@ function cellRenderer(props: cellRenderProps) {
         fixed,
         fixedInfo,
       })}
-      title={value()}
+      title={value}
       onClick={() =>
         typeof onEdit === 'function' && !readonly ? onEdit(id) : void 0
       }
